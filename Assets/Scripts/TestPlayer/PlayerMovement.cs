@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovment : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5;
     public float turnSpeed = 1080;
+    public bool paused;
 
     private Rigidbody rb;
     private Vector3 input;
@@ -16,6 +17,8 @@ public class PlayerMovment : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+        paused = false;
     }
 
     // Update is called once per frame
@@ -25,7 +28,13 @@ public class PlayerMovment : MonoBehaviour
         Look();
     }
 
-    private void FixedUpdate() { Move(); }
+    private void FixedUpdate() 
+    { 
+        if (!paused)
+        {
+            Move();
+        }
+    }
     void GatherInput() { input = new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical")); }
 
     void Look()

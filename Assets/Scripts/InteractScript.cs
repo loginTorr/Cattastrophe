@@ -2,22 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 
 public class InteractScript : MonoBehaviour
 {
     public GameObject InteractUI;
-    public GameObject GameHub;
 
-    public PlayerInput playerInput;
+    private Dungeon DungeonScript;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        DungeonScript = FindObjectOfType<Dungeon>();
     }
 
     // Update is called once per frame
@@ -29,20 +27,26 @@ public class InteractScript : MonoBehaviour
     private void OnTriggerStay()
     {
         InteractUI.SetActive(true);
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             var ObjectName = gameObject.name;
+            Debug.Log("E Pressed");
 
-            if (ObjectName == "FirstDungeon")
+            if (ObjectName == "RatDungeonPortal")
             {
-                StartCoroutine(StartDungeon());
+                Debug.Log("RatPortal");
+                DungeonScript.CurDungeonState = DungeonState.EnterDungeon;
+                DungeonScript.switchingDungeons = true;
             }
 
-            if (ObjectName == "SecondDungeon")
+            if (ObjectName == "WolfDungeonPortal")
             {
+                Debug.Log("WolfPortal");
+                DungeonScript.CurDungeonState = DungeonState.EnterDungeon;
+                DungeonScript.switchingDungeons = true;
 
             }
-            GameHub.SetActive(false);
         }
     }
 
@@ -51,11 +55,4 @@ public class InteractScript : MonoBehaviour
         InteractUI.SetActive(false);
     }
 
-    IEnumerator StartDungeon()
-    {
-        playerInput.DeactivateInput();
-        yield return new WaitForSeconds(3f);
-        playerInput.ActivateInput();
-
-    }
 }
