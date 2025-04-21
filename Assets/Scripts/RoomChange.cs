@@ -11,12 +11,17 @@ public class RoomChange : MonoBehaviour
 
     private RoomChangeState CurRoomChangeState;
     private GameObject Player;
+    private PlayerMovement PlayerMovementScript;
+
 
     // Start is called before the first frame update
     void Start()
     {
         CurRoomChangeState = RoomChangeState.Idle;
+
+        //Get Player Object and PlayerMovement Script
         Player = GameObject.FindGameObjectWithTag("Player");
+        PlayerMovementScript = FindObjectOfType<PlayerMovement>();
 
     }
 
@@ -38,34 +43,37 @@ public class RoomChange : MonoBehaviour
 
     }
 
-    public void SwitchRoom()
+    public IEnumerator SwitchRoom()
     {
+        PlayerMovementScript.paused = true;
         Debug.Log("CoroutineStarted");
+        yield return new WaitForSeconds(0.3f);
         if (DoorName == "Up")
         { 
             Debug.Log("Up");
             Player.transform.position += Vector3.forward * 50f;
         }
 
-        else if (DoorName == "Down")
+        if (DoorName == "Down")
         {
             Debug.Log("Down");
             Player.transform.position += Vector3.back * 50f;
         }
 
-        else if (DoorName == "Right")
+        if (DoorName == "Right")
         {
             Debug.Log("Right");
             Player.transform.position += Vector3.right * 50f;
         }
 
-        else if (DoorName == "Left")
+        if (DoorName == "Left")
         {
             Debug.Log("Left");
             Player.transform.position += Vector3.left * 50f;
 
         }
-        
+        PlayerMovementScript.paused = false;
+
     }
 
 }

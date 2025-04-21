@@ -32,6 +32,7 @@ public class InteractScript : MonoBehaviour
     private void OnTriggerEnter()
     {
         ObjectName = gameObject.name;
+        curCount = 0;
     }
 
     private void OnTriggerStay()
@@ -59,18 +60,15 @@ public class InteractScript : MonoBehaviour
 
             }
 
-            if (curCount >= 1)
+            if (curCount < 1)
             {
-                curCount = 0;
-                return;
-            }
+                if (gameObject.tag == "Door")
+                {
+                    curCount = 1;
+                    RoomChangeScript.DoorName = ObjectName;
+                    RoomChangeScript.StartCoroutine("SwitchRoom");
 
-            else if (gameObject.tag == "Door")
-            {
-                curCount = 1;
-                RoomChangeScript.DoorName = ObjectName;
-                RoomChangeScript.SwitchRoom();
-
+                }
             }
         }
     }
