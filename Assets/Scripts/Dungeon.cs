@@ -13,11 +13,13 @@ public class Dungeon : MonoBehaviour
     public GameObject RatDungeon;
     public GameObject WolfDungeon;
 
+    public Transform RatDungeonStartingPos;
+
     public bool switchingDungeons;
     public bool isRatDungeon;
     public bool isWolfDungeon;
 
-
+    private GameObject Player;
     private PlayerMovement PlayerMovementScript;
 
 
@@ -28,6 +30,9 @@ public class Dungeon : MonoBehaviour
         CurDungeonState = DungeonState.HomeWorld;
         switchingDungeons = false;
         PlayerMovementScript = FindObjectOfType<PlayerMovement>();
+
+
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -59,9 +64,11 @@ public class Dungeon : MonoBehaviour
                     break;
 
                 case DungeonState.RatDungeon:
+                    Debug.Log("RatDungeon");
                     break;
 
                 case DungeonState.WolfDungeon:
+                    Debug.Log("WolfDungeon");
                     break;
             }
             switchingDungeons = false;
@@ -73,13 +80,14 @@ public class Dungeon : MonoBehaviour
         Debug.Log("CoroutineStarted");
         GameHub.SetActive(false);
 
-        if (RatDungeon)
+        if (isRatDungeon)
         {
             Debug.Log("RatDungeon");
+            Player.transform.position = RatDungeonStartingPos.position;
             RatDungeon.SetActive(true);
         }
 
-        else if (WolfDungeon)
+        else if (isWolfDungeon)
         {
             Debug.Log("WolfDungeon");
             WolfDungeon.SetActive(true);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum DungeonState { EnterDungeon, ExitDungeon, HomeWorld, RatDungeon, WolfDungeon };
+public enum RoomChangeState { Idle, RoomChanging, RoomChanged }
 
 public class Game : MonoBehaviour
 {
@@ -18,4 +19,5 @@ public class Game : MonoBehaviour
     {
         
     }
+    
 }

@@ -9,6 +9,9 @@ public class InteractScript : MonoBehaviour
     public GameObject InteractUI;
 
     private Dungeon DungeonScript;
+    private RoomChange RoomChangeScript;
+
+    string ObjectName;
 
 
 
@@ -16,12 +19,18 @@ public class InteractScript : MonoBehaviour
     void Start()
     {
         DungeonScript = FindObjectOfType<Dungeon>();
+        RoomChangeScript = FindObjectOfType<RoomChange>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    private void OnTriggerEnter()
+    {
+        ObjectName = gameObject.name;
     }
 
     private void OnTriggerStay()
@@ -30,21 +39,29 @@ public class InteractScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            var ObjectName = gameObject.name;
             Debug.Log("E Pressed");
 
             if (ObjectName == "RatDungeonPortal")
             {
                 Debug.Log("RatPortal");
+                DungeonScript.isRatDungeon = true;
                 DungeonScript.CurDungeonState = DungeonState.EnterDungeon;
                 DungeonScript.switchingDungeons = true;
             }
 
-            if (ObjectName == "WolfDungeonPortal")
+            else if (ObjectName == "WolfDungeonPortal")
             {
                 Debug.Log("WolfPortal");
+                DungeonScript.isWolfDungeon = true;
                 DungeonScript.CurDungeonState = DungeonState.EnterDungeon;
                 DungeonScript.switchingDungeons = true;
+
+            }
+
+            if (gameObject.tag == "Door")
+            {
+                RoomChangeScript.DoorName = ObjectName;
+                RoomChangeScript.SwitchRoom();
 
             }
         }
