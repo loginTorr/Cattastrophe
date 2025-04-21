@@ -16,7 +16,6 @@ public class RoomChange : MonoBehaviour
     void Start()
     {
         CurRoomChangeState = RoomChangeState.Idle;
-        DoorName = "";
         Player = GameObject.FindGameObjectWithTag("Player");
 
     }

@@ -7,11 +7,12 @@ using UnityEngine;
 public class InteractScript : MonoBehaviour
 {
     public GameObject InteractUI;
+    public string ObjectName;
+    public int curCount;
 
     private Dungeon DungeonScript;
     private RoomChange RoomChangeScript;
 
-    string ObjectName;
 
 
 
@@ -58,8 +59,15 @@ public class InteractScript : MonoBehaviour
 
             }
 
-            if (gameObject.tag == "Door")
+            if (curCount >= 1)
             {
+                curCount = 0;
+                return;
+            }
+
+            else if (gameObject.tag == "Door")
+            {
+                curCount = 1;
                 RoomChangeScript.DoorName = ObjectName;
                 RoomChangeScript.SwitchRoom();
 
@@ -70,6 +78,7 @@ public class InteractScript : MonoBehaviour
     private void OnTriggerExit()
     {
         InteractUI.SetActive(false);
+        curCount = 1;
     }
 
 }
