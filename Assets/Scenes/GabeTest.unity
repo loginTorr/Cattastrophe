@@ -1036,7 +1036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerRB: {fileID: 1886802848}
   Force: 10
-  Cooldown: 1
+  Cooldown: 4
   CanDash: 1
 --- !u!1 &1909805515
 GameObject:

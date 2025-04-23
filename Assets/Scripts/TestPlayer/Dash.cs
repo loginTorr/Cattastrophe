@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Dash : MonoBehaviour {
     [Header("References")]
@@ -8,12 +9,12 @@ public class Dash : MonoBehaviour {
 
     [Header("Dash Values")]
     public float Force = 10f;
-    public int Cooldown = 1;
+    public int Cooldown = 4;
 
     [Header("Other")]
     public bool CanDash = true;
     void Update() {
-        if (CanDash == true && Input.GetKeyDown(KeyCode.LeftShift)) { StartCoroutine(Dashing()); }
+        if (CanDash == true && (Keyboard.current.leftShiftKey.wasPressedThisFrame || Gamepad.current.buttonEast.wasPressedThisFrame)) { StartCoroutine(Dashing()); }
     }
 
     IEnumerator Dashing() {
