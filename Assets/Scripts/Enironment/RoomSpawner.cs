@@ -21,6 +21,7 @@ public class RoomSpawner : MonoBehaviour {
     }
 
     IEnumerator ChooseAndSpawn() {
+        // maybe could lock player controls this coroutine starts so it wont mess with the tp or room spawning
         int RandIndex = Random.Range(0, RoomList.Count);
         GameObject NextRoom = RoomList[RandIndex];
         GameObject Room = Instantiate(NextRoom, transform.position, Quaternion.identity);
