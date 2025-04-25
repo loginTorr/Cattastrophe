@@ -28,4 +28,27 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
     }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("RatBoss")){
+            print("entered");
+            TakeDamage(30);
+        }
+    }
+
+    public void OnTriggerEnter(Collider collider){
+        if(collider.gameObject.CompareTag("RatBoss")){
+            TakeDamage(20);
+        }
+        
+    }
+    public void OnTriggerStay(Collider collider){
+        if(collider.gameObject.CompareTag("Bed")){
+            if(Input.GetKey(KeyCode.E)){
+                healthBar.SetHealth(maxHealth);
+                currentHealth = maxHealth;
+            }
+        }
+    }
 }
