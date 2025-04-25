@@ -240,12 +240,12 @@ PrefabInstance:
     - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.63
+      value: -0.74
       objectReference: {fileID: 0}
     - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.3
+      value: -5.447
       objectReference: {fileID: 0}
     - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
@@ -292,6 +292,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7132395048662702649, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: WanderSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: Agro
+      value: 11.00458
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: Mele
+      value: 2.5468946
+      objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: HasAgro
@@ -305,7 +320,7 @@ PrefabInstance:
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: TooClose
-      value: 1.0001
+      value: 1.5637084
       objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
@@ -320,17 +335,17 @@ PrefabInstance:
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: HasFarShooting
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: HasMidShooting
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: HasCloseShooting
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

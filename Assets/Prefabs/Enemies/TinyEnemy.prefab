@@ -81,12 +81,17 @@ PrefabInstance:
     - target: {fileID: 2910878028318005745, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: m_Name
-      value: EnemyAndTarget Variant
+      value: TinyEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 5103034912712532958, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: m_AgentTypeID
       value: -1372625422
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132395048662702649, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: WanderSpeed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
@@ -96,7 +101,7 @@ PrefabInstance:
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: Mele
-      value: 2.774956
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
@@ -111,17 +116,17 @@ PrefabInstance:
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: FarShooting
-      value: 9.4959
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: MidShooting
-      value: 7.6376166
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: CloseShooting
-      value: 5.3133497
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
