@@ -29,7 +29,7 @@ public class EnemyStateInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         PlayerPos = Player.transform.position;
-        range = Player.GetComponent<Range>();
+        range = transform.gameObject.GetComponent<Range>();
     }
 
     // Update is called once per frame
@@ -52,6 +52,10 @@ public class EnemyStateInfo : MonoBehaviour
             state = State.FarShooting;
         }else if (distance <= range.Agro) {
             state = State.Agro;
+        }else if (state == State.Agro || state == State.FarShooting || state == State.MidShooting || state == State.CloseShooting || state == State.Mele || state == State.TooClose){
+            if (range.CanDeagro) {
+                state = State.Wandering;
+            }
         }else {
             state = State.Wandering;
         }
