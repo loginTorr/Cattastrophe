@@ -261,6 +261,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d0dcfe7c14bd84ba204f33eeca9dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
+  Player: {fileID: 0}
+  PlayerPos: {x: 0, y: 0, z: 0}
+  range: {fileID: 0}
+  AgroSpeed: 0
+  WanderingSpeed: 0
 --- !u!136 &316284581
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -343,7 +349,7 @@ Transform:
   m_GameObject: {fileID: 316284579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.71, y: 1.03, z: 7.75}
+  m_LocalPosition: {x: 5.71, y: 1.03, z: 6.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -898,15 +904,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2120853330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6053fa4004df20a439816c1e1e94cfcf, type: 3}
+  m_Script: {fileID: 11500000, guid: 48de712933d175c4081f02fdc69d8194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TooClose: 1.0303288
-  Mele: 2.5811875
-  CloseShooting: 5.2830496
-  MidShooting: 8.171608
-  FarShooting: 10.364762
-  Agro: 16.611319
+  TooClose: 1.2923125
+  Mele: 2.774956
+  CloseShooting: 5.3133497
+  MidShooting: 7.6376166
+  FarShooting: 9.715615
+  Agro: 18.022663
 --- !u!54 &2120853332
 Rigidbody:
   m_ObjectHideFlags: 0
