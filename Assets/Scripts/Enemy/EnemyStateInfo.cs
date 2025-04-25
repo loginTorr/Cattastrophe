@@ -21,8 +21,7 @@ public class EnemyStateInfo : MonoBehaviour
         Tiny,
         Mele,
         Ranged,
-        ThrowStab,
-        Boss
+        ThrowStab
     }
     public Type type;
 
