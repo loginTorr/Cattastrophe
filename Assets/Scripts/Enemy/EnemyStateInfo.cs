@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovment : MonoBehaviour
+public class EnemyStateInfo : MonoBehaviour
 {
     public enum State{
         TooClose,
@@ -17,8 +17,14 @@ public class EnemyMovment : MonoBehaviour
     public GameObject Player;
     private Vector3 PlayerPos;
     private Range range;
-    public float AgroSpeed;
-    public float WanderingSpeed;
+    public enum Type { 
+        Tiny,
+        Mele,
+        Ranged,
+        ThrowStab,
+        Boss
+    }
+    public Type type;
 
 
     // Start is called before the first frame update
