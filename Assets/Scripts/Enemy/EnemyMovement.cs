@@ -42,13 +42,7 @@ public class EnemyMovement : MonoBehaviour
     void Update(){
         State = Self.state;
 
-        //if(PathfindTimer <= 0) {
-            Pathfind();
-        //    PathfindTimer = 1.0f;
-        //}else {
-        //    PathfindTimer -= Time.deltaTime;
-        //}
-
+        Pathfind();
         MoveTarget();
         agent.SetDestination(target.position);
     }
@@ -73,7 +67,7 @@ public class EnemyMovement : MonoBehaviour
         if (State != EnemyStateInfo.State.Wandering && State != EnemyStateInfo.State.TooClose) {
             CurDirection = Direction.Advance;
             transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
-        } else if (State == EnemyStateInfo.State.TooClose) {
+        } else if (State == EnemyStateInfo.State.TooClose && CurDirection == Direction.Retreat) {
             CurDirection = Direction.Retreat;
             transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
         }else if (State == EnemyStateInfo.State.Wandering){
@@ -98,31 +92,31 @@ public class EnemyMovement : MonoBehaviour
 
     void MoveTarget() { 
         if(CurDirection == Direction.Advance) {
-            print("going forward");
-            target = PlayerTransform;
+            target.position = new Vector3(PlayerTransform.position.x, target.position.y, PlayerTransform.position.z);
         }else if(CurDirection == Direction.Retreat) {
-            print("going backward");
             Vector3 directionAndDistance = transform.position - PlayerTransform.position;
             Vector3 direction = Vector3.Normalize(directionAndDistance);
-            target.position = target.position + direction * 3;
+            target.position = target.position + new Vector3(direction.x, 0, direction.z);
         }else if (CurDirection == Direction.Wander) {
-            print("wandering");
             if (WanderTimer <= 0){
                 float MoveDecision = Random.Range(0.0f, 1.0f);
-                if (MoveDecision <= WanderMoveChance)
-                {
-                    print("Chose to redirect");
+                if (MoveDecision <= WanderMoveChance){
                     Vector3 randomDirectionNotNormalized = new Vector3(Random.Range(-1.0f, 1.0f), transform.position.y, Random.Range(-1.0f, 1.0f));
                     Vector3 randomDirectionNormalized = Vector3.Normalize(randomDirectionNotNormalized);
                     float randomDistance = Random.Range(0.0f, MaxWanderDistance);
                     Vector3 randomDirectionAndDistance = new Vector3(randomDirectionNormalized.x * randomDistance, transform.position.y, randomDirectionNormalized.z * randomDistance);
                     target.position = new Vector3(target.position.x + randomDirectionAndDistance.x, target.position.y, target.position.z + randomDirectionAndDistance.z);
                 }
-                else { print("Chose to stay"); }
                 WanderTimer = 2.0f;
             }else {
                 WanderTimer -= Time.deltaTime;
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision){
+        if (collision.gameObject.CompareTag("Player")){
+            CurDirection = Direction.Retreat;
         }
     }
 }
