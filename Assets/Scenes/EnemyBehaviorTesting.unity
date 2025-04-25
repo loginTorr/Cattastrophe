@@ -901,12 +901,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6053fa4004df20a439816c1e1e94cfcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TooClose: 1.0884038
-  Mele: 1
-  CloseShooting: 1
-  MidShooting: 1
-  FarShooting: 1
-  Agro: 1
+  TooClose: 1
+  Mele: 1.5
+  CloseShooting: 2
+  MidShooting: 2.5
+  FarShooting: 3
+  Agro: 3.5
 --- !u!54 &2120853332
 Rigidbody:
   m_ObjectHideFlags: 0
