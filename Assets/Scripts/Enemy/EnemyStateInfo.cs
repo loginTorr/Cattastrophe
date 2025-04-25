@@ -13,10 +13,10 @@ public class EnemyStateInfo : MonoBehaviour
         Agro,
         Wandering
     }
-    public State state;
+    public State state = State.Wandering;
     public GameObject Player;
     private Vector3 PlayerPos;
-    private Range range;
+    public Range range;
     public enum Type { 
         Tiny,
         Mele,
@@ -40,17 +40,17 @@ public class EnemyStateInfo : MonoBehaviour
 
     void ChangeState() {
         float distance = Vector3.Distance(transform.position, PlayerPos);
-        if (distance <= range.TooClose) {
+        if (distance <= range.TooClose && range.HasTooClose) {
             state = State.TooClose;
-        }else if (distance <= range.Mele) {
+        }else if (distance <= range.Mele && range.HasMele) {
             state = State.Mele;
-        }else if (distance <= range.CloseShooting) {
+        }else if (distance <= range.CloseShooting && range.HasCloseShooting) {
             state = State.CloseShooting;
-        }else if (distance <= range.MidShooting) {
+        }else if (distance <= range.MidShooting && range.HasCloseShooting) {
             state = State.MidShooting;
-        }else if (distance <= range.FarShooting) {
+        }else if (distance <= range.FarShooting && range.HasFarShooting) {
             state = State.FarShooting;
-        }else if (distance <= range.Agro) {
+        }else if (distance <= range.Agro && range.HasAgro) {
             state = State.Agro;
         }else if (state == State.Agro || state == State.FarShooting || state == State.MidShooting || state == State.CloseShooting || state == State.Mele || state == State.TooClose){
             if (range.CanDeagro) {
