@@ -343,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 316284579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.41, y: 1.03, z: 4.33}
+  m_LocalPosition: {x: 5.71, y: 1.03, z: 7.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -901,12 +901,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6053fa4004df20a439816c1e1e94cfcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TooClose: 1
-  Mele: 1.5
-  CloseShooting: 2
-  MidShooting: 2.5
-  FarShooting: 3
-  Agro: 3.5
+  TooClose: 1.0303288
+  Mele: 2.5811875
+  CloseShooting: 5.2830496
+  MidShooting: 8.171608
+  FarShooting: 10.364762
+  Agro: 16.611319
 --- !u!54 &2120853332
 Rigidbody:
   m_ObjectHideFlags: 0
