@@ -7,6 +7,7 @@ TagManager:
   - Door
   - RatBoss
   - Bed
+  - RoomReward
   layers:
   - Default
   - TransparentFX

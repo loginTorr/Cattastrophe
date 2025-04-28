@@ -6,8 +6,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 8;
+    // Changable Player Values
     public float MaxSpeed = 8;
+    public float AttackDamage = 0;
+    public float CurHealth = 100;
+    public float MaxHealth = 100;
+
+
     public bool IsDashing = false;
     public float turnSpeed = 1080;
     public bool paused;
@@ -55,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsDashing) { return; }
 
-        Vector3 moveDir = transform.forward * input.magnitude * speed;
+        Vector3 moveDir = transform.forward * input.magnitude * MaxSpeed;
 
         Vector3 newVelocity = new Vector3(moveDir.x, rb.velocity.y, moveDir.z);
 
