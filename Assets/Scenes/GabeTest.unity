@@ -1826,6 +1826,7 @@ GameObject:
   - component: {fileID: 1886802846}
   - component: {fileID: 1886802850}
   - component: {fileID: 1886802851}
+  - component: {fileID: 1886802852}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1926,11 +1927,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76d033fdbb0c0d43895c97110daa6a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
   MaxSpeed: 8
+  AttackDamage: 0
+  CurHealth: 100
+  MaxHealth: 100
   IsDashing: 0
   turnSpeed: 1080
   paused: 0
+--- !u!114 &1886802852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886802844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97cd7d4964398e84d9007e31e52ecc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClawAttack: {fileID: 3179536874340795529, guid: e18be7ed44e0507468cebf69b45e8454,
+    type: 3}
+  SwingDistance: 1
 --- !u!1 &1909805515
 GameObject:
   m_ObjectHideFlags: 0
