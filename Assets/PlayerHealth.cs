@@ -5,13 +5,14 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public HealthBar healthBar;
-    public int maxHealth = 100;
-    public int currentHealth;
+    public PlayerMovement player;
+    private float maxHealth;
+    private float currentHealth;
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        currentHealth = player.MaxHealth;
+        healthBar.SetMaxHealth(player.MaxHealth);
     }
 
     // Update is called once per frame
@@ -46,8 +47,8 @@ public class PlayerHealth : MonoBehaviour
     public void OnTriggerStay(Collider collider){
         if(collider.gameObject.CompareTag("Bed")){
             if(Input.GetKey(KeyCode.E)){
-                healthBar.SetHealth(maxHealth);
-                currentHealth = maxHealth;
+                healthBar.SetHealth(player.MaxHealth);
+                currentHealth = player.MaxHealth;
             }
         }
     }
