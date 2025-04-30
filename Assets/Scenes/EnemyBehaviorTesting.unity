@@ -240,7 +240,7 @@ PrefabInstance:
     - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.74
+      value: 9.28
       objectReference: {fileID: 0}
     - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
@@ -300,12 +300,12 @@ PrefabInstance:
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: Agro
-      value: 11.00458
+      value: 19.706799
       objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: Mele
-      value: 2.5468946
+      value: 4.605566
       objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
@@ -320,7 +320,7 @@ PrefabInstance:
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: TooClose
-      value: 1.5637084
+      value: 2.9217396
       objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
@@ -347,6 +347,11 @@ PrefabInstance:
       propertyPath: HasCloseShooting
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8383872473171848949, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 2120853330}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

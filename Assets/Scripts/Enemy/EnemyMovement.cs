@@ -17,12 +17,15 @@ public class EnemyMovement : MonoBehaviour
     private float WanderTimer = 0.0f;
     private Transform PlayerTransform;
     private NavMeshAgent agent;
+    private Direction driftDirection = Direction.Advance;
     private enum Direction { 
         Advance,
         Retreat,
-        Wander
+        Wander,
+        Still
     }
     private Direction CurDirection;
+    private Direction lastDirection;
 
     // Start is called before the first frame update
     void Start(){
@@ -64,20 +67,35 @@ public class EnemyMovement : MonoBehaviour
     }
 
     void PathfindAsTiny() {
-        if (State != EnemyStateInfo.State.Wandering && State != EnemyStateInfo.State.TooClose) {
+        if (State == EnemyStateInfo.State.Agro) {
             CurDirection = Direction.Advance;
             transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
         } else if (State == EnemyStateInfo.State.TooClose && CurDirection == Direction.Retreat) {
             CurDirection = Direction.Retreat;
             transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
-        }else if (State == EnemyStateInfo.State.Wandering){
+        } else if (State == EnemyStateInfo.State.Wandering) {
             CurDirection = Direction.Wander;
             transform.gameObject.GetComponent<NavMeshAgent>().speed = WanderSpeed;
         }
     }
 
-    void PathfindAsMele() { 
-
+    void PathfindAsMele(){
+        if(State == EnemyStateInfo.State.Agro) {
+            print("in Agro, advancing");
+            CurDirection = Direction.Advance;
+            transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
+        }else if (State == EnemyStateInfo.State.Mele){
+            print("in mele, still");
+            CurDirection = Direction.Still;
+        }else if (State == EnemyStateInfo.State.TooClose) {
+            print("in Too Close, retreating");
+            CurDirection = Direction.Retreat;
+            transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
+        }else if (State == EnemyStateInfo.State.Wandering) {
+            print("in wandering, wandering");
+            CurDirection = Direction.Wander;
+            transform.gameObject.GetComponent<NavMeshAgent>().speed = WanderSpeed;
+        }
     }
 
     void PathfindAsRanged() { 
@@ -90,17 +108,21 @@ public class EnemyMovement : MonoBehaviour
 
     #endregion
 
-    void MoveTarget() { 
-        if(CurDirection == Direction.Advance) {
+    void MoveTarget() {
+        if (CurDirection == Direction.Advance) {
             target.position = new Vector3(PlayerTransform.position.x, target.position.y, PlayerTransform.position.z);
-        }else if(CurDirection == Direction.Retreat) {
+            lastDirection = Direction.Advance;
+        } else if (CurDirection == Direction.Retreat && lastDirection != Direction.Retreat) {
             Vector3 directionAndDistance = transform.position - PlayerTransform.position;
             Vector3 direction = Vector3.Normalize(directionAndDistance);
-            target.position = target.position + new Vector3(direction.x, 0, direction.z);
-        }else if (CurDirection == Direction.Wander) {
-            if (WanderTimer <= 0){
+            target.position = transform.position + new Vector3(direction.x * 5, 0, direction.z * 5);
+            lastDirection = Direction.Retreat;
+        } else if (CurDirection == Direction.Retreat && lastDirection == Direction.Retreat) {
+            // do nothing
+        } else if (CurDirection == Direction.Wander) {
+            if (WanderTimer <= 0) {
                 float MoveDecision = Random.Range(0.0f, 1.0f);
-                if (MoveDecision <= WanderMoveChance){
+                if (MoveDecision <= WanderMoveChance) {
                     Vector3 randomDirectionNotNormalized = new Vector3(Random.Range(-1.0f, 1.0f), transform.position.y, Random.Range(-1.0f, 1.0f));
                     Vector3 randomDirectionNormalized = Vector3.Normalize(randomDirectionNotNormalized);
                     float randomDistance = Random.Range(0.0f, MaxWanderDistance);
@@ -108,9 +130,33 @@ public class EnemyMovement : MonoBehaviour
                     target.position = new Vector3(target.position.x + randomDirectionAndDistance.x, target.position.y, target.position.z + randomDirectionAndDistance.z);
                 }
                 WanderTimer = 2.0f;
-            }else {
+            } else {
                 WanderTimer -= Time.deltaTime;
             }
+            lastDirection = Direction.Wander;
+        } else if (CurDirection == Direction.Still){
+            Vector3 notNormalizedToward = PlayerTransform.position - transform.position;
+            Vector3 toward = Vector3.Normalize(notNormalizedToward);
+            Vector3 notNormalizedAway = transform.position - PlayerTransform.position;
+            Vector3 away = Vector3.Normalize(notNormalizedAway);
+
+            
+            if(Random.Range(0f, 1f) <= 0.10f) { 
+                if (driftDirection == Direction.Advance) {
+                    driftDirection = Direction.Retreat;
+                } else if (driftDirection == Direction.Retreat) {
+                    driftDirection = Direction.Advance;
+                }
+            }
+
+            Vector3 drift;
+            if(driftDirection == Direction.Advance) {
+                drift = toward;
+            }else{
+                drift = away;
+            }
+            target.position = transform.position + new Vector3(drift.x * 5, 0f, drift.z * 5);
+            lastDirection = Direction.Still;
         }
     }
 
