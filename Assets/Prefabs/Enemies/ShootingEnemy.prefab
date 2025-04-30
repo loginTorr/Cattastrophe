@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2432454334916046684
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6984465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7156623
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 91.395
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359679868717503462, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910878028318005745, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: m_Name
+      value: ShootingEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132395048662702649, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: FarShootingAdvanceChance
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132395048662702649, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: FarShootingRetreatChance
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132395048662702649, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: MidShootingAdvanceChance
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132395048662702649, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: MidShootingRetreatChance
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132395048662702649, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: CloseShootingAdvanceChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132395048662702649, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: CloseShootingRetreatChance
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: Agro
+      value: 31.722334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: Mele
+      value: 5.0068936
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: HasAgro
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: HasMele
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: TooClose
+      value: 5.6044
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: FarShooting
+      value: 20.760693
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: HasTooClose
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: MidShooting
+      value: 15.6750965
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: CloseShooting
+      value: 10.571319
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: HasFarShooting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383872473171848949, guid: 1efc97b84d8ad294798468f44e4e6ed7,
+        type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1efc97b84d8ad294798468f44e4e6ed7, type: 3}

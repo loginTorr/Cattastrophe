@@ -18,6 +18,12 @@ public class EnemyMovement : MonoBehaviour
     private Transform PlayerTransform;
     private NavMeshAgent agent;
     private Direction driftDirection = Direction.Advance;
+    public float FarShootingAdvanceChance;
+    public float FarShootingRetreatChance;
+    public float MidShootingAdvanceChance;
+    public float MidShootingRetreatChance;
+    public float CloseShootingAdvanceChance;
+    public float CloseShootingRetreatChance;
     private enum Direction { 
         Advance,
         Retreat,
@@ -26,6 +32,11 @@ public class EnemyMovement : MonoBehaviour
     }
     private Direction CurDirection;
     private Direction lastDirection;
+    private enum StrafingDirection { 
+        Clockwise,
+        CounterClockwise
+    }
+    private StrafingDirection CurStrafingDirection = StrafingDirection.Clockwise;
 
     // Start is called before the first frame update
     void Start(){
@@ -47,7 +58,33 @@ public class EnemyMovement : MonoBehaviour
 
         Pathfind();
         MoveTarget();
+        Strafe();
         agent.SetDestination(target.position);
+    }
+
+    void Strafe() {
+        float turn = Random.Range(0f, 1f);
+        if(turn <= 0.2f) { 
+            if(CurStrafingDirection == StrafingDirection.Clockwise) {
+                CurStrafingDirection = StrafingDirection.CounterClockwise;
+            } else{
+                CurStrafingDirection = StrafingDirection.Clockwise;
+            }
+        }
+
+        Vector3 NotNormalizedDirection;
+        if(CurStrafingDirection == StrafingDirection.Clockwise) {
+            NotNormalizedDirection = PlayerTransform.position - transform.position;
+        }
+        else{
+            NotNormalizedDirection = transform.position - PlayerTransform.position;
+        }
+        
+        Vector3 direction = Vector3.Normalize(NotNormalizedDirection);
+        Vector3 perpNotNormal = Vector3.Cross(direction, Vector3.up);
+        Vector3 perp = Vector3.Normalize(perpNotNormal);
+
+        target.position = target.position + perp;
     }
 
     #region Pathfind
@@ -95,7 +132,53 @@ public class EnemyMovement : MonoBehaviour
     }
 
     void PathfindAsRanged() { 
-
+        if(State == EnemyStateInfo.State.Agro) {
+            CurDirection = Direction.Advance;
+            transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
+        }else if (State == EnemyStateInfo.State.FarShooting) {
+            float turn = Random.Range(0f, 1f);
+                if(CurDirection == Direction.Advance) {
+                    if(turn <= FarShootingRetreatChance){
+                        CurDirection = Direction.Retreat;
+                    }
+                }else{
+                    if(turn <= FarShootingAdvanceChance){
+                        CurDirection = Direction.Advance;
+                    }
+                }
+            transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
+        }else if (State == EnemyStateInfo.State.MidShooting) { 
+            float turn = Random.Range(0f, 1f);
+                if(CurDirection == Direction.Advance) {
+                    if(turn <= MidShootingRetreatChance){
+                        CurDirection = Direction.Retreat;
+                    }
+                }else{
+                    if(turn <= MidShootingAdvanceChance){
+                        CurDirection = Direction.Advance;
+                    }
+                }
+            transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
+        }else if (State == EnemyStateInfo.State.CloseShooting) { 
+            float turn = Random.Range(0f, 1f);
+                if(CurDirection == Direction.Advance) {
+                    if(turn <= CloseShootingRetreatChance){
+                        CurDirection = Direction.Retreat;
+                    }
+                }else{
+                    if(turn <= CloseShootingAdvanceChance){
+                        CurDirection = Direction.Advance;
+                    }
+                }
+            transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
+        }else if (State == EnemyStateInfo.State.TooClose) {
+            CurDirection = Direction.Retreat;
+            transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
+        }
+        else if (State == EnemyStateInfo.State.Wandering){
+            CurDirection = Direction.Wander;
+            transform.gameObject.GetComponent<NavMeshAgent>().speed = WanderSpeed;
+        }
     }
 
     void PathfindAsThrowStab() { 
