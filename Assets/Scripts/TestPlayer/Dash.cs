@@ -18,12 +18,16 @@ public class Dash : MonoBehaviour {
     }
 
     IEnumerator Dashing() {
+        GetComponent<PlayerMovement>().IsDashing = true;
         CanDash = false;
 
         Vector3 Direction = transform.forward;
         PlayerRB.AddForce(Direction.normalized * Force, ForceMode.VelocityChange);
 
-        yield return new WaitForSeconds(Cooldown);
+        yield return new WaitForSeconds(0.4f);
+        GetComponent<PlayerMovement>().IsDashing = false;
+
+        yield return new WaitForSeconds(Cooldown - 0.4f);
         CanDash = true;
     }
 }

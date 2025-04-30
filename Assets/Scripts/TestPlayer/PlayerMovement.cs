@@ -1,11 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5;
+    // Changable Player Values
+    public float MaxSpeed = 8;
+    public float AttackDamage = 0;
+    public float CurHealth = 100;
+    public float MaxHealth = 100;
+
+
+    public bool IsDashing = false;
     public float turnSpeed = 1080;
     public bool paused;
 
@@ -28,14 +36,14 @@ public class PlayerMovement : MonoBehaviour
         Look();
     }
 
-    private void FixedUpdate() 
-    { 
+    private void FixedUpdate()
+    {
         if (!paused)
         {
             Move();
         }
     }
-    void GatherInput() { input = new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical")); }
+    void GatherInput() { input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")); }
 
     void Look()
     {
@@ -48,7 +56,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Move() { rb.MovePosition(transform.position + (transform.forward * input.magnitude) * speed * Time.deltaTime); }
+    void Move()
+    {
+        if (IsDashing) { return; }
+
+        Vector3 moveDir = transform.forward * input.magnitude * MaxSpeed;
+
+        Vector3 newVelocity = new Vector3(moveDir.x, rb.velocity.y, moveDir.z);
+
+        Vector3 horizontal = new Vector3(newVelocity.x, 0, newVelocity.z);
+
+        if (horizontal.magnitude > MaxSpeed)
+        {
+            horizontal = horizontal.normalized * MaxSpeed;
+        }
+
+        rb.velocity = new Vector3(horizontal.x, newVelocity.y, horizontal.z);
+    }
+
 
 
 }
