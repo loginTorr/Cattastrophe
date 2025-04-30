@@ -19,9 +19,8 @@ public class Attack : MonoBehaviour {
     void PerformAttack()
     {
         Vector3 MouseWorldPosition = GetMouseWorldPosition3D();
-        Vector3 Direction = (MouseWorldPosition - transform.position);
+        Vector3 Direction = (MouseWorldPosition - transform.position).normalized;
         Direction.y = 0; 
-        Direction.Normalize();
 
         GameObject Claw = Instantiate(ClawAttack);
 
@@ -33,12 +32,12 @@ public class Attack : MonoBehaviour {
 
     Vector3 GetMouseWorldPosition3D()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        Ray Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Plane GroundPlane = new Plane(Vector3.up, Vector3.zero);
 
-        if (groundPlane.Raycast(ray, out float enter))
+        if (GroundPlane.Raycast(Ray, out float enter))
         {
-            return ray.GetPoint(enter);
+            return Ray.GetPoint(enter);
         }
         return Vector3.zero;
     }

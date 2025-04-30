@@ -5,13 +5,17 @@ using UnityEngine;
 public class TestAttack : MonoBehaviour {
     [Header("References")]
     public GameObject AttackObject;
+    public Rigidbody rb;
     [Header("Attack Stats")]
-    public float Duration = 0.3f;
+    public float Duration = 4.0f;
     public float Dmg = 1.0f;
+    public float Force = 10f;
 
     void Start()
     {
         Destroy(AttackObject, Duration);
+        Vector3 Direction = transform.forward;
+        rb.AddForce(Direction.normalized * Force, ForceMode.VelocityChange);
     }
 
     private void OnTriggerEnter(Collider other)
