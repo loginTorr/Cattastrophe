@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public HealthBar healthBar;
     public PlayerMovement player;
-    private float maxHealth;
+    public GameObject gameOverScreen;
     private float currentHealth;
     // Start is called before the first frame update
     void Start()
@@ -28,6 +28,10 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        if (currentHealth == 0){
+            print("lol you died");
+            GameOver();
+        }
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -51,5 +55,10 @@ public class PlayerHealth : MonoBehaviour
                 currentHealth = player.MaxHealth;
             }
         }
+    }
+    
+    public void GameOver(){
+        print("game over");
+        gameOverScreen.SetActive(true);
     }
 }
