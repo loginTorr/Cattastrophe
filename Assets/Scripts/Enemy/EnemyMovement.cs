@@ -81,18 +81,14 @@ public class EnemyMovement : MonoBehaviour
 
     void PathfindAsMele(){
         if(State == EnemyStateInfo.State.Agro) {
-            print("in Agro, advancing");
             CurDirection = Direction.Advance;
             transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
         }else if (State == EnemyStateInfo.State.Mele){
-            print("in mele, still");
             CurDirection = Direction.Still;
         }else if (State == EnemyStateInfo.State.TooClose) {
-            print("in Too Close, retreating");
             CurDirection = Direction.Retreat;
             transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
         }else if (State == EnemyStateInfo.State.Wandering) {
-            print("in wandering, wandering");
             CurDirection = Direction.Wander;
             transform.gameObject.GetComponent<NavMeshAgent>().speed = WanderSpeed;
         }
