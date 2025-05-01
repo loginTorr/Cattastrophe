@@ -60,6 +60,7 @@ public class EnemyMovement : MonoBehaviour
         MoveTarget();
         Strafe();
         agent.SetDestination(target.position);
+        RealignGaze();
     }
 
     void Strafe() {
@@ -236,6 +237,12 @@ public class EnemyMovement : MonoBehaviour
             }
             target.position = transform.position + new Vector3(drift.x * 5, 0f, drift.z * 5);
             lastDirection = Direction.Still;
+        }
+    }
+
+    void RealignGaze() { 
+        if(State != EnemyStateInfo.State.Wandering) {
+            transform.LookAt(new Vector3(PlayerTransform.position.x, transform.position.y, PlayerTransform.position.z));
         }
     }
 
