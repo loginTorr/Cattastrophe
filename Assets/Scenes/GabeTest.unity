@@ -1949,6 +1949,7 @@ MonoBehaviour:
   ClawAttack: {fileID: 3179536874340795529, guid: e18be7ed44e0507468cebf69b45e8454,
     type: 3}
   SwingDistance: 1
+  Speed: 50
 --- !u!1 &1909805515
 GameObject:
   m_ObjectHideFlags: 0

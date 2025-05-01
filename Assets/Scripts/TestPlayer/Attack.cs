@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder;
 
 public class Attack : MonoBehaviour {
     [Header("References")]
     public GameObject ClawAttack;
     [Header("Stats")]
     public float SwingDistance = 1.0f;
+    public float Speed = 50.0f;
 
     void Update()
     {
@@ -22,12 +24,15 @@ public class Attack : MonoBehaviour {
         Vector3 Direction = (MouseWorldPosition - transform.position).normalized;
         Direction.y = 0; 
 
-        GameObject Claw = Instantiate(ClawAttack);
+        GameObject Claw = Instantiate(ClawAttack, transform.position, Quaternion.identity);
+
+        Rigidbody rb = Claw.GetComponent<Rigidbody>();
+        rb.velocity = Direction * Speed;
 
         Claw.transform.position = (Vector3)transform.position + Direction * SwingDistance;
 
-        float angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
-        Claw.transform.rotation = Quaternion.Euler(0, 0, angle);
+        float Angle = Mathf.Atan2(Direction.z, Direction.x) * Mathf.Rad2Deg;
+        Claw.transform.rotation = Quaternion.Euler(0, -Angle, 0);
     }
 
     Vector3 GetMouseWorldPosition3D()
