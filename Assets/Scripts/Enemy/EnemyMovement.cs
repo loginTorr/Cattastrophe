@@ -64,28 +64,36 @@ public class EnemyMovement : MonoBehaviour
     }
 
     void Strafe() {
-        float turn = Random.Range(0f, 1f);
-        if(turn <= 0.2f) { 
-            if(CurStrafingDirection == StrafingDirection.Clockwise) {
-                CurStrafingDirection = StrafingDirection.CounterClockwise;
-            } else{
-                CurStrafingDirection = StrafingDirection.Clockwise;
+        if (State != EnemyStateInfo.State.Wandering){
+            float turn = Random.Range(0f, 1f);
+            if (turn <= 0.2f)
+            {
+                if (CurStrafingDirection == StrafingDirection.Clockwise)
+                {
+                    CurStrafingDirection = StrafingDirection.CounterClockwise;
+                }
+                else
+                {
+                    CurStrafingDirection = StrafingDirection.Clockwise;
+                }
             }
-        }
 
-        Vector3 NotNormalizedDirection;
-        if(CurStrafingDirection == StrafingDirection.Clockwise) {
-            NotNormalizedDirection = PlayerTransform.position - transform.position;
-        }
-        else{
-            NotNormalizedDirection = transform.position - PlayerTransform.position;
-        }
-        
-        Vector3 direction = Vector3.Normalize(NotNormalizedDirection);
-        Vector3 perpNotNormal = Vector3.Cross(direction, Vector3.up);
-        Vector3 perp = Vector3.Normalize(perpNotNormal);
+            Vector3 NotNormalizedDirection;
+            if (CurStrafingDirection == StrafingDirection.Clockwise)
+            {
+                NotNormalizedDirection = PlayerTransform.position - transform.position;
+            }
+            else
+            {
+                NotNormalizedDirection = transform.position - PlayerTransform.position;
+            }
 
-        target.position = target.position + perp;
+            Vector3 direction = Vector3.Normalize(NotNormalizedDirection);
+            Vector3 perpNotNormal = Vector3.Cross(direction, Vector3.up);
+            Vector3 perp = Vector3.Normalize(perpNotNormal);
+
+            target.position = target.position + perp;
+        }
     }
 
     #region Pathfind
@@ -192,22 +200,30 @@ public class EnemyMovement : MonoBehaviour
         if (CurDirection == Direction.Advance) {
             target.position = new Vector3(PlayerTransform.position.x, target.position.y, PlayerTransform.position.z);
             lastDirection = Direction.Advance;
+            gameObject.GetComponent<Animator>().SetBool("agro", true);
+            gameObject.GetComponent<Animator>().SetBool("backwards", false);
         } else if (CurDirection == Direction.Retreat && lastDirection != Direction.Retreat) {
             Vector3 directionAndDistance = transform.position - PlayerTransform.position;
             Vector3 direction = Vector3.Normalize(directionAndDistance);
             target.position = transform.position + new Vector3(direction.x * 5, 0, direction.z * 5);
             lastDirection = Direction.Retreat;
+            gameObject.GetComponent<Animator>().SetBool("agro", true);
+            gameObject.GetComponent<Animator>().SetBool("backwards", true);
         } else if (CurDirection == Direction.Retreat && lastDirection == Direction.Retreat) {
             // do nothing
         } else if (CurDirection == Direction.Wander) {
             if (WanderTimer <= 0) {
                 float MoveDecision = Random.Range(0.0f, 1.0f);
                 if (MoveDecision <= WanderMoveChance) {
-                    Vector3 randomDirectionNotNormalized = new Vector3(Random.Range(-1.0f, 1.0f), transform.position.y, Random.Range(-1.0f, 1.0f));
+                    float x = Random.Range(-1.0f, 1.0f);
+                    float z = Random.Range(-1.0f, 1.0f);
+                    Vector3 randomDirectionNotNormalized = new Vector3(x, transform.position.y, z);
                     Vector3 randomDirectionNormalized = Vector3.Normalize(randomDirectionNotNormalized);
                     float randomDistance = Random.Range(0.0f, MaxWanderDistance);
-                    Vector3 randomDirectionAndDistance = new Vector3(randomDirectionNormalized.x * randomDistance, transform.position.y, randomDirectionNormalized.z * randomDistance);
-                    target.position = new Vector3(target.position.x + randomDirectionAndDistance.x, target.position.y, target.position.z + randomDirectionAndDistance.z);
+                    Vector3 randomDirectionAndDistance = randomDirectionNormalized * randomDistance;
+                    target.position = new Vector3(transform.position.x + randomDirectionAndDistance.x, transform.position.y, transform.position.z + randomDirectionAndDistance.z);
+                    gameObject.GetComponent<Animator>().SetBool("agro", false);
+                    gameObject.GetComponent<Animator>().SetBool("backwards", false);
                 }
                 WanderTimer = 2.0f;
             } else {
@@ -224,8 +240,12 @@ public class EnemyMovement : MonoBehaviour
             if(Random.Range(0f, 1f) <= 0.10f) { 
                 if (driftDirection == Direction.Advance) {
                     driftDirection = Direction.Retreat;
+                    gameObject.GetComponent<Animator>().SetBool("agro", true);
+                    gameObject.GetComponent<Animator>().SetBool("backwards", false);
                 } else if (driftDirection == Direction.Retreat) {
                     driftDirection = Direction.Advance;
+                    gameObject.GetComponent<Animator>().SetBool("agro", true);
+                    gameObject.GetComponent<Animator>().SetBool("backwards", true);
                 }
             }
 
