@@ -644,9 +644,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HasTooClose: 1
-  TooClose: 2.9217396
+  TooClose: 2.5715356
   HasMele: 1
-  Mele: 4.605566
+  Mele: 4.151096
   HasCloseShooting: 0
   CloseShooting: 2
   HasMidShooting: 0
