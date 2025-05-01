@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3106456479376334764
+--- !u!1001 &3230791464151891619
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,22 +11,22 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.604024
+      value: -12.772456
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}
@@ -36,7 +36,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.148443
+      value: 82.294945
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}
@@ -101,13 +101,8 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}
       propertyPath: m_Name
-      value: Mini_Raton
+      value: Mini_Raton 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1071658425406244909, guid: 08d789d398b4ae54195d57b28afb2012,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: eecd80703f1d4f641a5835e507dd3898, type: 2}
     - target: {fileID: 3114112919162164744, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
