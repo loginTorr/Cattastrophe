@@ -39,7 +39,7 @@ public class RatMiniBoss : MonoBehaviour
         switch (curRatBossState)
         {
             case RatMiniBossState.Idle:
-                currentDirection.y = 0; // Ensure purely horizontal
+                currentDirection.y = 0;
                 transform.rotation = Quaternion.LookRotation(currentDirection); 
                 break;
 
