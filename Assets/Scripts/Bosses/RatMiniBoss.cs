@@ -7,15 +7,13 @@ public enum RatMiniBossState { Idle, Walking, Running, PrepareAttack, SpinKick, 
 public class RatMiniBoss : MonoBehaviour
 {
     private RatMiniBossState curRatBossState;
-    private Rigidbody rb;
     private Animator RatMiniBossAnimator;
-    private bool SwitchingStates;
-    private Vector3 LastPos;
-
     private Transform PlayerPos;
+    private Vector3 currentDirection; 
 
     public float RatBossHealth = 300;
-    public float followSpeed = 100;
+    public float followSpeed;
+
 
 
 
@@ -23,20 +21,10 @@ public class RatMiniBoss : MonoBehaviour
     void Start()
     {
         RatMiniBossAnimator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
 
         curRatBossState = RatMiniBossState.Idle;
         RatMiniBossAnimator.applyRootMotion = true;
 
-        LastPos = transform.position;
-
-        if (PlayerPos == null)
-        {
-            if (GameObject.FindWithTag("Player") != null)
-            {
-                PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
-            }
-        }
         StartCoroutine(Idle());
 
 
@@ -45,36 +33,34 @@ public class RatMiniBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var step = followSpeed * Time.deltaTime;
-        Quaternion rot = transform.rotation;
-        
+
+        PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
+
         switch (curRatBossState)
         {
             case RatMiniBossState.Idle:
+                currentDirection.y = 0; // Ensure purely horizontal
+                transform.rotation = Quaternion.LookRotation(currentDirection); 
                 break;
 
             case RatMiniBossState.Walking:
-                transform.LookAt(PlayerPos.transform);
-                transform.rotation = Quaternion.Lerp(rot, transform.rotation, step);
+            case RatMiniBossState.Running:
+            case RatMiniBossState.SmashAttack:
+            case RatMiniBossState.PrepareAttack:
+                Vector3 directionToPlayer = PlayerPos.position - transform.position;
+                directionToPlayer.y = 0;
+
+                Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+                currentDirection = transform.forward;
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, followSpeed * Time.deltaTime);
                 break;
 
-             case RatMiniBossState.Running:
-                 transform.LookAt(PlayerPos.transform);
-                 transform.rotation = Quaternion.Lerp(rot, transform.rotation, step);
-                 break;
 
-             case RatMiniBossState.PrepareAttack:
-                transform.LookAt(PlayerPos.transform);
-
-                break;
 
              case RatMiniBossState.SpinKick:
                 break;
 
-             case RatMiniBossState.SmashAttack:
-                transform.LookAt(PlayerPos.transform);
-                transform.rotation = Quaternion.Lerp(rot, transform.rotation, step);
-                break;
 
              case RatMiniBossState.Dead:
                  break;
@@ -88,9 +74,10 @@ public class RatMiniBoss : MonoBehaviour
         RatMiniBossAnimator.ResetTrigger("IsIdle"); RatMiniBossAnimator.ResetTrigger("IsWalking"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsAttacking"); RatMiniBossAnimator.ResetTrigger("IsSpinKicking"); RatMiniBossAnimator.ResetTrigger("IsSmashing");
 
         RatMiniBossAnimator.SetTrigger("IsIdle");
+
         yield return new WaitForSeconds(2f);
-        StartCoroutine(Walk());
         curRatBossState = RatMiniBossState.Walking;
+        StartCoroutine(Walk());
 
     }
 
@@ -98,20 +85,26 @@ public class RatMiniBoss : MonoBehaviour
     {
         RatMiniBossAnimator.ResetTrigger("IsIdle"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsAttacking"); RatMiniBossAnimator.ResetTrigger("IsSpinKicking"); RatMiniBossAnimator.ResetTrigger("IsSmashing");
 
+        followSpeed = 1;
         RatMiniBossAnimator.SetTrigger("IsWalking");
+
         yield return new WaitForSeconds(3f);
-        StartCoroutine(Run());
         curRatBossState = RatMiniBossState.Running;
+        StartCoroutine(Run());
+
     }
 
     IEnumerator Run()
     {
         RatMiniBossAnimator.ResetTrigger("IsIdle"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsAttacking"); RatMiniBossAnimator.ResetTrigger("IsSpinKicking"); RatMiniBossAnimator.ResetTrigger("IsSmashing");
 
+        followSpeed = 2;
         RatMiniBossAnimator.SetTrigger("IsRunning");
+
         yield return new WaitForSeconds(3f);
-        StartCoroutine(PrepareAttack());
         curRatBossState = RatMiniBossState.PrepareAttack;
+        StartCoroutine(PrepareAttack());
+
 
     }
     IEnumerator PrepareAttack()
@@ -119,9 +112,11 @@ public class RatMiniBoss : MonoBehaviour
         RatMiniBossAnimator.ResetTrigger("IsIdle"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsAttacking"); RatMiniBossAnimator.ResetTrigger("IsSpinKicking"); RatMiniBossAnimator.ResetTrigger("IsSmashing");
 
         RatMiniBossAnimator.SetTrigger("IsAttacking");
+
         yield return new WaitForSeconds(1f);
-        StartCoroutine(Smash());
         curRatBossState = RatMiniBossState.SmashAttack;
+        StartCoroutine(Smash());
+
 
     }
 
@@ -129,12 +124,13 @@ public class RatMiniBoss : MonoBehaviour
     {
         RatMiniBossAnimator.ResetTrigger("IsIdle"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsAttacking"); RatMiniBossAnimator.ResetTrigger("IsSpinKicking"); RatMiniBossAnimator.ResetTrigger("IsSmashing");
 
+        followSpeed = 3;
         RatMiniBossAnimator.SetTrigger("IsSmashing");
 
         yield return new WaitForSeconds(5f);
-
-        StartCoroutine(Idle());
         curRatBossState = RatMiniBossState.Idle;
+        StartCoroutine(Idle());
+
 
     }
 
