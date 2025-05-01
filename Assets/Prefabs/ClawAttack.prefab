@@ -125,7 +125,6 @@ MonoBehaviour:
   rb: {fileID: -3649711700188418557}
   Duration: 4
   Dmg: 1
-  Force: 50
 --- !u!54 &-3649711700188418557
 Rigidbody:
   m_ObjectHideFlags: 0
