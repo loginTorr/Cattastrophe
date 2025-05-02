@@ -113,10 +113,10 @@ public class EnemyMovement : MonoBehaviour
     }
 
     void PathfindAsTiny() {
-        if (State == EnemyStateInfo.State.Agro) {
+        if (State == EnemyStateInfo.State.Agro || State == EnemyStateInfo.State.Mele) {
             CurDirection = Direction.Advance;
             transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
-        } else if (State == EnemyStateInfo.State.TooClose && CurDirection == Direction.Retreat) {
+        } else if (State == EnemyStateInfo.State.TooClose) {
             CurDirection = Direction.Retreat;
             transform.gameObject.GetComponent<NavMeshAgent>().speed = AgroSpeed;
         } else if (State == EnemyStateInfo.State.Wandering) {

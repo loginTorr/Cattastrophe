@@ -101,17 +101,17 @@ PrefabInstance:
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: Mele
-      value: 1.5
+      value: 1.2525687
       objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: HasMele
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: TooClose
-      value: 1.138254
+      value: 0.50397766
       objectReference: {fileID: 0}
     - target: {fileID: 7546587224209692772, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
