@@ -9,6 +9,8 @@ TagManager:
   - Bed
   - RoomReward
   - MiniBoss
+  - Raton
+  - Mini Raton
   layers:
   - Default
   - TransparentFX

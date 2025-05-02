@@ -146,6 +146,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Raton
       objectReference: {fileID: 0}
+    - target: {fileID: 1959858638445397787, guid: 9fb9444364064024789b4ebeb6fc6526,
+        type: 3}
+      propertyPath: m_TagString
+      value: Raton
+      objectReference: {fileID: 0}
     - target: {fileID: 6438082542870488722, guid: 9fb9444364064024789b4ebeb6fc6526,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -374,7 +379,7 @@ PrefabInstance:
     - target: {fileID: 2910878028318005745, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}
       propertyPath: m_Name
-      value: ShootingRat Variant
+      value: ShootingRat
       objectReference: {fileID: 0}
     - target: {fileID: 7132395048662702649, guid: 1efc97b84d8ad294798468f44e4e6ed7,
         type: 3}

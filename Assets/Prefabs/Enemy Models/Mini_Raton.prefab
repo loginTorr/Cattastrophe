@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.772456
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}
@@ -36,7 +36,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 82.294945
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}
@@ -101,7 +101,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}
       propertyPath: m_Name
-      value: Mini_Raton 1
+      value: Mini_Raton
       objectReference: {fileID: 0}
     - target: {fileID: 3114112919162164744, guid: 08d789d398b4ae54195d57b28afb2012,
         type: 3}

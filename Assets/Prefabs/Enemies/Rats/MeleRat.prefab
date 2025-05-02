@@ -168,6 +168,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Raton
       objectReference: {fileID: 0}
+    - target: {fileID: 1959858638445397787, guid: 9fb9444364064024789b4ebeb6fc6526,
+        type: 3}
+      propertyPath: m_TagString
+      value: Raton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

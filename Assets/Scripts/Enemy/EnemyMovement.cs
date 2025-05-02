@@ -200,17 +200,20 @@ public class EnemyMovement : MonoBehaviour
         if (CurDirection == Direction.Advance) {
             target.position = new Vector3(PlayerTransform.position.x, target.position.y, PlayerTransform.position.z);
             lastDirection = Direction.Advance;
-            gameObject.GetComponent<Animator>().SetBool("agro", true);
-            gameObject.GetComponent<Animator>().SetBool("backwards", false);
-        } else if (CurDirection == Direction.Retreat && lastDirection != Direction.Retreat) {
+            if(gameObject.CompareTag("Raton")){
+                gameObject.GetComponent<Animator>().SetBool("agro", true);
+                gameObject.GetComponent<Animator>().SetBool("backwards", false);
+            }
+        } else if (CurDirection == Direction.Retreat) {
+            print("moving target to retreat");
             Vector3 directionAndDistance = transform.position - PlayerTransform.position;
             Vector3 direction = Vector3.Normalize(directionAndDistance);
             target.position = transform.position + new Vector3(direction.x * 5, 0, direction.z * 5);
             lastDirection = Direction.Retreat;
-            gameObject.GetComponent<Animator>().SetBool("agro", true);
-            gameObject.GetComponent<Animator>().SetBool("backwards", true);
-        } else if (CurDirection == Direction.Retreat && lastDirection == Direction.Retreat) {
-            // do nothing
+            if(gameObject.CompareTag("Raton")){
+                gameObject.GetComponent<Animator>().SetBool("agro", true);
+                gameObject.GetComponent<Animator>().SetBool("backwards", true);
+            }
         } else if (CurDirection == Direction.Wander) {
             if (WanderTimer <= 0) {
                 float MoveDecision = Random.Range(0.0f, 1.0f);
@@ -222,8 +225,10 @@ public class EnemyMovement : MonoBehaviour
                     float randomDistance = Random.Range(0.0f, MaxWanderDistance);
                     Vector3 randomDirectionAndDistance = randomDirectionNormalized * randomDistance;
                     target.position = new Vector3(transform.position.x + randomDirectionAndDistance.x, transform.position.y, transform.position.z + randomDirectionAndDistance.z);
-                    gameObject.GetComponent<Animator>().SetBool("agro", false);
-                    gameObject.GetComponent<Animator>().SetBool("backwards", false);
+                    if(gameObject.CompareTag("Raton")){
+                        gameObject.GetComponent<Animator>().SetBool("agro", false);
+                        gameObject.GetComponent<Animator>().SetBool("backwards", false);
+                    }
                 }
                 WanderTimer = 2.0f;
             } else {
@@ -240,12 +245,16 @@ public class EnemyMovement : MonoBehaviour
             if(Random.Range(0f, 1f) <= 0.10f) { 
                 if (driftDirection == Direction.Advance) {
                     driftDirection = Direction.Retreat;
-                    gameObject.GetComponent<Animator>().SetBool("agro", true);
-                    gameObject.GetComponent<Animator>().SetBool("backwards", false);
+                    if(gameObject.CompareTag("Raton")){
+                        gameObject.GetComponent<Animator>().SetBool("agro", true);
+                        gameObject.GetComponent<Animator>().SetBool("backwards", false);
+                    }
                 } else if (driftDirection == Direction.Retreat) {
                     driftDirection = Direction.Advance;
-                    gameObject.GetComponent<Animator>().SetBool("agro", true);
-                    gameObject.GetComponent<Animator>().SetBool("backwards", true);
+                    if(gameObject.CompareTag("Raton")){
+                        gameObject.GetComponent<Animator>().SetBool("agro", true);
+                        gameObject.GetComponent<Animator>().SetBool("backwards", true);
+                    }
                 }
             }
 
@@ -267,7 +276,19 @@ public class EnemyMovement : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision){
+        print("Collided");
         if (collision.gameObject.CompareTag("Player")){
+            print("collided with player");
+            CurDirection = Direction.Retreat;
+        }else {
+            print("Collided with " + collision);
+        }
+    }
+
+    private void OnCollisionStay(Collision collision){
+        print("Still colliding");
+        if (collision.gameObject.CompareTag("Player")){
+            print("Still colliding with player");
             CurDirection = Direction.Retreat;
         }
     }
