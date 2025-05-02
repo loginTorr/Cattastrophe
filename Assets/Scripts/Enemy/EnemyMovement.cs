@@ -205,7 +205,6 @@ public class EnemyMovement : MonoBehaviour
                 gameObject.GetComponent<Animator>().SetBool("backwards", false);
             }
         } else if (CurDirection == Direction.Retreat) {
-            print("moving target to retreat");
             Vector3 directionAndDistance = transform.position - PlayerTransform.position;
             Vector3 direction = Vector3.Normalize(directionAndDistance);
             target.position = transform.position + new Vector3(direction.x * 5, 0, direction.z * 5);
@@ -276,19 +275,13 @@ public class EnemyMovement : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision){
-        print("Collided");
         if (collision.gameObject.CompareTag("Player")){
-            print("collided with player");
             CurDirection = Direction.Retreat;
-        }else {
-            print("Collided with " + collision);
         }
     }
 
     private void OnCollisionStay(Collision collision){
-        print("Still colliding");
         if (collision.gameObject.CompareTag("Player")){
-            print("Still colliding with player");
             CurDirection = Direction.Retreat;
         }
     }
