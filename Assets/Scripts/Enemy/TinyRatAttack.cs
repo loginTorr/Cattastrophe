@@ -39,7 +39,6 @@ public class TinyRatAttack : MonoBehaviour{
     }
 
     IEnumerator Explode() {
-        print("Pow!");
         Exploded = true;
         Blast.SetActive(true);
         Destroy(transform.Find("Point Light").gameObject);
