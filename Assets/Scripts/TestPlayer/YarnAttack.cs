@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestAttack : MonoBehaviour {
+public class YarnAttack : MonoBehaviour {
     [Header("References")]
     public GameObject AttackObject;
     public Rigidbody rb;

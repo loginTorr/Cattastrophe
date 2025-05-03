@@ -9,6 +9,14 @@ public class RoomSpawner : MonoBehaviour {
     public float HeightOffset = 100f;
     // for tping in this script
     public Transform Player;
+    public Transform StartPosition;
+    private GameObject CurRoom;
+
+    void Start() {
+        GameObject PlayerObject = GameObject.FindWithTag("Player");
+        if (PlayerObject != null) { Player = PlayerObject.transform; }
+        if (StartPosition != null) { Player.position = StartPosition.position; }
+    }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.H)) { SpawnRoom(); }
@@ -31,10 +39,9 @@ public class RoomSpawner : MonoBehaviour {
         GameObject NextRoom = RoomList[RandIndex];
         GameObject Room = Instantiate(NextRoom, SpawnPosition, Quaternion.identity);
         RoomList.RemoveAt(RandIndex);
-        // tps player but we can add this to rooms themselves later
-        yield return new WaitForSeconds(1);
-        Player.position += Vector3.up * HeightOffset;
-        
-
+        // destroys the room after tping player
+        yield return new WaitForSeconds(1f);
+        if (CurRoom != null) { Destroy(CurRoom); }
+        CurRoom = Room;
     }
 }

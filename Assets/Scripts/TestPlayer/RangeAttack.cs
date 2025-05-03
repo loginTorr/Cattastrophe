@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.ProBuilder;
 
-public class Attack : MonoBehaviour {
+public class RangeAttack : MonoBehaviour {
     [Header("References")]
     public GameObject ClawAttack;
     [Header("Stats")]
