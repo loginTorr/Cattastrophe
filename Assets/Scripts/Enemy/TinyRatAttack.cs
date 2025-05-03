@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TinyRatAttack : MonoBehaviour{
-    public float MinDamage;
-    public float MaxDamage;
     public float FuseTime;
     private bool FuseLit = false;
     private EnemyStateInfo Self;
