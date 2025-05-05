@@ -26,6 +26,7 @@ public class RoomSpawner : MonoBehaviour {
     private int roomsSpawned = 0;
     private GameObject Player;
     private PlayerMovement PlayerMovementScript;
+    private GameObject PlayerSpawn;
 
 
 
@@ -87,11 +88,13 @@ public class RoomSpawner : MonoBehaviour {
         }
 
         // local position of the entry marker
-        Vector3 entryLocal = roomScript.EntryPoint.transform.position;
+        //Vector3 entryLocal = roomScript.EntryPoint.transform.position;
 
         // do the spawn
         lastRoom = Instantiate(prefabToSpawn, new Vector3(0,0,0), Quaternion.identity);
-        Player.transform.position = entryLocal;
+        PlayerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn");
+        //Player.transform.position = entryLocal;
+        Player.transform.position = PlayerSpawn.transform.position;
 
         roomsSpawned++;
 

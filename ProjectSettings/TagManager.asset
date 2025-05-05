@@ -11,6 +11,7 @@ TagManager:
   - MiniBoss
   - Raton
   - Mini Raton
+  - PlayerSpawn
   layers:
   - Default
   - TransparentFX
