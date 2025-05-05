@@ -12,19 +12,17 @@ public class RoomSpawner : MonoBehaviour {
     public GameObject MiniBossRoom;
     public GameObject BossRoom;
 
-    [Header("Spawn Chances")]
-    [Range(0, 100)] private float SmallChance = 75;
-    [Range(0, 100)] private float MediumChance = 15;
-    [Range(0, 100)] private float BigChance = 10;
-
-
     [Header("Room Bools for EnemySpawn Script")]
     public bool isSmall;
     public bool isMedium;
     public bool isBig;
 
+    [Header("Spawn Chances")]
+    [Range(0, 100)] private float SmallChance = 75;
+    [Range(0, 100)] private float MediumChance = 15;
+    [Range(0, 100)] private float BigChance = 10;
+
     [Header("Other")]
-    // for tping in this script
     private int roomsSpawned = 0;
     private GameObject Player;
     private PlayerMovement PlayerMovementScript;
