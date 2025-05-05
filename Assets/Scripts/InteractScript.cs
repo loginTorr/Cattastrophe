@@ -14,9 +14,8 @@ public class InteractScript : MonoBehaviour
     private bool InTrigger = false;
 
     private Dungeon DungeonScript;
-    private RoomChange RoomChangeScript;
+    private RoomSpawner RoomSpawnerScript;
     private RoomRewards RoomRewardsScript;
-
 
 
 
@@ -24,7 +23,7 @@ public class InteractScript : MonoBehaviour
     void Start()
     {
         DungeonScript = FindObjectOfType<Dungeon>();
-        RoomChangeScript = FindObjectOfType<RoomChange>();
+        RoomSpawnerScript = FindObjectOfType<RoomSpawner>();
         RoomRewardsScript = FindObjectOfType<RoomRewards>();
 
     }
@@ -34,12 +33,13 @@ public class InteractScript : MonoBehaviour
     {
         if (InTrigger && Input.GetKeyDown(KeyCode.E) && CanInteract)
         {
-            StartCoroutine(Interact());
+            StartCoroutine("Interact");
         }
     }
 
     private void OnTriggerEnter()
     {
+        InteractUI.SetActive(true);
         ObjectName = gameObject.name;
         InTrigger = true;
         curCount = 0;
@@ -61,6 +61,7 @@ public class InteractScript : MonoBehaviour
         if (ObjectName == "RatDungeonPortal")
         {
             Debug.Log("RatPortal");
+            CameraFade.fadeInstance.FadeOut();
             DungeonScript.isRatDungeon = true;
             DungeonScript.CurDungeonState = DungeonState.EnterDungeon;
             DungeonScript.switchingDungeons = true;
@@ -69,6 +70,7 @@ public class InteractScript : MonoBehaviour
         else if (ObjectName == "WolfDungeonPortal")
         {
             Debug.Log("WolfPortal");
+            CameraFade.fadeInstance.FadeOut();
             DungeonScript.isWolfDungeon = true;
             DungeonScript.CurDungeonState = DungeonState.EnterDungeon;
             DungeonScript.switchingDungeons = true;
@@ -79,8 +81,11 @@ public class InteractScript : MonoBehaviour
         {
             if (curCount < 1)
             {
-                RoomChangeScript.DoorName = ObjectName;
-                RoomChangeScript.StartCoroutine("SwitchRoom");
+                CameraFade.fadeInstance.FadeOut();
+                yield return new WaitForSeconds(1.3f);
+                RoomSpawnerScript.StartCoroutine("SpawnNextRoom");
+                DungeonScript.CurDungeonState = DungeonState.SwitchingRooms;
+                DungeonScript.switchingDungeons = true;
 
             }
         }
@@ -92,8 +97,7 @@ public class InteractScript : MonoBehaviour
         }
 
 
-        yield return new WaitForSeconds(0.3f);
-
+        yield return new WaitForSeconds(0.5f);
         CanInteract = true;
 
     }

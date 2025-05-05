@@ -5,14 +5,18 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public HealthBar healthBar;
-    public PlayerMovement player;
     public GameObject gameOverScreen;
+
+    private PlayerMovement PlayerMovmentScript;
     private float currentHealth;
+
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = player.MaxHealth;
-        healthBar.SetMaxHealth(player.MaxHealth);
+        PlayerMovmentScript = GetComponent<PlayerMovement>();
+
+        currentHealth = PlayerMovmentScript.MaxHealth;
+        healthBar.SetMaxHealth(PlayerMovmentScript.MaxHealth);
     }
 
     // Update is called once per frame
@@ -27,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        player.CurHealth -= damage;
+        PlayerMovmentScript.CurHealth -= damage;
         healthBar.SetHealth(currentHealth);
         if (currentHealth == 0){
             print("lol you died");
@@ -52,8 +56,8 @@ public class PlayerHealth : MonoBehaviour
     public void OnTriggerStay(Collider collider){
         if(collider.gameObject.CompareTag("Bed")){
             if(Input.GetKey(KeyCode.E)){
-                healthBar.SetHealth(player.MaxHealth);
-                currentHealth = player.MaxHealth;
+                healthBar.SetHealth(PlayerMovmentScript.MaxHealth);
+                currentHealth = PlayerMovmentScript.MaxHealth;
             }
         }
     }

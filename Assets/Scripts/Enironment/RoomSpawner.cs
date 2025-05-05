@@ -4,44 +4,102 @@ using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour {
     [Header("Rooms To Spawn")]
-    public List<GameObject> RoomList = new List<GameObject>();
+    public List<GameObject> SmallRooms;
+    public List<GameObject> MediumRooms;
+    public List<GameObject> BigRooms;
+
+    public GameObject lastRoom;
+    public GameObject MiniBossRoom;
+    public GameObject BossRoom;
+
+    [Header("Room Bools for EnemySpawn Script")]
+    public bool isSmall;
+    public bool isMedium;
+    public bool isBig;
+
+    [Header("Spawn Chances")]
+    [Range(0, 100)] private float SmallChance = 75;
+    [Range(0, 100)] private float MediumChance = 15;
+    [Range(0, 100)] private float BigChance = 10;
+
     [Header("Other")]
-    public float HeightOffset = 100f;
-    // for tping in this script
-    public Transform Player;
-    public Transform StartPosition;
-    private GameObject CurRoom;
+    private int roomsSpawned = 0;
+    private GameObject Player;
+    private PlayerMovement PlayerMovementScript;
+
+
 
     void Start() {
-        GameObject PlayerObject = GameObject.FindWithTag("Player");
-        if (PlayerObject != null) { Player = PlayerObject.transform; }
-        if (StartPosition != null) { Player.position = StartPosition.position; }
+        Player = GameObject.FindGameObjectWithTag("Player");
+        PlayerMovementScript = FindObjectOfType<PlayerMovement>();
+
     }
 
+    
     void Update() {
-        if (Input.GetKeyDown(KeyCode.H)) { SpawnRoom(); }
+
     }
 
-    void SpawnRoom() {
-        if (RoomList.Count == 0) {
-            // could spawn boss or shop or something like that
-            Debug.Log("out of rooms in list");
-            return;
+    public IEnumerator SpawnNextRoom()
+    {
+
+        // Optional: destroy previous room
+        if (lastRoom != null)
+            Destroy(lastRoom);
+
+        GameObject prefabToSpawn;
+
+        // Boss at #12
+        if (roomsSpawned >= 11)
+        {
+            prefabToSpawn = BossRoom;
+        }
+        else
+        {
+            int roll = Random.Range(1, 101);
+
+            if (roll <= MediumChance + SmallChance && roll >= SmallChance)
+            {
+                prefabToSpawn = MediumRooms[Random.Range(0, MediumRooms.Count)];
+            }
+
+            else if (roll <= BigChance + SmallChance && roll >= MediumChance + SmallChance)
+            {
+                prefabToSpawn = BigRooms[Random.Range(0, BigRooms.Count)];
+            }
+
+            else
+            {
+                prefabToSpawn = SmallRooms[Random.Range(0, SmallRooms.Count)];
+                // bump med & large odds by 1% each
+                SmallChance -= 1;
+                MediumChance += 1;
+                BigChance += 1;
+            }
+            
         }
 
-        StartCoroutine(ChooseAndSpawn());
-    }
+        Room roomScript = prefabToSpawn.GetComponent<Room>();
 
-    IEnumerator ChooseAndSpawn() {
-        // maybe could lock player controls this coroutine starts so it wont mess with the tp or room spawning
-        int RandIndex = Random.Range(0, RoomList.Count);
-        Vector3 SpawnPosition = transform.position + Vector3.up * HeightOffset;
-        GameObject NextRoom = RoomList[RandIndex];
-        GameObject Room = Instantiate(NextRoom, SpawnPosition, Quaternion.identity);
-        RoomList.RemoveAt(RandIndex);
-        // destroys the room after tping player
-        yield return new WaitForSeconds(1f);
-        if (CurRoom != null) { Destroy(CurRoom); }
-        CurRoom = Room;
+        if (roomScript == null || roomScript.EntryPoint == null)
+        {
+            Debug.LogError("Prefab missing Room+EntryPoint!");
+        }
+
+        // local position of the entry marker
+        Vector3 entryLocal = roomScript.EntryPoint.transform.position;
+
+        // do the spawn
+        lastRoom = Instantiate(prefabToSpawn, new Vector3(0,0,0), Quaternion.identity);
+        Player.transform.position = entryLocal;
+
+        roomsSpawned++;
+
+        yield return new WaitForSeconds(1.3f);
+        CameraFade.fadeInstance.FadeIn();
+        yield return new WaitForSeconds(0.5f);
+        PlayerMovementScript.paused = false;
     }
 }
+
+
