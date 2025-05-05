@@ -473,11 +473,44 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1718895705}
+    - target: {fileID: 8353702425050482410, guid: f448fc91e7ba9c64294014603ebb0ceb,
+        type: 3}
+      propertyPath: m_Name
+      value: ProjectileSpawnPt
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1273580927264939787, guid: f448fc91e7ba9c64294014603ebb0ceb,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 802501893}
   m_SourcePrefab: {fileID: 100100000, guid: f448fc91e7ba9c64294014603ebb0ceb, type: 3}
+--- !u!1 &802501892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1273580927264939787, guid: f448fc91e7ba9c64294014603ebb0ceb,
+    type: 3}
+  m_PrefabInstance: {fileID: 802501891}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &802501893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802501892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf6c927996e5dde4bacd5523cb9638df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxAttackPause: 1
+  MinAttackPause: 2
+  projectilePrefab: {fileID: 1728404006340089504, guid: e29623f0423ecb34dba027557e3ca18f,
+    type: 3}
+  speed: 15
+  verticalOffset: 5
 --- !u!1 &842285808
 GameObject:
   m_ObjectHideFlags: 0

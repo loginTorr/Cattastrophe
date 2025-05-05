@@ -9,6 +9,7 @@ public class MeleRatAttack : MonoBehaviour{
     public float MinAttackPause;
     private float AttackTimer;
     private BoxCollider WeaponCollider;
+    private bool dealtDamage = false;
 
     // Start is called before the first frame update
     void Start(){
@@ -21,13 +22,15 @@ public class MeleRatAttack : MonoBehaviour{
     // Update is called once per frame
     void Update(){
         State = Self.state;
-        
-        if (AttackTimer <= 0) {
-            StartCoroutine(Attack());
 
-            AttackTimer = Random.Range(MinAttackPause, MaxAttackPause);
-        } else{
-            AttackTimer -= Time.deltaTime;
+        if (State == EnemyStateInfo.State.Mele){
+            if (AttackTimer <= 0){
+                StartCoroutine(Attack());
+
+                AttackTimer = Random.Range(MinAttackPause, MaxAttackPause);
+            }else{
+                AttackTimer -= Time.deltaTime;
+            }
         }
 
     }

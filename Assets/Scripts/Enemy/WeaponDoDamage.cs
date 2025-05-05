@@ -6,7 +6,6 @@ public class WeaponDoDamage : MonoBehaviour{
     public int MinDamage;
     public int MaxDamage;
     public bool FriendlyFire;
-    private bool collided = false;
 
     // Start is called before the first frame update
     void Start(){
