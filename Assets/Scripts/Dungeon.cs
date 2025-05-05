@@ -8,7 +8,6 @@ public class Dungeon : MonoBehaviour
     public DungeonState CurDungeonState;
 
     public GameObject InteractUI;
-
     public GameObject GameHub;
     public GameObject RatDungeon;
     public GameObject WolfDungeon;
@@ -21,6 +20,8 @@ public class Dungeon : MonoBehaviour
 
     private GameObject Player;
     private PlayerMovement PlayerMovementScript;
+    private RoomSpawner RoomSpawnerScript;
+
 
 
 
@@ -33,6 +34,7 @@ public class Dungeon : MonoBehaviour
 
 
         Player = GameObject.FindGameObjectWithTag("Player");
+        RoomSpawnerScript = FindObjectOfType<RoomSpawner>();
     }
 
     // Update is called once per frame
@@ -57,6 +59,10 @@ public class Dungeon : MonoBehaviour
                     }
                     break;
 
+                case DungeonState.SwitchingRooms:
+                    PlayerMovementScript.paused = true;
+                    break;
+
                 case DungeonState.ExitDungeon:
                     break;
 
@@ -78,13 +84,18 @@ public class Dungeon : MonoBehaviour
     {
         InteractUI.SetActive(false);
         Debug.Log("CoroutineStarted");
+
+        yield return new WaitForSeconds(1.5f);
         GameHub.SetActive(false);
+
+
 
         if (isRatDungeon)
         {
             Debug.Log("RatDungeon");
             Player.transform.position = RatDungeonStartingPos.position;
             RatDungeon.SetActive(true);
+            RoomSpawnerScript.lastRoom = RatDungeon;
         }
 
         else if (isWolfDungeon)
@@ -93,7 +104,8 @@ public class Dungeon : MonoBehaviour
             WolfDungeon.SetActive(true);
         }
 
-        yield return new WaitForSeconds(2f);
+        CameraFade.fadeInstance.FadeIn();
+        yield return new WaitForSeconds(1f);
         PlayerMovementScript.paused = false;
     }
 
