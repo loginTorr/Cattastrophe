@@ -56,13 +56,11 @@ public class EnemyMovement : MonoBehaviour
     void Update(){
         State = Self.state;
 
-        if (Self.ReadyToStart){
-            Pathfind();
-            MoveTarget();
-            Strafe();
-            agent.SetDestination(target.position);
-            RealignGaze();
-        }
+        Pathfind();
+        MoveTarget();
+        Strafe();
+        agent.SetDestination(target.position);
+        RealignGaze();
     }
 
     void Strafe() {
@@ -276,5 +274,15 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-   
+    private void OnCollisionEnter(Collision collision){
+        if (collision.gameObject.CompareTag("Player")){
+            CurDirection = Direction.Retreat;
+        }
+    }
+
+    private void OnCollisionStay(Collision collision){
+        if (collision.gameObject.CompareTag("Player")){
+            CurDirection = Direction.Retreat;
+        }
+    }
 }

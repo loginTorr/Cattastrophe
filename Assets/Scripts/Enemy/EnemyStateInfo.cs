@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,13 +24,9 @@ public class EnemyStateInfo : MonoBehaviour
         ThrowStab
     }
     public Type type;
-    public Boolean ReadyToStart = false;
+    public bool ReadyToStart;
 
 
-    private void Awake()
-    {
-        Player = GameObject.FindGameObjectWithTag("Player");
-    }
     // Start is called before the first frame update
     void Start(){
         PlayerPos = Player.transform.position;
