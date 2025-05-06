@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class EnemyStateInfo : MonoBehaviour
         ThrowStab
     }
     public Type type;
+    public Boolean ReadyToStart = false;
 
 
     // Start is called before the first frame update
