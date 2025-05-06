@@ -28,6 +28,10 @@ public class EnemyStateInfo : MonoBehaviour
     public Boolean ReadyToStart = false;
 
 
+    private void Awake()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+    }
     // Start is called before the first frame update
     void Start(){
         PlayerPos = Player.transform.position;
