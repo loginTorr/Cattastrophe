@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         PlayerMovmentScript.CurHealth -= damage;
         healthBar.SetHealth(currentHealth);
-        if (currentHealth == 0){
+        if (currentHealth < 0){
             print("lol you died");
             GameOver();
         }
@@ -62,5 +62,6 @@ public class PlayerHealth : MonoBehaviour
     public void GameOver(){
         print("game over");
         gameOverScreen.SetActive(true);
+        Time.timeScale = 0;
     }
 }

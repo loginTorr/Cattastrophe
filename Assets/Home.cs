@@ -13,6 +13,7 @@ public class Home : MonoBehaviour
 
     // Update is called once per frame
     public void HomeClicked(){
+        Time.timeScale = 1;
         SceneManager.LoadScene("Scenes/HomeScreen");
     }
 }
