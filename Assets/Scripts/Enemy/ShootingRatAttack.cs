@@ -68,23 +68,4 @@ public class ShootingRatAttack : MonoBehaviour{
         AnimRunning = false;
 
     }
-
-
-    AnimationClip getAnimation(Animator anim, string name) {
-        RuntimeAnimatorController controler = anim.runtimeAnimatorController;
-        AnimationClip[] clips = controler.animationClips;
-
-        AnimationClip clip = null;
-        foreach (AnimationClip c in clips) {
-            if (c.name == name) {
-                clip = c;
-            }
-        }
-        if (clip != null) {
-            return clip;
-        } else {
-            Debug.LogError("Error: no animation found by that name (in ShootingAttack)");
-            return clip;
-        }
-    }
 }

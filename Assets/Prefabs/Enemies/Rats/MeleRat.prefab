@@ -355,7 +355,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 999
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -377,9 +377,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HasTooClose: 1
-  TooClose: 1.9725548
+  TooClose: 1.489551
   HasMele: 1
-  Mele: 3.640962
+  Mele: 2.4434056
   HasCloseShooting: 0
   CloseShooting: 2
   HasMidShooting: 0

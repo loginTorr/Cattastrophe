@@ -274,15 +274,5 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision){
-        if (collision.gameObject.CompareTag("Player")){
-            CurDirection = Direction.Retreat;
-        }
-    }
-
-    private void OnCollisionStay(Collision collision){
-        if (collision.gameObject.CompareTag("Player")){
-            CurDirection = Direction.Retreat;
-        }
-    }
+   
 }
