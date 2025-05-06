@@ -40,5 +40,6 @@ public class RoomRewards : MonoBehaviour
         {
             PlayerMovementScript.MaxSpeed += 1;
         }
+        Destroy(gameObject);
     }
 }
