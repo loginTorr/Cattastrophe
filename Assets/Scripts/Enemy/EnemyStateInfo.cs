@@ -26,6 +26,11 @@ public class EnemyStateInfo : MonoBehaviour
     public Type type;
     public bool ReadyToStart;
 
+    void Awake()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+    }
+
 
     // Start is called before the first frame update
     void Start(){

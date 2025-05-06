@@ -320,6 +320,12 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 987392188}
+    - target: {fileID: 3977646441456222297, guid: 9862368fec556914a82863462d45748e,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 97ad2d2ba92885442a582469671e7349,
+        type: 2}
     - target: {fileID: 4029517046520193779, guid: 9862368fec556914a82863462d45748e,
         type: 3}
       propertyPath: m_Mesh
@@ -339,6 +345,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 6.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568267471714701383, guid: 9862368fec556914a82863462d45748e,
+        type: 3}
+      propertyPath: CanDeagro
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4787379100451878279, guid: 9862368fec556914a82863462d45748e,
         type: 3}
@@ -380,6 +391,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 987392188}
+    - target: {fileID: 5800951632161704858, guid: 9862368fec556914a82863462d45748e,
+        type: 3}
+      propertyPath: ReadyToStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5999859082552931327, guid: 9862368fec556914a82863462d45748e,
         type: 3}
       propertyPath: m_Mesh
@@ -465,6 +481,11 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1886802844}
+    - target: {fileID: 7855678111418533770, guid: 9862368fec556914a82863462d45748e,
+        type: 3}
+      propertyPath: ReadyToStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8073674956620988417, guid: 9862368fec556914a82863462d45748e,
         type: 3}
       propertyPath: m_Mesh
