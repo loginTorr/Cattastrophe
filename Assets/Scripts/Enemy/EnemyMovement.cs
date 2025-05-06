@@ -50,19 +50,21 @@ public class EnemyMovement : MonoBehaviour
         }
         agent = GetComponent<NavMeshAgent>();
 
+        StartCoroutine("Spawned");
+
     }
 
     // Update is called once per frame
     void Update(){
         State = Self.state;
 
-        if (Self.ReadyToStart){
+ 
             Pathfind();
             MoveTarget();
             Strafe();
             agent.SetDestination(target.position);
             RealignGaze();
-        }
+        
     }
 
     void Strafe() {
@@ -286,5 +288,11 @@ public class EnemyMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")){
             CurDirection = Direction.Retreat;
         }
+    }
+
+    IEnumerator Spawned()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Self.ReadyToStart = true;
     }
 }

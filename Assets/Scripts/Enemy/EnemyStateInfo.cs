@@ -37,6 +37,7 @@ public class EnemyStateInfo : MonoBehaviour
         PlayerPos = Player.transform.position;
         range = transform.gameObject.GetComponent<Range>();
 
+        StartCoroutine("Spawned");
     }
 
     // Update is called once per frame
@@ -129,4 +130,10 @@ public class EnemyStateInfo : MonoBehaviour
     }
 
     #endregion
+
+    IEnumerator Spawned()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ReadyToStart = true;
+    }
 }

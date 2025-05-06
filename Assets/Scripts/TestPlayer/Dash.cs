@@ -3,13 +3,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Dash : MonoBehaviour {
-    [Header("References")]
-    public Rigidbody PlayerRB;
-    private PlayerMovement PlayerMovementScript;
-
     [Header("Dash Values")]
     public float Force = 10f;
-    public int Cooldown = 4;
+    public int Cooldown = 2;
+
+    [Header("References")]
+    private Rigidbody PlayerRB;
+    private PlayerMovement PlayerMovementScript;
 
     [Header("Other")]
     private bool CanDash = true;
@@ -19,10 +19,11 @@ public class Dash : MonoBehaviour {
     private void Start()
     {  
         PlayerMovementScript = FindObjectOfType<PlayerMovement>();
+        PlayerRB = FindObjectOfType<Rigidbody>();
     }
 
     void Update() {
-        if (CanDash == true && (Keyboard.current.leftShiftKey.wasPressedThisFrame || Gamepad.current.buttonEast.wasPressedThisFrame)) { StartCoroutine(Dashing()); }
+        if (CanDash == true && (Keyboard.current.leftShiftKey.wasPressedThisFrame)) { StartCoroutine(Dashing()); }
     
     
     }

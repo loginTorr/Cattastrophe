@@ -43,7 +43,7 @@ public class RoomSpawner : MonoBehaviour {
 
     public IEnumerator SpawnNextRoom()
     {
-
+        Game.InteractUI.SetActive(false);
         // Optional: destroy previous room
         if (lastRoom != null)
             Destroy(lastRoom);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,7 +7,6 @@ using UnityEngine;
 
 public class InteractScript : MonoBehaviour
 {
-    public GameObject InteractUI;
     public string ObjectName;
     public int curCount;
 
@@ -39,7 +39,7 @@ public class InteractScript : MonoBehaviour
 
     private void OnTriggerEnter()
     {
-        InteractUI.SetActive(true);
+        Game.InteractUI.SetActive(true);
         ObjectName = gameObject.name;
         InTrigger = true;
         curCount = 0;
@@ -47,7 +47,6 @@ public class InteractScript : MonoBehaviour
 
     private void OnTriggerExit()
     {
-        InteractUI.SetActive(false);
         InTrigger = false;
         curCount = 1;
 
@@ -79,8 +78,9 @@ public class InteractScript : MonoBehaviour
 
         else if (gameObject.tag == "Door")
         {
-            if (curCount < 1)
+            if (curCount < 1 && Game.RoomCleared)
             {
+                Game.RoomCleared = false;
                 CameraFade.fadeInstance.FadeOut();
                 yield return new WaitForSeconds(1.3f);
                 RoomSpawnerScript.StartCoroutine("SpawnNextRoom");

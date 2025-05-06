@@ -7,7 +7,6 @@ public class Dungeon : MonoBehaviour
 {
     public DungeonState CurDungeonState;
 
-    public GameObject InteractUI;
     public GameObject GameHub;
     public GameObject RatDungeon;
     public GameObject WolfDungeon;
@@ -82,7 +81,7 @@ public class Dungeon : MonoBehaviour
     }
     IEnumerator EnterDungeon()
     {
-        InteractUI.SetActive(false);
+        Game.InteractUI.SetActive(false);
         Debug.Log("CoroutineStarted");
 
         yield return new WaitForSeconds(1.5f);

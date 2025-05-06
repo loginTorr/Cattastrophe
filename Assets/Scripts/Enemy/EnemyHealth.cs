@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public SmallCounter SmallCounterScript;
+    public MedCounter MediumCounterScript;
+
     public EnemyHealthBar healthBar;
     public int maxHealth = 100;
     public int currentHealth;
@@ -24,5 +27,21 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
+        {
+            if(SmallCounterScript != null)
+            {
+                SmallCounterScript.Counter += 1;
+
+            }
+            else if (MediumCounterScript != null)
+            {
+                MediumCounterScript.Counter += 1;
+
+            }
+            Destroy(gameObject);
+        }
     }
+
 }
+

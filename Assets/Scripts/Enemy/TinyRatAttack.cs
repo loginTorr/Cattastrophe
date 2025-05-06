@@ -11,6 +11,9 @@ public class TinyRatAttack : MonoBehaviour{
     private ParticleSystem Explosion;
     private bool Exploded = false;
 
+    public SmallCounter SmallCounterScript;
+    public MedCounter MediumCounterScript;
+
 
     void Start() {
         Self = transform.gameObject.GetComponent<EnemyStateInfo>();
@@ -40,6 +43,17 @@ public class TinyRatAttack : MonoBehaviour{
     }
 
     IEnumerator Explode() {
+        if (SmallCounterScript != null)
+        {
+            SmallCounterScript.Counter += 1;
+
+        }
+        else if (MediumCounterScript != null)
+        {
+            MediumCounterScript.Counter += 1;
+
+        }
+
         Exploded = true;
         Blast.SetActive(true);
         Destroy(transform.Find("Point Light").gameObject);
