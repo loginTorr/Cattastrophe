@@ -13,12 +13,15 @@ public class ShootingRatAttack : MonoBehaviour{
     private GameObject Player;
     private Transform ProjectileSpawnPt;
     public float speed;
+    private Animator Anim;
+    private bool AnimRunning;
 
     // Start is called before the first frame update
     void Start(){
         Self = transform.gameObject.GetComponent<EnemyStateInfo>();
         Player = Self.Player;
         AttackTimer = Random.Range(MinAttackPause, MaxAttackPause);
+        Anim = transform.gameObject.GetComponent<Animator>();
 
     }
 
@@ -27,19 +30,26 @@ public class ShootingRatAttack : MonoBehaviour{
         State = Self.state; 
         ProjectileSpawnPt = transform.Find("mixamorig:Hips").Find("mixamorig:Spine").Find("mixamorig:Spine1").Find("mixamorig:Spine2").Find("mixamorig:RightShoulder").Find("mixamorig:RightArm").Find("mixamorig:RightForeArm").Find("mixamorig:RightHand").Find("ProjectileSpawnPt").GetComponent<Transform>();
 
-        if (State == EnemyStateInfo.State.FarShooting || State == EnemyStateInfo.State.MidShooting || State == EnemyStateInfo.State.CloseShooting) {
-            if (AttackTimer <= 0) {
-                //StartCoroutine(Shoot());
-                Shoot();
+        if(AnimRunning == false) {
+            if (State == EnemyStateInfo.State.FarShooting || State == EnemyStateInfo.State.MidShooting || State == EnemyStateInfo.State.CloseShooting) {
+                if (AttackTimer <= 0) {
+                    //StartCoroutine(Shoot());
+                    ShootAnim();
 
-                AttackTimer = Random.Range(MinAttackPause, MaxAttackPause);
-            } else{
-                AttackTimer -= Time.deltaTime;
+                    AttackTimer = Random.Range(MinAttackPause, MaxAttackPause);
+                } else{
+                    AttackTimer -= Time.deltaTime;
+                }
             }
         }
     }
 
-    void Shoot() {
+    void ShootAnim() {
+        AnimRunning = true;
+        Anim.SetTrigger("GrabGear");
+    }
+
+    public void ShootFunc() {
     //IEnumerator Shoot() {
         GameObject projectile = Instantiate(projectilePrefab);
         projectile.transform.position = ProjectileSpawnPt.position;
@@ -55,6 +65,26 @@ public class ShootingRatAttack : MonoBehaviour{
         Vector3 Direction = Vector3.Normalize(DirectionNotNormalized) * speed;
 
         rb.velocity = Direction;
+        AnimRunning = false;
 
+    }
+
+
+    AnimationClip getAnimation(Animator anim, string name) {
+        RuntimeAnimatorController controler = anim.runtimeAnimatorController;
+        AnimationClip[] clips = controler.animationClips;
+
+        AnimationClip clip = null;
+        foreach (AnimationClip c in clips) {
+            if (c.name == name) {
+                clip = c;
+            }
+        }
+        if (clip != null) {
+            return clip;
+        } else {
+            Debug.LogError("Error: no animation found by that name (in ShootingAttack)");
+            return clip;
+        }
     }
 }
