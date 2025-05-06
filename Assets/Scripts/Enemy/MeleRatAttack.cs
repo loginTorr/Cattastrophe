@@ -39,21 +39,23 @@ public class MeleRatAttack : MonoBehaviour{
 
     IEnumerator Attack() {
         animPlaying = true;
-        int swingDir = Random.Range(0, 2);
-        float waitTime;
-        if (swingDir == 0) {
-            Anim.SetTrigger("SlashForward");
-            waitTime = getAnimation(Anim, "Stable Sword Outward Slash").length;
+
+        if (Self.ReadyToStart){
+            int swingDir = Random.Range(0, 2);
+            float waitTime;
+            if (swingDir == 0){
+                Anim.SetTrigger("SlashForward");
+                waitTime = getAnimation(Anim, "Stable Sword Outward Slash").length;
+            }else{
+                Anim.SetTrigger("SlashBackwards");
+                waitTime = getAnimation(Anim, "Stable Sword Inward Slash").length;
+            }
+            yield return new WaitForSeconds(1);
+            WeaponCollider.enabled = true;
+            yield return new WaitForSeconds(waitTime - 1);
+            WeaponCollider.enabled = false;
+            animPlaying = false;
         }
-        else{
-            Anim.SetTrigger("SlashBackwards");
-            waitTime = getAnimation(Anim, "Stable Sword Inward Slash").length;
-        }
-        yield return new WaitForSeconds(1);
-        WeaponCollider.enabled = true;
-        yield return new WaitForSeconds(waitTime - 1);
-        WeaponCollider.enabled = false;
-        animPlaying = false;
     }
 
     AnimationClip getAnimation(Animator anim, string name) {

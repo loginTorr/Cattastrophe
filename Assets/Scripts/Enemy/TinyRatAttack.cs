@@ -21,17 +21,20 @@ public class TinyRatAttack : MonoBehaviour{
     void Update(){
         State = Self.state;
 
-        if (State == EnemyStateInfo.State.Mele) {
-            FuseLit = true;
-        }
+        if (Self.ReadyToStart) {
 
-        if (FuseLit == true){
-            if (FuseTime <= 0){
-                if (Exploded == false) {
-                    StartCoroutine(Explode());
+            if (State == EnemyStateInfo.State.Mele) {
+                FuseLit = true;
+            }
+
+            if (FuseLit == true){
+                if (FuseTime <= 0){
+                    if (Exploded == false) {
+                        StartCoroutine(Explode());
+                    }
+                }else{
+                    FuseTime -= Time.deltaTime;
                 }
-            }else{
-                FuseTime -= Time.deltaTime;
             }
         }
     }

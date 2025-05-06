@@ -56,11 +56,13 @@ public class EnemyMovement : MonoBehaviour
     void Update(){
         State = Self.state;
 
-        Pathfind();
-        MoveTarget();
-        Strafe();
-        agent.SetDestination(target.position);
-        RealignGaze();
+        if (Self.ReadyToStart){
+            Pathfind();
+            MoveTarget();
+            Strafe();
+            agent.SetDestination(target.position);
+            RealignGaze();
+        }
     }
 
     void Strafe() {

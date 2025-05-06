@@ -30,15 +30,17 @@ public class ShootingRatAttack : MonoBehaviour{
         State = Self.state; 
         ProjectileSpawnPt = transform.Find("mixamorig:Hips").Find("mixamorig:Spine").Find("mixamorig:Spine1").Find("mixamorig:Spine2").Find("mixamorig:RightShoulder").Find("mixamorig:RightArm").Find("mixamorig:RightForeArm").Find("mixamorig:RightHand").Find("ProjectileSpawnPt").GetComponent<Transform>();
 
-        if(AnimRunning == false) {
-            if (State == EnemyStateInfo.State.FarShooting || State == EnemyStateInfo.State.MidShooting || State == EnemyStateInfo.State.CloseShooting) {
-                if (AttackTimer <= 0) {
-                    //StartCoroutine(Shoot());
-                    ShootAnim();
+        if (Self.ReadyToStart){
+            if (AnimRunning == false){
+                if (State == EnemyStateInfo.State.FarShooting || State == EnemyStateInfo.State.MidShooting || State == EnemyStateInfo.State.CloseShooting){
+                    if (AttackTimer <= 0){
+                        //StartCoroutine(Shoot());
+                        ShootAnim();
 
-                    AttackTimer = Random.Range(MinAttackPause, MaxAttackPause);
-                } else{
-                    AttackTimer -= Time.deltaTime;
+                        AttackTimer = Random.Range(MinAttackPause, MaxAttackPause);
+                    }else{
+                        AttackTimer -= Time.deltaTime;
+                    }
                 }
             }
         }
