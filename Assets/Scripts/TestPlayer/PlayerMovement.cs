@@ -98,6 +98,14 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(horizontal.x, newVelocity.y, horizontal.z);
     }
 
+    void RecieveKockback(float magnitude, GameObject from)
+    {
+        Vector3 KnockbackDir = from.transform.position - transform.position;
+        Vector3 KnockbackVector = KnockbackDir * magnitude;
+        Vector3 newVelocity = new Vector3(KnockbackVector.x, rb.velocity.y, KnockbackVector.z);
+        rb.velocity = newVelocity;
+    }
+
     IEnumerator AttackSequence()
     {
         isAttacking = true;
