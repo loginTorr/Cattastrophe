@@ -58,13 +58,16 @@ public class EnemyMovement : MonoBehaviour
     void Update(){
         State = Self.state;
 
- 
+        if (Self.midAttack == false){
             Pathfind();
             MoveTarget();
             Strafe();
-            agent.SetDestination(target.position);
-            RealignGaze();
-        
+        }else {
+            Stay();
+        }
+
+        agent.SetDestination(target.position);
+        RealignGaze();
     }
 
     void Strafe() {
@@ -294,5 +297,9 @@ public class EnemyMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         Self.ReadyToStart = true;
+    }
+
+    void Stay() {
+        target.position = transform.position;
     }
 }

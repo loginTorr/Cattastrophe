@@ -47,6 +47,7 @@ public class ShootingRatAttack : MonoBehaviour{
     }
 
     void ShootAnim() {
+        Self.midAttack = true;
         AnimRunning = true;
         Anim.SetTrigger("GrabGear");
     }
@@ -68,6 +69,6 @@ public class ShootingRatAttack : MonoBehaviour{
 
         rb.velocity = Direction;
         AnimRunning = false;
-
+        Self.midAttack = false;
     }
 }

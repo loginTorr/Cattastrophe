@@ -17,6 +17,8 @@ public class EnemyStateInfo : MonoBehaviour
     public GameObject Player;
     private Vector3 PlayerPos;
     public Range range;
+    public bool midAttack = false;
+
     public enum Type { 
         Tiny,
         Mele,

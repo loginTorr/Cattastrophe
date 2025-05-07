@@ -39,6 +39,7 @@ public class MeleRatAttack : MonoBehaviour{
 
     IEnumerator Attack() {
         animPlaying = true;
+        Self.midAttack = true;
 
         if (Self.ReadyToStart){
             int swingDir = Random.Range(0, 2);
@@ -56,6 +57,8 @@ public class MeleRatAttack : MonoBehaviour{
             WeaponCollider.enabled = false;
             animPlaying = false;
         }
+
+        Self.midAttack = false;
     }
 
     AnimationClip getAnimation(Animator anim, string name) {
