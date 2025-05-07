@@ -7068,7 +7068,7 @@ MonoBehaviour:
   lastRoom: {fileID: 0}
   MiniBossRoom: {fileID: 4994608353740842478, guid: 4c31628d3e12be14ba2b6d96c56cf45f,
     type: 3}
-  BossRoom: {fileID: 4994608353740842478, guid: 4c31628d3e12be14ba2b6d96c56cf45f,
+  BossRoom: {fileID: 4436065284331387641, guid: 0211828a02cccb54fa4aa4738db965cd,
     type: 3}
   isSmall: 0
   isMedium: 0
