@@ -592,6 +592,7 @@ MonoBehaviour:
   state: 6
   Player: {fileID: 0}
   range: {fileID: 0}
+  midAttack: 0
   type: 2
   ReadyToStart: 0
 --- !u!114 &8090988899360817009
@@ -676,6 +677,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684a4e6797e9e72449288c9138b9579e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SmallCounterScript: {fileID: 0}
+  MediumCounterScript: {fileID: 0}
   healthBar: {fileID: 4345319941124701720}
   maxHealth: 15
   currentHealth: 15
@@ -704,7 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf6c927996e5dde4bacd5523cb9638df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxAttackPause: 2
+  MaxAttackPause: 0.1
   MinAttackPause: 4
   projectilePrefab: {fileID: 1728404006340089504, guid: e29623f0423ecb34dba027557e3ca18f,
     type: 3}
