@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator PlayerAnim;
     private SlashAttackTriggers SlashAttackTriggersScript;
 
+    public bool isGettingKockedBack = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!paused)
+        if (!paused && !isGettingKockedBack)
         {
             Move();
         }
@@ -98,10 +100,9 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(horizontal.x, newVelocity.y, horizontal.z);
     }
 
-    void RecieveKockback(float magnitude, GameObject from)
+    public void RecieveKockback(float magnitude, Vector3 direction)
     {
-        Vector3 KnockbackDir = from.transform.position - transform.position;
-        Vector3 KnockbackVector = KnockbackDir * magnitude;
+        Vector3 KnockbackVector = direction * magnitude;
         Vector3 newVelocity = new Vector3(KnockbackVector.x, rb.velocity.y, KnockbackVector.z);
         rb.velocity = newVelocity;
     }
