@@ -13,6 +13,7 @@ TagManager:
   - Mini Raton
   - PlayerSpawn
   - Interact
+  - Floor
   layers:
   - Default
   - TransparentFX

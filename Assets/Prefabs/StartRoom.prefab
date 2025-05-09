@@ -1173,7 +1173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b8012ebbcc3bb6439a1ef46a2629197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractUI: {fileID: 0}
   ObjectName: 
   curCount: 0
 --- !u!1 &5065095232971016607
@@ -2399,7 +2398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b8012ebbcc3bb6439a1ef46a2629197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractUI: {fileID: 0}
   ObjectName: 
   curCount: 0
 --- !u!1 &5781043811259015136
@@ -3154,7 +3152,7 @@ GameObject:
   - component: {fileID: 1323068398519508141}
   m_Layer: 0
   m_Name: Plane (1)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

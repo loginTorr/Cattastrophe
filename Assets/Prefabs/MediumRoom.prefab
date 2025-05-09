@@ -3237,6 +3237,7 @@ MonoBehaviour:
   state: 6
   Player: {fileID: 0}
   range: {fileID: 0}
+  midAttack: 0
   type: 1
   ReadyToStart: 0
 --- !u!114 &1770106654541655979
@@ -3979,6 +3980,7 @@ MonoBehaviour:
   state: 6
   Player: {fileID: 0}
   range: {fileID: 0}
+  midAttack: 0
   type: 1
   ReadyToStart: 0
 --- !u!114 &8118882228968626748
@@ -4719,6 +4721,7 @@ MonoBehaviour:
   state: 6
   Player: {fileID: 0}
   range: {fileID: 0}
+  midAttack: 0
   type: 2
   ReadyToStart: 0
 --- !u!114 &8090988899360817009
@@ -10357,7 +10360,7 @@ GameObject:
   - component: {fileID: 3805755310392527335}
   m_Layer: 0
   m_Name: Plane (1)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12752,6 +12755,7 @@ MonoBehaviour:
   state: 6
   Player: {fileID: 0}
   range: {fileID: 0}
+  midAttack: 0
   type: 2
   ReadyToStart: 0
 --- !u!114 &4477154693808488045
@@ -13569,6 +13573,7 @@ MonoBehaviour:
   state: 6
   Player: {fileID: 0}
   range: {fileID: 0}
+  midAttack: 0
   type: 1
   ReadyToStart: 0
 --- !u!114 &5071958671978165954
@@ -14913,6 +14918,7 @@ MonoBehaviour:
   state: 6
   Player: {fileID: 0}
   range: {fileID: 0}
+  midAttack: 0
   type: 1
   ReadyToStart: 0
 --- !u!114 &162259545961889880
@@ -18790,6 +18796,7 @@ MonoBehaviour:
   state: 6
   Player: {fileID: 0}
   range: {fileID: 0}
+  midAttack: 0
   type: 1
   ReadyToStart: 0
 --- !u!114 &5001695878214548297
@@ -22910,6 +22917,7 @@ MonoBehaviour:
   state: 6
   Player: {fileID: 0}
   range: {fileID: 0}
+  midAttack: 0
   type: 1
   ReadyToStart: 0
 --- !u!114 &6049047708603276962
@@ -23223,6 +23231,7 @@ MonoBehaviour:
   state: 6
   Player: {fileID: 0}
   range: {fileID: 0}
+  midAttack: 0
   type: 1
   ReadyToStart: 0
 --- !u!114 &1342060387035344266
@@ -25052,6 +25061,7 @@ MonoBehaviour:
   state: 6
   Player: {fileID: 0}
   range: {fileID: 0}
+  midAttack: 0
   type: 2
   ReadyToStart: 0
 --- !u!114 &3026351693650157595
