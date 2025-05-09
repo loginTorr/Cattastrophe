@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.Windows;
+using static UnityEditor.Rendering.InspectorCurveEditor;
 
-public enum RatMiniBossState { Idle, Walking, Running, PrepareAttack, SpinKick, SmashAttack, Dead }
+public enum RatMiniBossState { Idle, Walking, Running, PrepareAttack, SpinKick, FirstSmash, NextSmash, FinalSmash, LowHealthFinalSmash, Dead }
 public class RatMiniBoss : MonoBehaviour
 {
-    private RatMiniBossState curRatBossState;
-    private Animator RatMiniBossAnimator;
+    private RatMiniBossState curState;
+    private Animator anim;
     private Transform PlayerPos;
-    private Vector3 currentDirection; 
+    private Coroutine stateCoroutine;
+    private Vector3 currentDirection;
+    private float AttackRange = 15;
+    private float WalkRange = 30;
 
     public float RatBossHealth = 300;
     public float followSpeed;
+    public bool isAttacking;
 
 
 
@@ -20,10 +27,10 @@ public class RatMiniBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RatMiniBossAnimator = GetComponent<Animator>();
-
-        curRatBossState = RatMiniBossState.Idle;
-        RatMiniBossAnimator.applyRootMotion = true;
+        anim = GetComponent<Animator>();
+        isAttacking = false;
+        curState = RatMiniBossState.Idle;
+        anim.applyRootMotion = true;
 
         StartCoroutine(Idle());
 
@@ -36,102 +43,231 @@ public class RatMiniBoss : MonoBehaviour
 
         PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
-        switch (curRatBossState)
+        if (curState == RatMiniBossState.Walking || curState == RatMiniBossState.Running
+                    || curState == RatMiniBossState.PrepareAttack
+                    || curState == RatMiniBossState.NextSmash)
         {
-            case RatMiniBossState.Idle:
-                currentDirection.y = 0;
-                transform.rotation = Quaternion.LookRotation(currentDirection); 
-                break;
-
-            case RatMiniBossState.Walking:
-            case RatMiniBossState.Running:
-            case RatMiniBossState.SmashAttack:
-            case RatMiniBossState.PrepareAttack:
-                Vector3 directionToPlayer = PlayerPos.position - transform.position;
-                directionToPlayer.y = 0;
-
-                Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-                currentDirection = transform.forward;
-
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, followSpeed * Time.deltaTime);
-                break;
-
-
-
-             case RatMiniBossState.SpinKick:
-                break;
-
-
-             case RatMiniBossState.Dead:
-                 break;
+            if (PlayerPos)
+            {
+                Vector3 dir = PlayerPos.position - transform.position;
+                dir.y = 0;
+                if (dir != Vector3.zero)
+                {
+                    Quaternion lookRot = Quaternion.LookRotation(dir);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, followSpeed * Time.deltaTime);
+                }
+            }
         }
 
-        
+
     }
+
+    void ChangeState(RatMiniBossState newState)
+    {
+        if (stateCoroutine != null) StopCoroutine(stateCoroutine);
+        curState = newState;
+
+        switch (newState)
+        {
+            case RatMiniBossState.Idle: stateCoroutine = StartCoroutine(Idle()); break;
+            case RatMiniBossState.Walking: stateCoroutine = StartCoroutine(Walk()); break;
+            case RatMiniBossState.Running: stateCoroutine = StartCoroutine(Run()); break;
+            case RatMiniBossState.PrepareAttack: stateCoroutine = StartCoroutine(PrepareAttack()); break;
+            case RatMiniBossState.FirstSmash: stateCoroutine = StartCoroutine(FirstSmash()); break;
+            case RatMiniBossState.NextSmash: stateCoroutine = StartCoroutine(NextSmash()); break;
+            case RatMiniBossState.FinalSmash: stateCoroutine = StartCoroutine(FinalSmash()); break;
+            case RatMiniBossState.LowHealthFinalSmash: stateCoroutine = StartCoroutine(LowHealthFinalSmash()); break;
+            //case RatMiniBossState.Dead: stateCoroutine = StartCoroutine(Dead()); break;
+        }
+    }
+
+    void ResetAllTriggers()
+    {
+        anim.ResetTrigger("IsIdle"); anim.ResetTrigger("IsWalking"); anim.ResetTrigger("IsRunning");
+        anim.ResetTrigger("IsAttacking"); anim.ResetTrigger("IsSmashing"); anim.ResetTrigger("NextSmash");
+        anim.ResetTrigger("Finisher"); anim.ResetTrigger("LowHealthFinisher");
+    }
+
+
 
     IEnumerator Idle()
     {
-        RatMiniBossAnimator.ResetTrigger("IsIdle"); RatMiniBossAnimator.ResetTrigger("IsWalking"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsAttacking"); RatMiniBossAnimator.ResetTrigger("IsSpinKicking"); RatMiniBossAnimator.ResetTrigger("IsSmashing");
+        followSpeed = 0;
+        isAttacking = false;
 
-        RatMiniBossAnimator.SetTrigger("IsIdle");
+        ResetAllTriggers();
+        anim.SetTrigger("IsIdle");
+        yield return new WaitForSeconds(1f);
 
-        yield return new WaitForSeconds(2f);
-        curRatBossState = RatMiniBossState.Walking;
-        StartCoroutine(Walk());
+        float dist = Vector3.Distance(transform.position, PlayerPos.position);
 
+        if (dist <= AttackRange) { ChangeState(RatMiniBossState.PrepareAttack); }
+        else if (dist < WalkRange) { ChangeState(RatMiniBossState.Walking); }
+        else { ChangeState(RatMiniBossState.Running); }
     }
 
     IEnumerator Walk()
     {
-        RatMiniBossAnimator.ResetTrigger("IsIdle"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsAttacking"); RatMiniBossAnimator.ResetTrigger("IsSpinKicking"); RatMiniBossAnimator.ResetTrigger("IsSmashing");
+        followSpeed = 2;
+        isAttacking = false;
 
-        followSpeed = 1;
-        RatMiniBossAnimator.SetTrigger("IsWalking");
+        ResetAllTriggers();
+        anim.SetTrigger("IsWalking");
 
-        yield return new WaitForSeconds(3f);
-        curRatBossState = RatMiniBossState.Running;
-        StartCoroutine(Run());
+        while (true)
+        {
+            float dist = Vector3.Distance(transform.position, PlayerPos.position);
 
+            if (dist <= AttackRange)
+            {
+                ChangeState(RatMiniBossState.PrepareAttack);
+                yield break;
+            }
+            if (dist >= WalkRange)
+            {
+                ChangeState(RatMiniBossState.Running);
+                yield break;
+            }
+            yield return null;
+        }
     }
 
     IEnumerator Run()
     {
-        RatMiniBossAnimator.ResetTrigger("IsIdle"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsAttacking"); RatMiniBossAnimator.ResetTrigger("IsSpinKicking"); RatMiniBossAnimator.ResetTrigger("IsSmashing");
+        followSpeed = 3;
+        isAttacking = false;
 
-        followSpeed = 2;
-        RatMiniBossAnimator.SetTrigger("IsRunning");
+        ResetAllTriggers();
+        anim.SetTrigger("IsRunning");
 
-        yield return new WaitForSeconds(3f);
-        curRatBossState = RatMiniBossState.PrepareAttack;
-        StartCoroutine(PrepareAttack());
+        while (true)
+        {
+            float dist = Vector3.Distance(transform.position, PlayerPos.position);
 
-
+            if (dist <= AttackRange)
+            {
+                ChangeState(RatMiniBossState.PrepareAttack);
+                yield break;
+            }
+            if (dist <= WalkRange)
+            {
+                ChangeState(RatMiniBossState.Walking);
+                yield break;
+            }
+            yield return null;
+        }
     }
+
     IEnumerator PrepareAttack()
     {
-        RatMiniBossAnimator.ResetTrigger("IsIdle"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsAttacking"); RatMiniBossAnimator.ResetTrigger("IsSpinKicking"); RatMiniBossAnimator.ResetTrigger("IsSmashing");
+        followSpeed = 2f;
+        isAttacking = false;
 
-        RatMiniBossAnimator.SetTrigger("IsAttacking");
-
+        ResetAllTriggers();
+        anim.SetTrigger("IsAttacking");
         yield return new WaitForSeconds(1f);
-        curRatBossState = RatMiniBossState.SmashAttack;
-        StartCoroutine(Smash());
 
+        float dist = Vector3.Distance(transform.position, PlayerPos.position);
 
+        if (dist <= AttackRange)
+        {
+            ChangeState(RatMiniBossState.FirstSmash);
+        }
+        else
+        {
+            ChangeState(RatMiniBossState.Walking);
+        }
     }
 
-    IEnumerator Smash()
+    IEnumerator FirstSmash()
     {
-        RatMiniBossAnimator.ResetTrigger("IsIdle"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsRunning"); RatMiniBossAnimator.ResetTrigger("IsAttacking"); RatMiniBossAnimator.ResetTrigger("IsSpinKicking"); RatMiniBossAnimator.ResetTrigger("IsSmashing");
-
-        followSpeed = 3;
-        RatMiniBossAnimator.SetTrigger("IsSmashing");
-
-        yield return new WaitForSeconds(5f);
-        curRatBossState = RatMiniBossState.Idle;
-        StartCoroutine(Idle());
+        followSpeed = 1f;
+        isAttacking = true;
 
 
+        ResetAllTriggers();
+        anim.SetTrigger("IsSmashing");
+
+        yield return new WaitForSeconds(2f);
+
+        float dist = Vector3.Distance(transform.position, PlayerPos.position);
+
+        if (dist <= AttackRange)
+        {
+            ChangeState(RatMiniBossState.NextSmash);
+        }
+        else
+        {
+            ChangeState(RatMiniBossState.Walking);
+        }
     }
 
+    IEnumerator NextSmash()
+    {
+        isAttacking = true;
+
+        ResetAllTriggers();
+        anim.SetTrigger("NextSmash");
+        yield return new WaitForSeconds(2f);
+
+        float dist = Vector3.Distance(transform.position, PlayerPos.position);
+
+        // If player is still in range, do a finisher move based on health
+        if (dist <= AttackRange)
+        {
+            if (RatBossHealth <= 150)
+            {
+                ChangeState(RatMiniBossState.LowHealthFinalSmash);
+            }
+            else
+            {
+                ChangeState(RatMiniBossState.FinalSmash);
+            }
+        }
+        else
+        {
+            ChangeState(RatMiniBossState.Walking);
+        }
+    }
+
+    IEnumerator FinalSmash()
+    {
+        isAttacking = true;
+
+        ResetAllTriggers();
+        anim.SetTrigger("Finisher");
+        yield return new WaitForSeconds(2f);
+
+        ChangeState(RatMiniBossState.Idle);
+    }
+
+    IEnumerator LowHealthFinalSmash()
+    {
+        isAttacking = true;
+
+        ResetAllTriggers();
+        anim.SetTrigger("LowHealthFinisher");
+        yield return new WaitForSeconds(2f);
+
+        ChangeState(RatMiniBossState.Idle);
+    }
+
+    IEnumerator Dead()
+    {
+        followSpeed = 0f;
+        ResetAllTriggers();
+        anim.SetTrigger("IsDead");
+        // You can set a "Dead" trigger or play a death animation here.
+        // anim.SetTrigger("IsDead");
+        // Maybe destroy or disable the object after a delay.
+        yield break;
+    }
+
+    // Call this method when the boss should die:
+    public void Die()
+    {
+        ChangeState(RatMiniBossState.Dead);
+    }
 }
+
+

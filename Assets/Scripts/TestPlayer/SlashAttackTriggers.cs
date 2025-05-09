@@ -7,7 +7,7 @@
         public bool canDealDamage = false;
 
         public int damage;
-        public PlayerMovement PlayerMovementScipt;
+        private PlayerMovement PlayerMovementScipt;
 
         
 
@@ -15,7 +15,7 @@
         // Start is called before the first frame update
         void Start()
         {
-
+            PlayerMovementScipt = GetComponent<PlayerMovement>();
         }
 
         // Update is called once per frame
@@ -24,13 +24,13 @@
             
         }
 
-        void OnTriggerEnter(Collider other)
+        void OnTriggerExit(Collider other)
         {
 
             // Check if the collided object is an enemy
             if (PlayerMovementScipt.isAttacking)
             {
-                if (other.CompareTag("Raton") || other.CompareTag("Mini Raton"))
+                if (other.CompareTag("Raton") || other.CompareTag("Mini Raton") || other.CompareTag("RatMiniBoss"))
                 {
                     // Try to get the Enemy Health Component
                     EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();

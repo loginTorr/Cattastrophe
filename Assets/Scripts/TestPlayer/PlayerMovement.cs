@@ -46,11 +46,7 @@ public class PlayerMovement : MonoBehaviour
         SlashAttackTriggersScript.damage = AttackDamage;
         if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking )
         {
-            PlayerAnim.ResetTrigger("IsIdle");
-            PlayerAnim.ResetTrigger("IsRunning");
-            PlayerAnim.ResetTrigger("FirstHook");
-            PlayerAnim.ResetTrigger("SecondHook");
-            PlayerAnim.ResetTrigger("Finisher");
+            ResetTriggers();
 
             StartCoroutine("AttackSequence");
         }
@@ -68,12 +64,10 @@ public class PlayerMovement : MonoBehaviour
     void Look()
     {
         PlayerAnim.SetTrigger("IsIdle");
-        PlayerAnim.ResetTrigger("IsRunning");
 
         if (input != Vector3.zero)
         {
-            PlayerAnim.ResetTrigger("IsIdle");
-
+            ResetTriggers();
             PlayerAnim.SetTrigger("IsRunning");
             var relative = (transform.position + input.ToIso()) - transform.position;
             var rot = Quaternion.LookRotation(relative, Vector3.up);
@@ -107,17 +101,22 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = newVelocity;
     }
 
+    private void ResetTriggers()
+    {
+        PlayerAnim.ResetTrigger("IsIdle");
+        PlayerAnim.ResetTrigger("IsRunning");
+        PlayerAnim.ResetTrigger("FirstHook");
+        PlayerAnim.ResetTrigger("SecondHook");
+        PlayerAnim.ResetTrigger("Finisher");
+    }
+
     IEnumerator AttackSequence()
     {
         isAttacking = true;
         paused = true;
 
         // Reset all movement-related triggers
-        PlayerAnim.ResetTrigger("IsIdle");
-        PlayerAnim.ResetTrigger("IsRunning");
-        PlayerAnim.ResetTrigger("FirstHook");
-        PlayerAnim.ResetTrigger("SecondHook");
-        PlayerAnim.ResetTrigger("Finisher");
+        ResetTriggers();
 
         // First Hook
         PlayerAnim.SetTrigger("FirstHook");
@@ -146,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
         // Second Hook
         if (secondAttackRequested)
         {
-            PlayerAnim.ResetTrigger("IsIdle"); PlayerAnim.ResetTrigger("IsRunning"); PlayerAnim.ResetTrigger("FirstHook");
+            ResetTriggers();
 
             PlayerAnim.SetTrigger("SecondHook");
             paused = true;
@@ -177,7 +176,7 @@ public class PlayerMovement : MonoBehaviour
         // Finisher            
         if (finisherRequested)            
         {
-            PlayerAnim.ResetTrigger("IsIdle"); PlayerAnim.ResetTrigger("IsRunning"); PlayerAnim.ResetTrigger("FirstHook");
+            ResetTriggers();
 
             PlayerAnim.ResetTrigger("SecondHook");       
             PlayerAnim.SetTrigger("Finisher");
