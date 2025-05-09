@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public HealthBar healthBar;
+    public GameObject player;
     public GameObject gameOverScreen;
 
     private PlayerMovement PlayerMovmentScript;
@@ -62,6 +63,6 @@ public class PlayerHealth : MonoBehaviour
     public void GameOver(){
         print("game over");
         gameOverScreen.SetActive(true);
-        Time.timeScale = 0;
+        Destroy(player);
     }
 }

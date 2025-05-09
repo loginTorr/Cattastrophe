@@ -31,4 +31,10 @@ public class PauseMenu : MonoBehaviour
             
         }
     }
+
+    public void ButtonPressed(){
+        pauseMenu.SetActive(false);
+        enter = true;
+        Time.timeScale = 1;
+    }
 }
