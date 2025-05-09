@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4559259069082997767}
   - component: {fileID: 3806902826640637983}
   - component: {fileID: 3577195878453574713}
+  - component: {fileID: 3026253651866093580}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -149,6 +150,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &3026253651866093580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4564699076541523573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f265c01442025c40986bf487b0920a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KnockbackStrength: 0
 --- !u!1001 &2375074337318039504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -318,6 +332,7 @@ MonoBehaviour:
   state: 6
   Player: {fileID: 0}
   range: {fileID: 0}
+  midAttack: 0
   type: 1
   ReadyToStart: 0
 --- !u!114 &5071958671978165954
@@ -402,6 +417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684a4e6797e9e72449288c9138b9579e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SmallCounterScript: {fileID: 0}
+  MediumCounterScript: {fileID: 0}
   healthBar: {fileID: 352940995490329256}
   maxHealth: 15
   currentHealth: 15
