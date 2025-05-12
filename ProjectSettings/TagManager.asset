@@ -8,12 +8,12 @@ TagManager:
   - RatBoss
   - Bed
   - RoomReward
-  - MiniBoss
   - Raton
   - Mini Raton
   - PlayerSpawn
   - Interact
   - Floor
+  - RatMiniBoss
   layers:
   - Default
   - TransparentFX

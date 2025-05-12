@@ -4,34 +4,32 @@ using UnityEngine;
 
 public class RatMiniBossAttack : MonoBehaviour
 {
-    private RatMiniBoss RatMiniBossScript;
-    private PlayerMovement PlayerMovementScript;
+    public bool canDealDamage = false;
+    private HashSet<Collider> hitPlayers = new HashSet<Collider>();
 
-    // Start is called before the first frame update
-    void Start()
+    public void EnableDamage()
     {
-        RatMiniBossScript = GetComponent<RatMiniBoss>();
-        PlayerMovementScript = GetComponent<PlayerMovement>();
+        canDealDamage = true;
+        hitPlayers.Clear();
+    }
+    public void DisableDamage()
+    {
+        canDealDamage = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
-    }
+        Debug.Log($"canDealDamage={canDealDamage} other.tag={other.tag} hitPlayersContains={hitPlayers.Contains(other)}");
 
-    void OnTriggerExit(Collider other)
-    {
-
-        // Check if the collided object is an enemy
-        if (RatMiniBossScript.isAttacking)
+        if (canDealDamage && other.CompareTag("Player") && !hitPlayers.Contains(other))
         {
-            if (other.CompareTag("Player"))
+            PlayerHealth player = other.GetComponent<PlayerHealth>();
+            Debug.Log(player);
+            if (player != null)
             {
-                // Try to get the Enemy Health Component
-                PlayerMovementScript.CurHealth -= 10;
-
-
+                Debug.Log("DamageDone");
+                player.TakeDamage(10);
+                hitPlayers.Add(other);
             }
         }
     }

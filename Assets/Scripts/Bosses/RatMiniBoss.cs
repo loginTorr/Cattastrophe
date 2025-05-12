@@ -13,7 +13,7 @@ public class RatMiniBoss : MonoBehaviour
     private Animator anim;
     private Transform PlayerPos;
     private Coroutine stateCoroutine;
-    private Vector3 currentDirection;
+    private Transform lastRotation;
     private float AttackRange = 15;
     private float WalkRange = 30;
 
@@ -43,8 +43,14 @@ public class RatMiniBoss : MonoBehaviour
 
         PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
-        if (curState == RatMiniBossState.Walking || curState == RatMiniBossState.Running
+        if (curState == RatMiniBossState.Idle)
+        {
+            transform.rotation = lastRotation.rotation;
+        }
+
+        else if (curState == RatMiniBossState.Walking || curState == RatMiniBossState.Running
                     || curState == RatMiniBossState.PrepareAttack
+                    || curState == RatMiniBossState.FirstSmash
                     || curState == RatMiniBossState.NextSmash)
         {
             if (PlayerPos)
@@ -55,10 +61,11 @@ public class RatMiniBoss : MonoBehaviour
                 {
                     Quaternion lookRot = Quaternion.LookRotation(dir);
                     transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, followSpeed * Time.deltaTime);
+                    lastRotation.rotation = transform.rotation;
+
                 }
             }
         }
-
 
     }
 
@@ -77,7 +84,7 @@ public class RatMiniBoss : MonoBehaviour
             case RatMiniBossState.NextSmash: stateCoroutine = StartCoroutine(NextSmash()); break;
             case RatMiniBossState.FinalSmash: stateCoroutine = StartCoroutine(FinalSmash()); break;
             case RatMiniBossState.LowHealthFinalSmash: stateCoroutine = StartCoroutine(LowHealthFinalSmash()); break;
-            //case RatMiniBossState.Dead: stateCoroutine = StartCoroutine(Dead()); break;
+                //case RatMiniBossState.Dead: stateCoroutine = StartCoroutine(Dead()); break;
         }
     }
 
@@ -93,11 +100,9 @@ public class RatMiniBoss : MonoBehaviour
     IEnumerator Idle()
     {
         followSpeed = 0;
-        isAttacking = false;
-
         ResetAllTriggers();
         anim.SetTrigger("IsIdle");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         float dist = Vector3.Distance(transform.position, PlayerPos.position);
 
@@ -109,7 +114,6 @@ public class RatMiniBoss : MonoBehaviour
     IEnumerator Walk()
     {
         followSpeed = 2;
-        isAttacking = false;
 
         ResetAllTriggers();
         anim.SetTrigger("IsWalking");
@@ -135,7 +139,6 @@ public class RatMiniBoss : MonoBehaviour
     IEnumerator Run()
     {
         followSpeed = 3;
-        isAttacking = false;
 
         ResetAllTriggers();
         anim.SetTrigger("IsRunning");
@@ -161,7 +164,6 @@ public class RatMiniBoss : MonoBehaviour
     IEnumerator PrepareAttack()
     {
         followSpeed = 2f;
-        isAttacking = false;
 
         ResetAllTriggers();
         anim.SetTrigger("IsAttacking");
@@ -182,8 +184,6 @@ public class RatMiniBoss : MonoBehaviour
     IEnumerator FirstSmash()
     {
         followSpeed = 1f;
-        isAttacking = true;
-
 
         ResetAllTriggers();
         anim.SetTrigger("IsSmashing");
@@ -204,7 +204,6 @@ public class RatMiniBoss : MonoBehaviour
 
     IEnumerator NextSmash()
     {
-        isAttacking = true;
 
         ResetAllTriggers();
         anim.SetTrigger("NextSmash");
@@ -232,7 +231,6 @@ public class RatMiniBoss : MonoBehaviour
 
     IEnumerator FinalSmash()
     {
-        isAttacking = true;
 
         ResetAllTriggers();
         anim.SetTrigger("Finisher");
@@ -243,7 +241,6 @@ public class RatMiniBoss : MonoBehaviour
 
     IEnumerator LowHealthFinalSmash()
     {
-        isAttacking = true;
 
         ResetAllTriggers();
         anim.SetTrigger("LowHealthFinisher");
@@ -268,6 +265,7 @@ public class RatMiniBoss : MonoBehaviour
     {
         ChangeState(RatMiniBossState.Dead);
     }
+
 }
 
 

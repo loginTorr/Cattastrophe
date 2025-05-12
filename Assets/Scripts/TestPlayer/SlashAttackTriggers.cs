@@ -15,7 +15,7 @@
         // Start is called before the first frame update
         void Start()
         {
-            PlayerMovementScipt = GetComponent<PlayerMovement>();
+            PlayerMovementScipt = GetComponentInParent<PlayerMovement>();
         }
 
         // Update is called once per frame
@@ -24,7 +24,7 @@
             
         }
 
-        void OnTriggerExit(Collider other)
+        void OnTriggerEnter(Collider other)
         {
 
             // Check if the collided object is an enemy
@@ -35,7 +35,10 @@
                     // Try to get the Enemy Health Component
                     EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
 
-                    enemyHealth.TakeDamage(damage);
+                    if (enemyHealth != null)
+                    {
+                        enemyHealth.TakeDamage(damage);
+                    }
 
 
                 }

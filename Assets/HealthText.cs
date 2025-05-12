@@ -10,6 +10,7 @@ public class HealthText : MonoBehaviour
     public TextMeshProUGUI health;
     public TextMeshProUGUI speed;
     public TextMeshProUGUI attack;
+
     // Start is called before the first frame update
     void Start()
     {
