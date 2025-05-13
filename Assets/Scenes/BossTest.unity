@@ -7282,14 +7282,23 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4510084910973174307}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 7363649c1cce81d479ee799a077df655, type: 3}
   m_Controller: {fileID: 9100000, guid: 05173f7774c197147a991280fa3bf1a5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+    'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
+    'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightFoot'\n\tTransform
+    'mixamorig:Head'\n\tTransform 'mixamorig:LeftUpLeg'\n\tand more ...\n\tFrom animation
+    clip 'Walking'\n\tFrom animation clip 'Armada'\n\tFrom animation clip 'Fireball'\n\tFrom
+    animation clip 'Hurricane Kick'\n\tFrom animation clip 'Punching (1)'\n\tFrom
+    animation clip 'Stomp'\n\tFrom animation clip 'Punching'\n\tFrom animation clip
+    'Walking'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -8151,6 +8160,7 @@ GameObject:
   - component: {fileID: 4510084910973174309}
   - component: {fileID: 3526462177959725231}
   - component: {fileID: 4510084910973174308}
+  - component: {fileID: 4510084910973174310}
   m_Layer: 0
   m_Name: BigBoss
   m_TagString: Untagged
@@ -8204,8 +8214,21 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &4510084910973174310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510084910973174307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136ced3633b193348b4734dbe4e88391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followSpeed: 2
 --- !u!4 &4537377060757607287
 Transform:
   m_ObjectHideFlags: 0
@@ -11586,7 +11609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
   player: {fileID: 8936106781629423764}
-  gameOverScreen: {fileID: 0}
+  gameOverScreen: {fileID: 786844043}
 --- !u!137 &7172405807899255732
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

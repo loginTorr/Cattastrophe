@@ -4,15 +4,16 @@ using UnityEngine;
 using static UnityEditor.Rendering.InspectorCurveEditor;
 
 public enum BossState { Idle, Walking, Running, GoopBall, RPunch, LPunch, SpinAttack, SpinKick, Dead}
+
 public class RatBoss : MonoBehaviour
 {
-    private float RatBossHealth = 300;
-    private float AttackRange = 15;
+    private float Health = 300;
+    private float AttackRange = 10;
     private float WalkRange = 30;
     private Animator anim;
     private Transform PlayerPos;
     private Coroutine stateCoroutine;
-    private Transform lastRotation;
+    private Quaternion lastRotation;
     private BossState curState;
 
 
@@ -23,13 +24,20 @@ public class RatBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
+        curState = BossState.Idle;
+        anim.applyRootMotion = true;
+
+        Debug.Log("StartBoss");
+
+        StartCoroutine(Idle());
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (RatBossHealth <= 0)
+        if (Health <= 0)
         {
             //Dead();
         }
@@ -38,7 +46,7 @@ public class RatBoss : MonoBehaviour
 
         if (curState == BossState.Idle)
         {
-            transform.rotation = lastRotation.rotation;
+            transform.rotation = lastRotation;
         }
 
         {
@@ -50,7 +58,7 @@ public class RatBoss : MonoBehaviour
                 {
                     Quaternion lookRot = Quaternion.LookRotation(dir);
                     transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, followSpeed * Time.deltaTime);
-                    lastRotation.rotation = transform.rotation;
+                    lastRotation = transform.rotation;
 
                 }
             }
@@ -78,16 +86,35 @@ public class RatBoss : MonoBehaviour
 
     void ResetAllTriggers()
     {
+        anim.ResetTrigger("IsIdle"); anim.ResetTrigger("IsWalking"); anim.ResetTrigger("IsRunning");
+        anim.ResetTrigger("IsGoopBall"); anim.ResetTrigger("RPunch"); anim.ResetTrigger("LPunch");
+        anim.ResetTrigger("IsSpinning"); anim.ResetTrigger("IsStomp"); anim.ResetTrigger("IsHurricaneKick");
 
     }
 
     IEnumerator Idle()
     {
+        Debug.Log("Idle");
+
+        followSpeed = 0;
+        ResetAllTriggers();
+
+        float dist = Vector3.Distance(transform.position, PlayerPos.position);
+
+        anim.SetTrigger("IsWalking");
+        yield return new WaitForSeconds(2f);
+        anim.SetTrigger("RPunch");
+
+        if (dist >= AttackRange) { ChangeState(BossState.Walking); }
+
         yield return null;
     }
 
     IEnumerator Walk()
     {
+        anim.SetTrigger("IsWalking");
+        yield return new WaitForSeconds(2f);
+        anim.SetTrigger("RPunch");
         yield return null;
     }
 
@@ -96,7 +123,7 @@ public class RatBoss : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator GoopBall()
+    IEnumerator GoopBall()  
     {
         yield return null;
     }

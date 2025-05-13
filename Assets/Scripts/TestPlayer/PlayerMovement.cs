@@ -70,9 +70,6 @@ public class PlayerMovement : MonoBehaviour
         GatherInput();
         Look();
 
-        Debug.Log(isAttacking);
-
-
         SlashAttackTriggersScript.damage = AttackDamage;
 
         if (!paused && !isGettingKockedBack)
@@ -198,7 +195,6 @@ public class PlayerMovement : MonoBehaviour
 
         // Wait for animation to start playing properly (animation entry time)
         yield return new WaitForSecondsRealtime(0.2f);
-        isAttacking = false;
 
         Debug.Log("First attack animation playing, now listening for second attack input");
 
@@ -221,6 +217,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Make sure we finish the current attack animation
         yield return new WaitForSeconds(0.10f);
+        isAttacking = false;
+
 
         if (secondAttackRequested)
         {
@@ -248,7 +246,6 @@ public class PlayerMovement : MonoBehaviour
 
         // Wait for animation to start playing properly
         yield return new WaitForSecondsRealtime(0.2f);
-        isAttacking = false;
         Debug.Log("Second attack animation playing, now listening for finisher input");
 
         // Now start listening for input during a window to chain to finisher
@@ -270,6 +267,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Make sure we finish the current attack animation
         yield return new WaitForSecondsRealtime(0.10f);
+        isAttacking = false;
+
 
         if (finisherRequested)
         {
