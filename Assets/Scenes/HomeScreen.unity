@@ -798,13 +798,13 @@ MonoBehaviour:
   soundFXPrefab: {fileID: 99930165209498919, guid: c7c9dc141ad09e646835ecc86a010d04,
     type: 3}
   initialPoolSize: 20
-  audioMixer: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 352890c0e53da57488e423d9cfd036d3, type: 2}
   masterVolumeParam: MasterVolume
   sfxVolumeParam: SFXVolume
   musicVolumeParam: MusicVolume
   uiVolumeParam: UIVolume
   maxSimultaneousSounds: 20
-  debugMode: 0
+  debugMode: 1
 --- !u!1 &1830764672
 GameObject:
   m_ObjectHideFlags: 0

@@ -3342,6 +3342,38 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &429243412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 429243413}
+  m_Layer: 0
+  m_Name: --Manager--
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &429243413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429243412}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.940887, y: -0.8341788, z: 16.192347}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 885477258}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &475225867
 GameObject:
   m_ObjectHideFlags: 0
@@ -7523,6 +7555,65 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866327932}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &885477257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 885477258}
+  - component: {fileID: 885477259}
+  m_Layer: 0
+  m_Name: SoundFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &885477258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885477257}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 429243413}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &885477259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885477257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60f3f644d248f274f960a04040c27fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFXPrefab: {fileID: 6428598819876884587, guid: c7c9dc141ad09e646835ecc86a010d04,
+    type: 3}
+  initialPoolSize: 20
+  audioMixer: {fileID: 24100000, guid: 352890c0e53da57488e423d9cfd036d3, type: 2}
+  masterVolumeParam: MasterVolume
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  uiVolumeParam: UIVolume
+  maxSimultaneousSounds: 20
+  debugMode: 1
+  sfxGroup: {fileID: 3199086192799417602, guid: 352890c0e53da57488e423d9cfd036d3,
+    type: 2}
+  musicGroup: {fileID: -9052231199650451503, guid: 352890c0e53da57488e423d9cfd036d3,
+    type: 2}
+  uiGroup: {fileID: 8443181301114032855, guid: 352890c0e53da57488e423d9cfd036d3, type: 2}
 --- !u!1 &893683107
 GameObject:
   m_ObjectHideFlags: 0
@@ -18114,6 +18205,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76d033fdbb0c0d43895c97110daa6a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  footstepSounds:
+  - {fileID: 8300000, guid: c8376648ccafbe742ad21142baddfc7a, type: 3}
+  - {fileID: 8300000, guid: 80060c9895d801949a976b7dc6b3e8be, type: 3}
+  - {fileID: 8300000, guid: af615de90dfbc864f9a64f641e76f2ca, type: 3}
+  - {fileID: 8300000, guid: 04b9ec5142f392b4da20d84ad6956b96, type: 3}
+  - {fileID: 8300000, guid: 9cd65fc511e465140834edf60bd596b1, type: 3}
+  - {fileID: 8300000, guid: f0df00b71c17f9c41a189aa12c9d6f34, type: 3}
+  - {fileID: 8300000, guid: 2f325b064a2d4b042bcc8fb47e52f4d7, type: 3}
+  dashSound: {fileID: 0}
+  jumpSound: {fileID: 0}
+  landSound: {fileID: 0}
+  attackSounds: []
   MaxSpeed: 8
   AttackDamage: 5
   CurHealth: 100
@@ -18122,6 +18225,7 @@ MonoBehaviour:
   turnSpeed: 1080
   isAttacking: 0
   paused: 0
+  footstepInterval: 0.45
   isGettingKockedBack: 0
 --- !u!64 &959759384653240455
 MeshCollider:
@@ -27544,3 +27648,4 @@ SceneRoots:
   - {fileID: 975930073}
   - {fileID: 3795870101068990163}
   - {fileID: 3813656601576020088}
+  - {fileID: 429243413}

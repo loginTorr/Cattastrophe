@@ -40,6 +40,11 @@ public class SoundFXManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private int maxSimultaneousSounds = 20;
     [SerializeField] private bool debugMode = false;
+
+    [Header("Audio Mixer Groups")]
+    [SerializeField] private AudioMixerGroup sfxGroup;
+    [SerializeField] private AudioMixerGroup musicGroup;
+    [SerializeField] private AudioMixerGroup uiGroup;
     #endregion
 
     #region Private Variables
@@ -300,12 +305,15 @@ public class SoundFXManager : MonoBehaviour
         switch (category)
         {
             case SoundCategory.SFX:
+                source.outputAudioMixerGroup = sfxGroup;
                 categoryVolume = sfx_volume;
                 break;
             case SoundCategory.Music:
+                source.outputAudioMixerGroup = musicGroup;
                 categoryVolume = music_volume;
                 break;
             case SoundCategory.UI:
+                source.outputAudioMixerGroup = uiGroup;
                 categoryVolume = ui_volume;
                 break;
         }
@@ -352,12 +360,15 @@ public class SoundFXManager : MonoBehaviour
         switch (category)
         {
             case SoundCategory.SFX:
+                source.outputAudioMixerGroup = sfxGroup;
                 categoryVolume = sfx_volume;
                 break;
             case SoundCategory.Music:
+                source.outputAudioMixerGroup = musicGroup;
                 categoryVolume = music_volume;
                 break;
             case SoundCategory.UI:
+                source.outputAudioMixerGroup = uiGroup;
                 categoryVolume = ui_volume;
                 break;
         }
@@ -385,12 +396,15 @@ public class SoundFXManager : MonoBehaviour
         switch (category)
         {
             case SoundCategory.SFX:
+                source.outputAudioMixerGroup = sfxGroup;
                 categoryVolume = sfx_volume;
                 break;
             case SoundCategory.Music:
+                source.outputAudioMixerGroup = musicGroup;
                 categoryVolume = music_volume;
                 break;
             case SoundCategory.UI:
+                source.outputAudioMixerGroup = uiGroup;
                 categoryVolume = ui_volume;
                 break;
         }
@@ -451,12 +465,15 @@ public class SoundFXManager : MonoBehaviour
         switch (category)
         {
             case SoundCategory.SFX:
+                source.outputAudioMixerGroup = sfxGroup;
                 categoryVolume = sfx_volume;
                 break;
             case SoundCategory.Music:
+                source.outputAudioMixerGroup = musicGroup;
                 categoryVolume = music_volume;
                 break;
             case SoundCategory.UI:
+                source.outputAudioMixerGroup = uiGroup;
                 categoryVolume = ui_volume;
                 break;
         }
