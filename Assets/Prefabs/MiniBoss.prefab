@@ -3153,7 +3153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ffb3fcba608f5d41bfbc1f2409d3195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RatBossHealth: 300
+  enemyHealth: {fileID: 5428844769126220542}
+  RatBossHealth: 200
   followSpeed: 0
   isAttacking: 0
 --- !u!114 &2467870299135546653
@@ -3185,8 +3186,8 @@ MonoBehaviour:
   SmallCounterScript: {fileID: 0}
   MediumCounterScript: {fileID: 0}
   healthBar: {fileID: 3833199123948403553}
-  maxHealth: 300
-  currentHealth: 300
+  maxHealth: 200
+  currentHealth: 200
 --- !u!1 &3965613958150679479
 GameObject:
   m_ObjectHideFlags: 0

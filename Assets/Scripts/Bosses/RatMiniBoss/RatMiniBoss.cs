@@ -16,8 +16,9 @@ public class RatMiniBoss : MonoBehaviour
     private Transform lastRotation;
     private float AttackRange = 15;
     private float WalkRange = 30;
+    public EnemyHealth enemyHealth;
 
-    public float RatBossHealth = 300;
+    public float RatBossHealth;
     public float followSpeed;
     public bool isAttacking;
 
@@ -27,6 +28,7 @@ public class RatMiniBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        RatBossHealth = enemyHealth.maxHealth;
         anim = GetComponent<Animator>();
         isAttacking = false;
         curState = RatMiniBossState.Idle;
@@ -40,6 +42,7 @@ public class RatMiniBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RatBossHealth = enemyHealth.currentHealth;
         if (RatBossHealth <= 0)
         {
             Dead();
@@ -212,7 +215,7 @@ public class RatMiniBoss : MonoBehaviour
         // If player is still in range, do a finisher move based on health
         if (dist <= AttackRange)
         {
-            if (RatBossHealth <= 150)
+            if (RatBossHealth <= 100)
             {
                 ChangeState(RatMiniBossState.LowHealthFinalSmash);
             }
