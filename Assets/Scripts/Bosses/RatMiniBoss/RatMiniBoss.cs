@@ -47,12 +47,7 @@ public class RatMiniBoss : MonoBehaviour
 
         PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
-        if (curState == RatMiniBossState.Idle)
-        {
-            transform.rotation = lastRotation.rotation;
-        }
-
-        else if (curState == RatMiniBossState.Walking || curState == RatMiniBossState.Running
+        if (curState == RatMiniBossState.Walking || curState == RatMiniBossState.Running
                     || curState == RatMiniBossState.PrepareAttack
                     || curState == RatMiniBossState.FirstSmash
                     || curState == RatMiniBossState.NextSmash)
@@ -65,7 +60,6 @@ public class RatMiniBoss : MonoBehaviour
                 {
                     Quaternion lookRot = Quaternion.LookRotation(dir);
                     transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, followSpeed * Time.deltaTime);
-                    lastRotation.rotation = transform.rotation;
 
                 }
             }
@@ -73,7 +67,7 @@ public class RatMiniBoss : MonoBehaviour
 
     }
 
-    void ChangeState(RatMiniBossState newState)
+    private void ChangeState(RatMiniBossState newState)
     {
         if (stateCoroutine != null) StopCoroutine(stateCoroutine);
         curState = newState;

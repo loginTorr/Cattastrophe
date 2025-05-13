@@ -50,7 +50,16 @@
 
 
                 }
-                if (other.CompareTag("Barrel")) { StartCoroutine(Explosion()); }
+
+                if (other.CompareTag("RatMiniBoss"))
+                {
+                    RatMiniBoss MiniBossHP = other.GetComponent<RatMiniBoss>();
+                    MiniBossHP.RatBossHealth -= damage;
+                }
+
+    
+
+                else if (other.CompareTag("Barrel")) { StartCoroutine(Explosion()); }
             }   
         }
 

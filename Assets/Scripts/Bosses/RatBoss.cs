@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Rendering.InspectorCurveEditor;
 
-public enum BossState { Idle, Walking, Running, GoopBall, RPunch, LPunch, SpinAttack, SpinKick, Dead}
+public enum RatBossState { Idle, Walking, Running, GoopBall, RPunch, LPunch, SpinAttack, SpinKick, Dead}
 
 public class RatBoss : MonoBehaviour
 {
@@ -13,11 +13,12 @@ public class RatBoss : MonoBehaviour
     private Animator anim;
     private Transform PlayerPos;
     private Coroutine stateCoroutine;
-    private Quaternion lastRotation;
-    private BossState curState;
+    private Transform lastRotation;
+    private RatBossState curState;
 
 
     public float followSpeed;
+    public bool isAttacking;
 
 
 
@@ -25,10 +26,13 @@ public class RatBoss : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        curState = BossState.Idle;
+
+        curState = RatBossState.Idle;
         anim.applyRootMotion = true;
 
-        Debug.Log("StartBoss");
+        GameObject rotationHolder = new GameObject("RotationHolder");
+        lastRotation = rotationHolder.transform;
+        lastRotation.rotation = transform.rotation;
 
         StartCoroutine(Idle());
 
@@ -39,16 +43,20 @@ public class RatBoss : MonoBehaviour
     {
         if (Health <= 0)
         {
-            //Dead();
+            Dead();
         }
 
         PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
-        if (curState == BossState.Idle)
+        if (curState == RatBossState.Idle)
         {
-            transform.rotation = lastRotation;
+
+            transform.rotation = lastRotation.rotation;
         }
 
+        else if (curState == RatBossState.Walking || curState == RatBossState.Running
+                    || curState == RatBossState.SpinKick || curState == RatBossState.GoopBall
+                    || curState == RatBossState.SpinAttack) 
         {
             if (PlayerPos)
             {
@@ -58,29 +66,29 @@ public class RatBoss : MonoBehaviour
                 {
                     Quaternion lookRot = Quaternion.LookRotation(dir);
                     transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, followSpeed * Time.deltaTime);
-                    lastRotation = transform.rotation;
+                    lastRotation.rotation = transform.rotation;
 
                 }
             }
         }
     }
 
-    void ChangeState(BossState newState)
+    private void ChangeState(RatBossState newState)
     {
         if (stateCoroutine != null) StopCoroutine(stateCoroutine);
         curState = newState;
 
         switch (newState)
         {
-            case BossState.Idle: stateCoroutine = StartCoroutine(Idle()); break;
-            case BossState.Walking: stateCoroutine = StartCoroutine(Walk()); break;
-            case BossState.Running: stateCoroutine = StartCoroutine(Run()); break;
-            case BossState.GoopBall: stateCoroutine = StartCoroutine(GoopBall()); break;
-            case BossState.RPunch: stateCoroutine = StartCoroutine(RPunch()); break;
-            case BossState.LPunch: stateCoroutine = StartCoroutine(LPunch()); break;
-            case BossState.SpinAttack: stateCoroutine = StartCoroutine(SpinAttack()); break;
-            case BossState.SpinKick: stateCoroutine = StartCoroutine(SpinKick()); break;
-            case BossState.Dead: stateCoroutine = StartCoroutine(Dead()); break;
+            case RatBossState.Idle: stateCoroutine = StartCoroutine(Idle()); break;
+            case RatBossState.Walking: stateCoroutine = StartCoroutine(Walk()); break;
+            case RatBossState.Running: stateCoroutine = StartCoroutine(Run()); break;
+            case RatBossState.GoopBall: stateCoroutine = StartCoroutine(GoopBall()); break;
+            case RatBossState.RPunch: stateCoroutine = StartCoroutine(RPunch()); break;
+            case RatBossState.LPunch: stateCoroutine = StartCoroutine(LPunch()); break;
+            case RatBossState.SpinAttack: stateCoroutine = StartCoroutine(SpinAttack()); break;
+            case RatBossState.SpinKick: stateCoroutine = StartCoroutine(SpinKick()); break;
+            case RatBossState.Dead: stateCoroutine = StartCoroutine(Dead()); break;
         }
     }
 
@@ -99,15 +107,14 @@ public class RatBoss : MonoBehaviour
         followSpeed = 0;
         ResetAllTriggers();
 
-        float dist = Vector3.Distance(transform.position, PlayerPos.position);
-
         anim.SetTrigger("IsWalking");
         yield return new WaitForSeconds(2f);
         anim.SetTrigger("RPunch");
 
-        if (dist >= AttackRange) { ChangeState(BossState.Walking); }
+        float dist = Vector3.Distance(transform.position, PlayerPos.position);
 
-        yield return null;
+        if (dist >= AttackRange) { ChangeState(RatBossState.Walking); }
+            
     }
 
     IEnumerator Walk()
