@@ -44392,8 +44392,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f0df00b71c17f9c41a189aa12c9d6f34, type: 3}
   - {fileID: 8300000, guid: 2f325b064a2d4b042bcc8fb47e52f4d7, type: 3}
   dashSound: {fileID: 0}
-  jumpSound: {fileID: 0}
-  landSound: {fileID: 0}
   attackSounds:
   - {fileID: 8300000, guid: 9921e0f0cca6f654090618c0718492b1, type: 3}
   - {fileID: 8300000, guid: 1c1ce89b7dd84a44dbaaa6228c516988, type: 3}
@@ -45911,11 +45909,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2bad14f9a266284eb4da82bc402202d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightDamageSounds:
+  damageSounds:
   - {fileID: 8300000, guid: 5023554d9d76904499d58baed7974ef6, type: 3}
   - {fileID: 8300000, guid: a383f8c2b0b94dd409f13c677bf1fa61, type: 3}
   - {fileID: 8300000, guid: 36ef37681c6c4ed43b9b471b364c76c3, type: 3}
-  heavyDamageSounds: []
   deathSound: {fileID: 8300000, guid: 4c14309e01c2e77458acada9d24fe024, type: 3}
   minDamageInterval: 0.2
   lowHealthThreshold: 0.3
