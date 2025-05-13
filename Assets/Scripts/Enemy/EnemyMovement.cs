@@ -38,36 +38,98 @@ public class EnemyMovement : MonoBehaviour
     }
     private StrafingDirection CurStrafingDirection = StrafingDirection.Clockwise;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip[] randomSounds;
+    [SerializeField] private float minSoundInterval = 1f;
+    [SerializeField] private float maxSoundInterval = 3f;
+    [SerializeField] private float soundVolume = 0.7f;
+    [SerializeField] private float minDistance = 1f;
+    [SerializeField] private float maxDistance = 20f; 
+    [SerializeField] private float pitchVariation = 0.1f;
+
+    private float nextSoundTime;
+    private SoundFXManager soundManager;
+
     // Start is called before the first frame update
-    void Start(){
+    void Start()
+    {
         Self = transform.gameObject.GetComponent<EnemyStateInfo>();
         State = Self.state;
         Type = Self.type;
         PlayerTransform = Self.Player.transform;
 
-        if (target == null) {
+        if (target == null)
+        {
             return;
         }
         agent = GetComponent<NavMeshAgent>();
 
         StartCoroutine("Spawned");
 
+        randomSounds = Resources.LoadAll<AudioClip>("");
+        soundManager = SoundFXManager.Instance;
+        SetNextSoundTime();
     }
 
     // Update is called once per frame
-    void Update(){
+    void Update()
+    {
         State = Self.state;
 
-        if (Self.midAttack == false){
+        if (Self.midAttack == false)
+        {
             Pathfind();
             MoveTarget();
             Strafe();
-        }else {
+        }
+        else
+        {
             Stay();
         }
 
         agent.SetDestination(target.position);
         RealignGaze();
+
+        CheckPlaySound();
+    }
+
+    private void SetNextSoundTime()
+    {
+        nextSoundTime = Time.time + Random.Range(minSoundInterval, maxSoundInterval);
+    }
+
+    private void CheckPlaySound()
+    {
+        if (Time.time >= nextSoundTime && randomSounds.Length > 0 && soundManager != null)
+        {
+            if (State != EnemyStateInfo.State.Wandering || Vector3.Distance(transform.position, PlayerTransform.position) < maxDistance)
+            {
+                PlayRandomSound();
+            }
+
+            SetNextSoundTime();
+        }
+    }
+
+    private void PlayRandomSound()
+    {
+        int soundIndex = Random.Range(0, randomSounds.Length);
+        AudioClip soundToPlay = randomSounds[soundIndex];
+
+        if (soundToPlay == null)
+            return;
+
+        float randomPitch = 1f + Random.Range(-pitchVariation, pitchVariation);
+
+        soundManager.PlaySpatialSound(
+            soundToPlay,
+            transform.position,
+            SoundFXManager.SoundCategory.SFX,
+            soundVolume,
+            randomPitch,
+            minDistance,
+            maxDistance
+        );
     }
 
     void Strafe() {

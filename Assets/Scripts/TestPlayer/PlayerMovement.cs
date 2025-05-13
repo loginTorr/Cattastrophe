@@ -16,6 +16,14 @@ public enum PlayerMovementState
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Audio")]
+    public AudioClip[] footstepSounds;
+    public AudioClip dashSound;
+    public AudioClip jumpSound;
+    public AudioClip landSound;
+    public AudioClip[] attackSounds;
+
+
     public float CurSpeed = 10f;
     public float MaxSpeed = 10f;
     public int AttackDamage = 5;
@@ -24,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsDashing = false;
     public float turnSpeed = 1080f;
+    public float footstepInterval = 0.5f;
     public bool isAttacking = false;
     public bool paused;
 
@@ -33,8 +42,15 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 input;
     private Animator anim;
     private SlashAttackTriggers SlashAttackTriggersScript;
+    private SoundFXManager soundManager;
+    private float lastFootstepTime;
 
     public bool isGettingKockedBack = false;
+
+    private void Awake()
+    {
+        soundManager = SoundFXManager.Instance;
+    }
 
     void Start()
     {
@@ -50,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        CheckForFootsteps();
         GatherInput();
         Look();
 
@@ -174,6 +191,10 @@ public class PlayerMovement : MonoBehaviour
         isAttacking = true;
         ResetTriggers();
         anim.SetTrigger("FirstHook");
+        if (soundManager != null)
+        {
+            PlayAttackSound(0);
+        }
 
         // Wait for animation to start playing properly (animation entry time)
         yield return new WaitForSecondsRealtime(0.5f);
@@ -220,6 +241,10 @@ public class PlayerMovement : MonoBehaviour
         isAttacking = true;
         ResetTriggers();
         anim.SetTrigger("SecondHook");
+        if (soundManager != null)
+        {
+            PlayAttackSound(1);
+        }
 
         // Wait for animation to start playing properly
         yield return new WaitForSecondsRealtime(0.5f);
@@ -265,6 +290,10 @@ public class PlayerMovement : MonoBehaviour
         isAttacking = true;
         ResetTriggers();
         anim.SetTrigger("Finisher");
+        if (soundManager != null)
+        {
+            PlayAttackSound(2);
+        }
 
         // Wait for the animation to finish playing
         yield return new WaitForSeconds(1f);
@@ -272,5 +301,57 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Finisher complete, returning to idle");
         isAttacking = false;
         ChangeState(PlayerMovementState.Idle);
+    }
+
+    void CheckForFootsteps()
+    {
+        if (input.magnitude > 0.1f && !IsDashing && !isAttacking && !isGettingKockedBack && !paused)
+        {
+            if (Time.time - lastFootstepTime > footstepInterval)
+            {
+                PlayFootstepSound();
+                lastFootstepTime = Time.time;
+            }
+        }
+    }
+
+    void PlayFootstepSound()
+    {
+        if (footstepSounds.Length > 0 && soundManager != null)
+        {
+            int prevIndex = 0;
+            int index = Random.Range(0, footstepSounds.Length);
+
+            while (index == prevIndex)
+            {
+                index = Random.Range(0, footstepSounds.Length);
+            }
+            soundManager.PlaySound(
+                footstepSounds[index],
+                transform.position,
+                SoundFXManager.SoundCategory.SFX,
+                0.35f, // volume
+                1.0f, // pitch
+                0.1f, // pitch randomness
+                0.1f  // volume randomness
+            );
+            prevIndex = index;
+        }
+    }
+
+    public void PlayAttackSound(int soundIndex)
+    {
+        if (attackSounds != null && soundIndex < attackSounds.Length && soundManager != null)
+        {
+            soundManager.PlaySound(
+                attackSounds[soundIndex],
+                transform.position,
+                SoundFXManager.SoundCategory.SFX,
+                0.3f, // volume
+                1.0f, // pitch
+                0.1f, // pitch randomness
+                0.1f  // volume randomness
+            );
+        }
     }
 }

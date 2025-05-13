@@ -27,6 +27,7 @@ public class RatMiniBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lastRotation = transform;
         anim = GetComponent<Animator>();
         isAttacking = false;
         curState = RatMiniBossState.Idle;

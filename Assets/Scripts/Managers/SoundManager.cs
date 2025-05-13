@@ -8,6 +8,38 @@ public class SoundFXManager : MonoBehaviour
     #region Singleton
     public static SoundFXManager Instance { get; private set; }
 
+    private static GameObject managerPrefab;
+
+    public static SoundFXManager GetInstance()
+    {
+        if (Instance == null)
+        {
+            if (managerPrefab != null)
+            {
+                Instantiate(managerPrefab);
+            }
+            else
+            {
+                GameObject prefab = Resources.Load<GameObject>("Assets/Prefabs/SystemPrefab/SoundFXManager");
+                Debug.Log(prefab);
+                Debug.Log("SFXManager");
+                if (prefab != null)
+                {
+                    managerPrefab = prefab;
+                    Instantiate(prefab);
+                }
+                else
+                {
+                    GameObject obj = new GameObject("SoundFXManager");
+                    obj.AddComponent<SoundFXManager>();
+                    DontDestroyOnLoad(obj);
+                }
+            }
+        }
+
+        return Instance;
+    }
+
     private void Awake()
     {
         if (Instance == null)
@@ -19,7 +51,6 @@ public class SoundFXManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Multiple SoundFXManager instances detected. Destroying duplicate.");
             Destroy(gameObject);
         }
     }
@@ -36,6 +67,11 @@ public class SoundFXManager : MonoBehaviour
     [SerializeField] private string sfxVolumeParam = "SFXVolume";
     [SerializeField] private string musicVolumeParam = "MusicVolume";
     [SerializeField] private string uiVolumeParam = "UIVolume";
+
+    [Header("Audio Mixer Groups")]
+    [SerializeField] private AudioMixerGroup sfxGroup;
+    [SerializeField] private AudioMixerGroup musicGroup;
+    [SerializeField] private AudioMixerGroup uiGroup;
 
     [Header("Settings")]
     [SerializeField] private int maxSimultaneousSounds = 20;
@@ -300,12 +336,15 @@ public class SoundFXManager : MonoBehaviour
         switch (category)
         {
             case SoundCategory.SFX:
+                source.outputAudioMixerGroup = sfxGroup;
                 categoryVolume = sfx_volume;
                 break;
             case SoundCategory.Music:
+                source.outputAudioMixerGroup = musicGroup;
                 categoryVolume = music_volume;
                 break;
             case SoundCategory.UI:
+                source.outputAudioMixerGroup = uiGroup;
                 categoryVolume = ui_volume;
                 break;
         }
@@ -352,12 +391,15 @@ public class SoundFXManager : MonoBehaviour
         switch (category)
         {
             case SoundCategory.SFX:
+                source.outputAudioMixerGroup = sfxGroup;
                 categoryVolume = sfx_volume;
                 break;
             case SoundCategory.Music:
+                source.outputAudioMixerGroup = musicGroup;
                 categoryVolume = music_volume;
                 break;
             case SoundCategory.UI:
+                source.outputAudioMixerGroup = uiGroup;
                 categoryVolume = ui_volume;
                 break;
         }
@@ -385,12 +427,15 @@ public class SoundFXManager : MonoBehaviour
         switch (category)
         {
             case SoundCategory.SFX:
+                source.outputAudioMixerGroup = sfxGroup;
                 categoryVolume = sfx_volume;
                 break;
             case SoundCategory.Music:
+                source.outputAudioMixerGroup = musicGroup;
                 categoryVolume = music_volume;
                 break;
             case SoundCategory.UI:
+                source.outputAudioMixerGroup = uiGroup;
                 categoryVolume = ui_volume;
                 break;
         }
@@ -451,12 +496,15 @@ public class SoundFXManager : MonoBehaviour
         switch (category)
         {
             case SoundCategory.SFX:
+                source.outputAudioMixerGroup = sfxGroup;
                 categoryVolume = sfx_volume;
                 break;
             case SoundCategory.Music:
+                source.outputAudioMixerGroup = musicGroup;
                 categoryVolume = music_volume;
                 break;
             case SoundCategory.UI:
+                source.outputAudioMixerGroup = uiGroup;
                 categoryVolume = ui_volume;
                 break;
         }
