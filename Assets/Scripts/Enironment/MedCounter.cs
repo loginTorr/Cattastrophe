@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MedCounter : MonoBehaviour
 {
-    [Header("Number of Enemies")]
-    public int Counter;
+    [Header("Enemies")]
+    public int Counter = 0;
+    public int Timer = 20;
+    public GameObject Wave2;
 
     [Header("PowerUps")]
     private GameObject Boons;
@@ -17,15 +19,20 @@ public class MedCounter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Counter = 0;
-
+        Wave2 = GameObject.Find("Wave2");
+        Wave2.SetActive(false);
         Boons = GameObject.Find("Boons");
         Boons.SetActive(false);
+
+        // ScoreScript = GameObject.Find("Player").GetComponent<HighScore>();
+
+        StartCoroutine(RoomTimer());
     }
 
     void Update()
     {
-        if (Counter >= 5 && CanEndRoom) { 
+        if (Wave2 != null && (Timer <= 0 || Counter >= 10)) { Wave2.SetActive(true); }
+        if (Counter >= 20 && CanEndRoom) { 
             CanEndRoom = false;
             EndRoom(); 
         }
@@ -39,9 +46,17 @@ public class MedCounter : MonoBehaviour
     void EndRoom()
     {
         Game.RoomCleared = true;
-        ScoreScript.AddScore(100);
+        // ScoreScript.AddScore(100);
         // spawns powerups and unlocks doors
         Boons.SetActive(true);
 
+    }
+
+    IEnumerator RoomTimer() {
+        while (true) {
+            yield return new WaitForSeconds(1);
+            Timer -= 1;
+            if (Timer <= 0) { yield break; }
+        }
     }
 }

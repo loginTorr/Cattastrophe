@@ -6,8 +6,10 @@ using UnityEngine;
 public class SmallCounter : MonoBehaviour
 {
 
-    [Header("Number of Enemies")]
-    public int Counter;
+    [Header("Enemies")]
+    public int Counter = 0;
+    public int Timer = 15;
+    public GameObject Wave2;
 
     [Header("PowerUps")]
     private GameObject Boons;
@@ -18,17 +20,19 @@ public class SmallCounter : MonoBehaviour
 
     void Start()
     {
-        Counter = 0;
-        
+        Wave2 = GameObject.Find("Wave2");
+        Wave2.SetActive(false);
         Boons = GameObject.Find("Boons");
         Boons.SetActive(false);
 
         ScoreScript = GameObject.Find("Player").GetComponent<HighScore>();
 
+        StartCoroutine(RoomTimer());
     }
     void Update()
     {
-        if (Counter >= 5 && CanEndRoom) { 
+        if (Timer <= 0 || Counter >= 5) { Wave2.SetActive(true); }
+        if (Counter >= 10 && CanEndRoom) { 
             CanEndRoom = false;
             EndRoom(); 
         }
@@ -45,5 +49,13 @@ public class SmallCounter : MonoBehaviour
         ScoreScript.AddScore(50);
         // spawns powerups and unlocks doors
         Boons.SetActive(true);
+    }
+
+    IEnumerator RoomTimer() {
+        while (true) {
+            yield return new WaitForSeconds(1);
+            Timer -= 1;
+            if (Timer <= 0) { yield break; }
+        }
     }
 }
