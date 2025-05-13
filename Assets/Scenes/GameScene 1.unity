@@ -9489,7 +9489,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -28.67859, y: 25.000004, z: -7.318601}
+  m_LocalPosition: {x: -28.22862, y: 25.000004, z: -6.8886204}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37082,11 +37082,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1358623476}
-    - target: {fileID: 1267749510447845883, guid: 2232dedb2ee364548906980a8940735c,
-        type: 3}
-      propertyPath: m_VersionIndex
-      value: 2599
-      objectReference: {fileID: 0}
     - target: {fileID: 1273360231821277771, guid: 2232dedb2ee364548906980a8940735c,
         type: 3}
       propertyPath: m_Mesh
@@ -37102,11 +37097,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1116505517}
-    - target: {fileID: 2608507937245809934, guid: 2232dedb2ee364548906980a8940735c,
-        type: 3}
-      propertyPath: m_VersionIndex
-      value: 2616
-      objectReference: {fileID: 0}
     - target: {fileID: 3294570557041191008, guid: 2232dedb2ee364548906980a8940735c,
         type: 3}
       propertyPath: m_Mesh
@@ -37127,11 +37117,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 515479543}
-    - target: {fileID: 4985108907858427348, guid: 2232dedb2ee364548906980a8940735c,
-        type: 3}
-      propertyPath: m_VersionIndex
-      value: 467
-      objectReference: {fileID: 0}
     - target: {fileID: 5065095232971016607, guid: 2232dedb2ee364548906980a8940735c,
         type: 3}
       propertyPath: m_Name
@@ -37142,21 +37127,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 282639982}
-    - target: {fileID: 5511037164077317619, guid: 2232dedb2ee364548906980a8940735c,
-        type: 3}
-      propertyPath: m_VersionIndex
-      value: 2613
-      objectReference: {fileID: 0}
     - target: {fileID: 6245340711117957400, guid: 2232dedb2ee364548906980a8940735c,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 344680721}
-    - target: {fileID: 6245340711117957400, guid: 2232dedb2ee364548906980a8940735c,
-        type: 3}
-      propertyPath: m_VersionIndex
-      value: 2613
-      objectReference: {fileID: 0}
     - target: {fileID: 6520005774263779636, guid: 2232dedb2ee364548906980a8940735c,
         type: 3}
       propertyPath: m_Mesh
@@ -37172,11 +37147,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 159114568}
-    - target: {fileID: 6895429099365356424, guid: 2232dedb2ee364548906980a8940735c,
-        type: 3}
-      propertyPath: m_VersionIndex
-      value: 467
-      objectReference: {fileID: 0}
     - target: {fileID: 8364743283855817053, guid: 2232dedb2ee364548906980a8940735c,
         type: 3}
       propertyPath: m_Mesh
@@ -42807,7 +42777,7 @@ Transform:
   m_GameObject: {fileID: 2009972019}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -28.67859, y: 25.000004, z: -7.318601}
+  m_LocalPosition: {x: -28.22862, y: 25.000004, z: -6.8886204}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44422,6 +44392,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f0df00b71c17f9c41a189aa12c9d6f34, type: 3}
   - {fileID: 8300000, guid: 2f325b064a2d4b042bcc8fb47e52f4d7, type: 3}
   dashSound: {fileID: 0}
+  jumpSound: {fileID: 0}
+  landSound: {fileID: 0}
   attackSounds:
   - {fileID: 8300000, guid: 9921e0f0cca6f654090618c0718492b1, type: 3}
   - {fileID: 8300000, guid: 1c1ce89b7dd84a44dbaaa6228c516988, type: 3}
@@ -44557,8 +44529,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4026663, y: 3.2800064, z: 1.2307839}
-  m_Center: {x: -0.026003657, y: 0.72255903, z: -0.003774523}
+  m_Size: {x: 1.8145958, y: 3.650515, z: 1.8544178}
+  m_Center: {x: 0.039272506, y: 0.907823, z: 0.0061087646}
 --- !u!4 &1345002581859212576
 Transform:
   m_ObjectHideFlags: 0
@@ -45433,7 +45405,7 @@ Transform:
   m_GameObject: {fileID: 8936106781629423764}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.0000004917383, z: -0, w: 1}
-  m_LocalPosition: {x: 1.940031, y: 0, z: 23.300018}
+  m_LocalPosition: {x: 2.39, y: 0, z: 23.73}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45939,13 +45911,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2bad14f9a266284eb4da82bc402202d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageSounds:
-  - {fileID: 8300000, guid: 5023554d9d76904499d58baed7974ef6, type: 3}
-  - {fileID: 8300000, guid: a383f8c2b0b94dd409f13c677bf1fa61, type: 3}
-  - {fileID: 8300000, guid: 36ef37681c6c4ed43b9b471b364c76c3, type: 3}
-  deathSound: {fileID: 8300000, guid: 4c14309e01c2e77458acada9d24fe024, type: 3}
-  minDamageInterval: 0.2
-  lowHealthThreshold: 0.3
   healthBar: {fileID: 1218967017}
   player: {fileID: 8936106781629423764}
   gameOverScreen: {fileID: 1021936102}
@@ -46031,8 +45996,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4807365, y: 3.3405454, z: 1.4120066}
-  m_Center: {x: 0.014943684, y: 0.7334747, z: 0.017488392}
+  m_Size: {x: 1.9707582, y: 3.5540845, z: 1.8976463}
+  m_Center: {x: 0.019208215, y: 0.84023434, z: -0.030376729}
 --- !u!1 &7825783919346504057
 GameObject:
   m_ObjectHideFlags: 0
@@ -46292,6 +46257,7 @@ GameObject:
   - component: {fileID: 949649209305909852}
   - component: {fileID: 7168209265116794509}
   - component: {fileID: 1248216081138598578}
+  - component: {fileID: 8936106781629423765}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -46299,6 +46265,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8936106781629423765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936106781629423764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f06d71029b3c3d43ab823ce583dda50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Timer: 0
+  MaxScore: 10000
+  Score: 0
 --- !u!137 &8947304955872672238
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

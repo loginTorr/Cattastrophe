@@ -19723,7 +19723,6 @@ MonoBehaviour:
   Counter: 0
   Timer: 15
   Wave2: {fileID: 0}
-  ScoreScript: {fileID: 0}
 --- !u!1 &6937236262611652189
 GameObject:
   m_ObjectHideFlags: 0

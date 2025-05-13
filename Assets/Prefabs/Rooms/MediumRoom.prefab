@@ -41029,7 +41029,6 @@ GameObject:
   - component: {fileID: 262317222435903220}
   - component: {fileID: 1744305690201263975}
   - component: {fileID: 7580289479724256201}
-  - component: {fileID: 2370392698604485567}
   m_Layer: 0
   m_Name: MediumRoom
   m_TagString: Untagged
@@ -41074,22 +41073,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntryPoint: {fileID: 4480457898361982390}
 --- !u!114 &7580289479724256201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8152329401269280328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b55a865fd9ef9d840a2a2a29430f5e76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Counter: 0
-  Timer: 20
-  Wave2: {fileID: 0}
-  ScoreScript: {fileID: 0}
---- !u!114 &2370392698604485567
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

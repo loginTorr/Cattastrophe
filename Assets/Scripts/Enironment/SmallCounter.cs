@@ -16,13 +16,13 @@ public class SmallCounter : MonoBehaviour
 
     [Header("Misc")]
     private bool CanEndRoom = true;
-    public HighScore ScoreScript;
+    private HighScore ScoreScript;
 
     void Start()
     {
-        Wave2 = GameObject.Find("Wave2");
+        Wave2 = transform.Find("Wave2").gameObject;
         Wave2.SetActive(false);
-        Boons = GameObject.Find("Boons");
+        Boons = transform.Find("Boons").gameObject;
         Boons.SetActive(false);
 
         ScoreScript = GameObject.Find("Player").GetComponent<HighScore>();
@@ -31,7 +31,7 @@ public class SmallCounter : MonoBehaviour
     }
     void Update()
     {
-        if (Timer <= 0 || Counter >= 5) { Wave2.SetActive(true); }
+        if (Counter >= 5) { Wave2.SetActive(true); }
         if (Counter >= 10 && CanEndRoom) { 
             CanEndRoom = false;
             EndRoom(); 

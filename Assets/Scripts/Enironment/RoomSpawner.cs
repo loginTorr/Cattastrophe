@@ -94,7 +94,7 @@ public class RoomSpawner : MonoBehaviour {
         lastRoom = Instantiate(prefabToSpawn, new Vector3(0,0,0), Quaternion.identity);
         PlayerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn");
         //Player.transform.position = entryLocal;
-        Player.transform.position = PlayerSpawn.transform.position;
+        Player.transform.position = new Vector3(0, 0, 0);
 
         roomsSpawned++;
 
