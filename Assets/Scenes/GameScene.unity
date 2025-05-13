@@ -12330,10 +12330,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6374cfecc0750543b6dccc4332e1d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CursorDefault: {fileID: 2800000, guid: 2ae813ea276a4a14490aca9f7c153463, type: 3}
-  CursorClick: {fileID: 2800000, guid: dbe97174860d27e47bd4c587722d57e4, type: 3}
+  CursorDefault: {fileID: 2800000, guid: d9973a5cb4e4c0b478d98996dba9275e, type: 3}
+  CursorClick: {fileID: 2800000, guid: 203ec9396b8ae944e81f84f5d5b487eb, type: 3}
   ClickPosition: {x: 0, y: 0}
-  Duration: 0.5
+  Duration: 4
   IsClicking: 0
 --- !u!1 &551555834
 GameObject:
@@ -46269,6 +46269,7 @@ GameObject:
   - component: {fileID: 949649209305909852}
   - component: {fileID: 7168209265116794509}
   - component: {fileID: 1248216081138598578}
+  - component: {fileID: 8936106781629423765}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -46276,6 +46277,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8936106781629423765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936106781629423764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f06d71029b3c3d43ab823ce583dda50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Timer: 0
+  MaxScore: 10000
+  Score: 0
 --- !u!137 &8947304955872672238
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
