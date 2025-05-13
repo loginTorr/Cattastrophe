@@ -856,7 +856,7 @@ GameObject:
   - component: {fileID: 9166088494177768540}
   - component: {fileID: 7585041255455888753}
   m_Layer: 0
-  m_Name: BossRoom
+  m_Name: MiniBossRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

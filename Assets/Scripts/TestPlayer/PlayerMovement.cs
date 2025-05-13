@@ -197,7 +197,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Wait for animation to start playing properly (animation entry time)
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.2f);
         isAttacking = false;
 
         Debug.Log("First attack animation playing, now listening for second attack input");
@@ -247,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Wait for animation to start playing properly
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.2f);
         isAttacking = false;
         Debug.Log("Second attack animation playing, now listening for finisher input");
 
@@ -300,6 +300,7 @@ public class PlayerMovement : MonoBehaviour
 
         Debug.Log("Finisher complete, returning to idle");
         isAttacking = false;
+        anim.SetTrigger("IsIdle");
         ChangeState(PlayerMovementState.Idle);
     }
 

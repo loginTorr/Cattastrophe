@@ -27,7 +27,6 @@ public class RatMiniBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lastRotation = transform;
         anim = GetComponent<Animator>();
         isAttacking = false;
         curState = RatMiniBossState.Idle;
@@ -41,6 +40,10 @@ public class RatMiniBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (RatBossHealth <= 0)
+        {
+            Dead();
+        }
 
         PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
@@ -85,7 +88,7 @@ public class RatMiniBoss : MonoBehaviour
             case RatMiniBossState.NextSmash: stateCoroutine = StartCoroutine(NextSmash()); break;
             case RatMiniBossState.FinalSmash: stateCoroutine = StartCoroutine(FinalSmash()); break;
             case RatMiniBossState.LowHealthFinalSmash: stateCoroutine = StartCoroutine(LowHealthFinalSmash()); break;
-                //case RatMiniBossState.Dead: stateCoroutine = StartCoroutine(Dead()); break;
+            case RatMiniBossState.Dead: stateCoroutine = StartCoroutine(Dead()); break;
         }
     }
 
@@ -255,10 +258,8 @@ public class RatMiniBoss : MonoBehaviour
         followSpeed = 0f;
         ResetAllTriggers();
         anim.SetTrigger("IsDead");
-        // You can set a "Dead" trigger or play a death animation here.
-        // anim.SetTrigger("IsDead");
-        // Maybe destroy or disable the object after a delay.
-        yield break;
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 
     // Call this method when the boss should die:
