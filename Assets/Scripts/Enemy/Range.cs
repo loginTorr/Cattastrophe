@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.PackageManager.UI;
-using UnityEngine.UIElements;
 
 public class Range : MonoBehaviour{
     public bool HasTooClose = true;

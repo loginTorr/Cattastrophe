@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Rendering.InspectorCurveEditor;
+
 
 public enum RatBossState { Idle, Walking, Running, GoopBall, RPunch, LPunch, SpinAttack, SpinKick, Dead}
 
