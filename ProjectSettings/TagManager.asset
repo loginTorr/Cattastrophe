@@ -14,6 +14,7 @@ TagManager:
   - Interact
   - Floor
   - RatMiniBoss
+  - Barrel
   layers:
   - Default
   - TransparentFX

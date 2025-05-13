@@ -4,6 +4,9 @@
 
     public class SlashAttackTriggers : MonoBehaviour
     {
+        public GameObject ExplosionRadius;
+        public GameObject Barrel;
+
         public bool canDealDamage = false;
 
         public int damage;
@@ -16,6 +19,11 @@
         void Start()
         {
             PlayerMovementScipt = GetComponentInParent<PlayerMovement>();
+            if (GameObject.Find("Barrel") != null) { 
+                Barrel = GameObject.Find("Barrel");
+                ExplosionRadius = GameObject.Find("ExplosionRadius");
+                ExplosionRadius.SetActive(false);
+            }
         }
 
         // Update is called once per frame
@@ -42,7 +50,17 @@
 
 
                 }
+                if (other.CompareTag("Barrel")) { StartCoroutine(Explosion()); }
             }   
+        }
+
+        IEnumerator Explosion() {
+            // wait however long the timer is
+            yield return new WaitForSeconds(2);
+            ExplosionRadius.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            Barrel.SetActive(false);
+
         }
 
     }

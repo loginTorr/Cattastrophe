@@ -7,9 +7,9 @@ public class Boon : MonoBehaviour
     [Header("References")]
     private PlayerMovement PlayerMovementScript;
     public GameObject Boons;
+    public string ParentName;
     [Header("Misc")]
     public bool PlayerInRadius = false;
-    public string ParentName;
 
     void Awake() {
         PlayerMovementScript = FindObjectOfType<PlayerMovement>();
@@ -36,20 +36,17 @@ public class Boon : MonoBehaviour
 
     void DmgStatIncrease() {
         PlayerMovementScript.AttackDamage += 5;
-        Debug.Log("dmg increase");
         Boons.SetActive(false);
     }
 
     void SpeedStatIncrease() {
         PlayerMovementScript.MaxSpeed += 1;
-        Debug.Log("speed raised");
         Boons.SetActive(false);
     }
 
     void HealthStatIncrease() {
         PlayerMovementScript.MaxHealth += 10;
         PlayerMovementScript.CurHealth += 10;
-        Debug.Log("health raised");
         Boons.SetActive(false);
     }
 }

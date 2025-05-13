@@ -705,7 +705,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -11.551173, y: 15.060003, z: -3.2811728}
+  m_LocalPosition: {x: -19.821175, y: 14.900003, z: -7.981172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1681,8 +1681,9 @@ GameObject:
   - component: {fileID: 1194906248}
   - component: {fileID: 1194906247}
   - component: {fileID: 1194906246}
+  - component: {fileID: 1194906249}
   m_Layer: 0
-  m_Name: Explosion
+  m_Name: ExplosionRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1718,7 +1719,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1774,6 +1775,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194906244}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1194906249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194906244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744503e3c0472e84997247720918ec55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinDamage: 1
+  MaxDamage: 3
+  FriendlyFire: 1
 --- !u!1 &1262287409
 GameObject:
   m_ObjectHideFlags: 0
@@ -2361,11 +2377,11 @@ GameObject:
   - component: {fileID: 1594598926}
   m_Layer: 0
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &1594598926
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2448,7 +2464,7 @@ Transform:
   m_GameObject: {fileID: 1594598925}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.11, y: 2.3, z: 5.2901626}
+  m_LocalPosition: {x: -6.31, y: 2.3, z: 0.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3068,7 +3084,7 @@ Transform:
   m_GameObject: {fileID: 2009972019}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -11.551173, y: 15.060003, z: -3.2811728}
+  m_LocalPosition: {x: -19.821175, y: 14.900003, z: -7.981172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3126,6 +3142,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boons
+      objectReference: {fileID: 0}
+    - target: {fileID: 701427906979928102, guid: ed60b44d75685c64d95b2b1e2378dfbf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2648628930213199297, guid: ed60b44d75685c64d95b2b1e2378dfbf,
         type: 3}
@@ -3208,17 +3229,17 @@ PrefabInstance:
     - target: {fileID: 3254553140754365807, guid: 2590f1b7563b2eb448ca48ce11d4455b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.82
+      value: -1.45
       objectReference: {fileID: 0}
     - target: {fileID: 3254553140754365807, guid: 2590f1b7563b2eb448ca48ce11d4455b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.06
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3254553140754365807, guid: 2590f1b7563b2eb448ca48ce11d4455b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.09
+      value: 10.39
       objectReference: {fileID: 0}
     - target: {fileID: 3254553140754365807, guid: 2590f1b7563b2eb448ca48ce11d4455b,
         type: 3}
