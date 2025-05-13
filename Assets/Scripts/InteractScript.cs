@@ -37,7 +37,7 @@ public class InteractScript : MonoBehaviour
 
     private void OnTriggerEnter()
     {
-        //Game.InteractUI.SetActive(true);
+        Game.InteractUI.SetActive(true);
         ObjectName = gameObject.name;
         InTrigger = true;
         curCount = 0;
