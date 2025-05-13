@@ -16,5 +16,6 @@ public class Restart : MonoBehaviour
         Debug.Log("Clicked");
         Time.timeScale = 1;
         SceneManager.LoadScene("Scenes/GameScene");
+        Game.RoomCleared = true;
     }
 }
