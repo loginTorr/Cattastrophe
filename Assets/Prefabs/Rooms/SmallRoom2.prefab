@@ -1288,6 +1288,13 @@ MonoBehaviour:
   MidShootingRetreatChance: 0
   CloseShootingAdvanceChance: 0
   CloseShootingRetreatChance: 0
+  randomSounds: []
+  minSoundInterval: 1
+  maxSoundInterval: 3
+  soundVolume: 0.7
+  minDistance: 1
+  maxDistance: 20
+  pitchVariation: 0.1
 --- !u!195 &6970619352323735571
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2512,6 +2519,13 @@ MonoBehaviour:
   MidShootingRetreatChance: 0
   CloseShootingAdvanceChance: 0
   CloseShootingRetreatChance: 0
+  randomSounds: []
+  minSoundInterval: 1
+  maxSoundInterval: 3
+  soundVolume: 0.7
+  minDistance: 1
+  maxDistance: 20
+  pitchVariation: 0.1
 --- !u!195 &5556408894197351220
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2863,6 +2877,13 @@ MonoBehaviour:
   MidShootingRetreatChance: 0
   CloseShootingAdvanceChance: 0
   CloseShootingRetreatChance: 0
+  randomSounds: []
+  minSoundInterval: 1
+  maxSoundInterval: 3
+  soundVolume: 0.7
+  minDistance: 1
+  maxDistance: 20
+  pitchVariation: 0.1
 --- !u!195 &5707355499658666690
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3614,6 +3635,13 @@ MonoBehaviour:
   MidShootingRetreatChance: 0
   CloseShootingAdvanceChance: 0
   CloseShootingRetreatChance: 0
+  randomSounds: []
+  minSoundInterval: 1
+  maxSoundInterval: 3
+  soundVolume: 0.7
+  minDistance: 1
+  maxDistance: 20
+  pitchVariation: 0.1
 --- !u!195 &1440868990397570973
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4496,6 +4524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Counter: 0
+  ScoreScript: {fileID: 0}
 --- !u!1 &3143255203842017450
 GameObject:
   m_ObjectHideFlags: 0
@@ -4562,7 +4591,7 @@ Transform:
   m_GameObject: {fileID: 3145697884789185609}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000000045214295, y: -0.7071065, z: 0.00000003038497, w: 0.7071071}
-  m_LocalPosition: {x: -19, y: -0.0000006949544, z: 0.000016987324}
+  m_LocalPosition: {x: -19, y: 0.85, z: 0.000016987324}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5951,7 +5980,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000024682551, y: 0.000000119209275, z: 0.000000018288294,
     w: 1}
-  m_LocalPosition: {x: -0.0000050067897, y: -0.0000010366672, z: -21}
+  m_LocalPosition: {x: -0.0000050067897, y: 0.85, z: -21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6650,6 +6679,13 @@ MonoBehaviour:
   MidShootingRetreatChance: 0
   CloseShootingAdvanceChance: 0
   CloseShootingRetreatChance: 0
+  randomSounds: []
+  minSoundInterval: 1
+  maxSoundInterval: 3
+  soundVolume: 0.7
+  minDistance: 1
+  maxDistance: 20
+  pitchVariation: 0.1
 --- !u!195 &8545346087838620654
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -11813,7 +11849,7 @@ Transform:
   m_GameObject: {fileID: 6825706754583775643}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000000045214295, y: -0.7071065, z: 0.00000003038497, w: 0.7071071}
-  m_LocalPosition: {x: 19, y: 0.0000006949544, z: -0.000016987324}
+  m_LocalPosition: {x: 19, y: 0.85, z: -0.000016987324}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14068,7 +14104,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000024682548, y: -0.000000059604638, z: 0.000000018288299,
     w: 1}
-  m_LocalPosition: {x: -0.0000025033949, y: 0.000001036667, z: 21}
+  m_LocalPosition: {x: -0.0000025033949, y: 0.85, z: 21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
