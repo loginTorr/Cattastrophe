@@ -5,22 +5,27 @@ using UnityEngine.ProBuilder;
 
 public class RangeAttack : MonoBehaviour {
     [Header("References")]
-    public GameObject YarnAttack;
+    public GameObject YarnAttack, ExplosionRadius, Barrel;
     [Header("Stats")]
     public float SwingDistance = 1.0f;
     public float Speed = 50.0f;
     public float HeightOffset = 0.5f;
+    public float CoolDown = 4.0f;
+    [Header("Misc")]
+    public bool CanYarn = true;
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1)) // right click
+        if (Input.GetMouseButtonDown(1) && CanYarn) // right click
         {
-            PerformAttack();
+            StartCoroutine(PerformAttack());
         }
     }
 
-    void PerformAttack()
+    IEnumerator PerformAttack()
     {
+        CanYarn = false;
+
         Vector3 MouseWorldPosition = GetMouseWorldPosition3D();
         Vector3 Direction = (MouseWorldPosition - transform.position).normalized;
         Direction.y = 0; 
@@ -34,6 +39,9 @@ public class RangeAttack : MonoBehaviour {
 
         float Angle = Mathf.Atan2(Direction.z, Direction.x) * Mathf.Rad2Deg;
         Yarn.transform.rotation = Quaternion.Euler(0, -Angle, 0);
+
+        yield return new WaitForSeconds(CoolDown);
+        CanYarn = true;
     }
 
     Vector3 GetMouseWorldPosition3D()

@@ -14,13 +14,16 @@ public class SmallCounter : MonoBehaviour
 
     [Header("Misc")]
     private bool CanEndRoom = true;
-    // Start is called before the first frame update
+    public HighScore ScoreScript;
+
     void Start()
     {
         Counter = 0;
         
         Boons = GameObject.Find("Boons");
         Boons.SetActive(false);
+
+        ScoreScript = GameObject.Find("Player").GetComponent<HighScore>();
 
     }
     void Update()
@@ -39,6 +42,7 @@ public class SmallCounter : MonoBehaviour
     void EndRoom()
     {
         Game.RoomCleared = true;
+        ScoreScript.AddScore(50);
         // spawns powerups and unlocks doors
         Boons.SetActive(true);
     }

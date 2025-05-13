@@ -8,25 +8,27 @@ public class MedCounter : MonoBehaviour
     public int Counter;
 
     [Header("PowerUps")]
-    private GameObject fish;
-    private GameObject CatToy;
-    private GameObject ScratchingPost;
+    private GameObject Boons;
+
+    [Header("Misc")]
+    private bool CanEndRoom = true;
+    public HighScore ScoreScript;
 
     // Start is called before the first frame update
     void Start()
     {
         Counter = 0;
 
-        fish = GameObject.Find("Fish");
-        CatToy = GameObject.Find("CatToy");
-        ScratchingPost = GameObject.Find("ScratchingPost");
-        fish.SetActive(false);
-        CatToy.SetActive(false);
-        ScratchingPost.SetActive(false);
+        Boons = GameObject.Find("Boons");
+        Boons.SetActive(false);
     }
+
     void Update()
     {
-        if (Counter >= 10) { EndRoom(); }
+        if (Counter >= 5 && CanEndRoom) { 
+            CanEndRoom = false;
+            EndRoom(); 
+        }
     }
 
     public void IncreaseCount()
@@ -37,11 +39,9 @@ public class MedCounter : MonoBehaviour
     void EndRoom()
     {
         Game.RoomCleared = true;
-
+        ScoreScript.AddScore(100);
         // spawns powerups and unlocks doors
-        fish.SetActive(true);
-        CatToy.SetActive(true);
-        ScratchingPost.SetActive(true);
+        Boons.SetActive(true);
 
     }
 }
