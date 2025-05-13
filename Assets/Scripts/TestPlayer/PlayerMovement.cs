@@ -1,86 +1,122 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum PlayerMovementState
+{
+    Idle,
+    Moving,
+    Dashing,
+    Dance,
+    FirstAttack,
+    SecondAttack,
+    Finisher,
+    RangedAttack
+}
+
 public class PlayerMovement : MonoBehaviour
 {
-    // Changable Player Values
-    public float MaxSpeed = 8;
+    public float CurSpeed = 10f;
+    public float MaxSpeed = 10f;
     public int AttackDamage = 5;
-    public float CurHealth = 100;
-    public float MaxHealth = 100;
+    public float CurHealth = 100f;
+    public float MaxHealth = 100f;
 
     public bool IsDashing = false;
-    public float turnSpeed = 1080;
+    public float turnSpeed = 1080f;
     public bool isAttacking = false;
     public bool paused;
 
+    private PlayerMovementState CurState;
+    private Coroutine stateCoroutine;
     private Rigidbody rb;
     private Vector3 input;
-    private Animator PlayerAnim;
+    private Animator anim;
     private SlashAttackTriggers SlashAttackTriggersScript;
 
     public bool isGettingKockedBack = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
         SlashAttackTriggersScript = GetComponentInChildren<SlashAttackTriggers>();
-
-        PlayerAnim = GetComponentInChildren<Animator>();
+        anim = GetComponentInChildren<Animator>();
 
         paused = false;
+        ChangeState(PlayerMovementState.Idle);
     }
 
-    // Update is called once per frame
     void Update()
     {
         GatherInput();
         Look();
 
+        Debug.Log(isAttacking);
+
+
         SlashAttackTriggersScript.damage = AttackDamage;
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking )
-        {
-            ResetTriggers();
 
-            StartCoroutine("AttackSequence");
-        }
-    }
-
-    private void FixedUpdate()
-    {
         if (!paused && !isGettingKockedBack)
         {
             Move();
         }
     }
-    void GatherInput() { input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")); }
+
+    void ChangeState(PlayerMovementState newState)
+    {
+        if (stateCoroutine != null)
+        {
+            StopCoroutine(stateCoroutine);
+        }
+
+        CurState = newState;
+
+        switch (newState)
+        {
+            case PlayerMovementState.Idle:
+                stateCoroutine = StartCoroutine(Idle());
+                break;
+            case PlayerMovementState.FirstAttack:
+                stateCoroutine = StartCoroutine(FirstAttack());
+                break;
+            case PlayerMovementState.SecondAttack:
+                stateCoroutine = StartCoroutine(SecondAttack());
+                break;
+            case PlayerMovementState.Finisher:
+                stateCoroutine = StartCoroutine(Finisher());
+                break;
+            default:
+                stateCoroutine = StartCoroutine(Idle());
+                break;
+        }
+    }
+
+    void GatherInput()
+    {
+        input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+    }
 
     void Look()
     {
-        PlayerAnim.SetTrigger("IsIdle");
-
+        
         if (input != Vector3.zero)
         {
-            ResetTriggers();
-            PlayerAnim.SetTrigger("IsRunning");
-            var relative = (transform.position + input.ToIso()) - transform.position;
-            var rot = Quaternion.LookRotation(relative, Vector3.up);
-
+            Vector3 relative = (transform.position + input) - transform.position; // adjust if you use ToIso
+            Quaternion rot = Quaternion.LookRotation(relative, Vector3.up);
             transform.rotation = rot;
         }
     }
 
     void Move()
     {
-        if (IsDashing) { return; }
+        if (IsDashing) return;
+        if (isAttacking) { CurSpeed = (MaxSpeed / 2); anim.ResetTrigger("IsRunning"); }
+        if (input.magnitude <= 0.1) { anim.ResetTrigger("IsRunning"); anim.SetTrigger("IsIdle"); }
+        else { CurSpeed = MaxSpeed; anim.ResetTrigger("IsIdle"); anim.SetTrigger("IsRunning"); }
 
-        Vector3 moveDir = transform.forward * input.magnitude * MaxSpeed;
+        Vector3 moveDir = transform.forward * input.magnitude * CurSpeed;
 
         Vector3 newVelocity = new Vector3(moveDir.x, rb.velocity.y, moveDir.z);
 
@@ -94,6 +130,19 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(horizontal.x, newVelocity.y, horizontal.z);
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+    void ResetTriggers()
+    {
+        anim.ResetTrigger("IsIdle");
+        anim.ResetTrigger("IsRunning");
+        anim.ResetTrigger("FirstHook");
+        anim.ResetTrigger("SecondHook");
+        anim.ResetTrigger("Finisher");
+    }
+
     public void RecieveKockback(float magnitude, Vector3 direction)
     {
         Vector3 KnockbackVector = direction * magnitude;
@@ -101,94 +150,127 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = newVelocity;
     }
 
-    private void ResetTriggers()
+    // IDLE STATE
+    IEnumerator Idle()
     {
-        PlayerAnim.ResetTrigger("IsIdle");
-        PlayerAnim.ResetTrigger("IsRunning");
-        PlayerAnim.ResetTrigger("FirstHook");
-        PlayerAnim.ResetTrigger("SecondHook");
-        PlayerAnim.ResetTrigger("Finisher");
-    }
-
-    IEnumerator AttackSequence()
-    {
-        isAttacking = true;
-        paused = true;
-
-        // Reset all movement-related triggers
+        isAttacking = false;
         ResetTriggers();
 
-        // First Hook
-        PlayerAnim.SetTrigger("FirstHook");
-
-        // Wait for animation to progress
-        yield return new WaitForSeconds(0.15f);
-
-        // Wait for potential second attack input
-        float waitTimer = 0f;
-        bool secondAttackRequested = false;
-
-        paused = false;
-        while (waitTimer < 1f)
+        while (true)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             {
-                secondAttackRequested = true;
-                break;
-
+                ChangeState(PlayerMovementState.FirstAttack);
+                yield break;
             }
 
-            waitTimer += Time.deltaTime;
             yield return null;
         }
-
-        // Second Hook
-        if (secondAttackRequested)
-        {
-            ResetTriggers();
-
-            PlayerAnim.SetTrigger("SecondHook");
-            paused = true;
-        }
-
-        
-        // Wait for animation to progress
-        yield return new WaitForSeconds(0.15f);
-            
-        // Wait for potential finisher input            
-        waitTimer = 0f;            
-        bool finisherRequested = false;
-
-        paused = false;
-        while (waitTimer < 1f)            
-        {                
-            if (Input.GetKeyDown(KeyCode.Mouse0))                
-            {                    
-                finisherRequested = true;                    
-                break;
-                
-            }               
-            waitTimer += Time.deltaTime;                
-            yield return null;
-            
-        }
-            
-        // Finisher            
-        if (finisherRequested)            
-        {
-            ResetTriggers();
-
-            PlayerAnim.ResetTrigger("SecondHook");       
-            PlayerAnim.SetTrigger("Finisher");
-            paused = true;
-
-        }
-
-
-        // Reset state
-        yield return new WaitForSeconds(0.1f);
-        paused = false;
-        isAttacking = false;
     }
 
+    // FIRST ATTACK
+    IEnumerator FirstAttack()
+    {
+        isAttacking = true;
+        ResetTriggers();
+        anim.SetTrigger("FirstHook");
+
+        // Wait for animation to start playing properly (animation entry time)
+        yield return new WaitForSecondsRealtime(0.5f);
+        isAttacking = false;
+
+        Debug.Log("First attack animation playing, now listening for second attack input");
+
+        // Now start listening for input during a window to chain to second attack
+        float timer = 1.0f;
+        bool secondAttackRequested = false;
+
+        while (timer > 0f)
+        {
+            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                Debug.Log("Second attack requested during chain window");
+                secondAttackRequested = true;
+                break;
+            }
+
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        // Make sure we finish the current attack animation
+        yield return new WaitForSeconds(0.10f);
+
+        if (secondAttackRequested)
+        {
+            Debug.Log("Transitioning to second attack");
+            ChangeState(PlayerMovementState.SecondAttack);
+        }
+        else
+        {
+            Debug.Log("No follow-up requested, returning to idle");
+            isAttacking = false;
+            ChangeState(PlayerMovementState.Idle);
+        }
+    }
+
+    // SECOND ATTACK
+    IEnumerator SecondAttack()
+    {
+        isAttacking = true;
+        ResetTriggers();
+        anim.SetTrigger("SecondHook");
+
+        // Wait for animation to start playing properly
+        yield return new WaitForSecondsRealtime(0.5f);
+        isAttacking = false;
+        Debug.Log("Second attack animation playing, now listening for finisher input");
+
+        // Now start listening for input during a window to chain to finisher
+        float timer = 1.0f;
+        bool finisherRequested = false;
+
+        while (timer > 0f)
+        {
+            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                Debug.Log("Finisher requested during chain window");
+                finisherRequested = true;
+                break;
+            }
+
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        // Make sure we finish the current attack animation
+        yield return new WaitForSecondsRealtime(0.10f);
+
+        if (finisherRequested)
+        {
+            Debug.Log("Transitioning to finisher");
+            ChangeState(PlayerMovementState.Finisher);
+        }
+        else
+        {
+            Debug.Log("No follow-up requested, returning to idle");
+            isAttacking = false;
+            ChangeState(PlayerMovementState.Idle);
+        }
+    }
+
+    // FINISHER
+    IEnumerator Finisher()
+    {
+        isAttacking = true;
+        ResetTriggers();
+        anim.SetTrigger("Finisher");
+
+        // Wait for the animation to finish playing
+        yield return new WaitForSeconds(1f);
+
+        Debug.Log("Finisher complete, returning to idle");
+        isAttacking = false;
+        ChangeState(PlayerMovementState.Idle);
+    }
 }

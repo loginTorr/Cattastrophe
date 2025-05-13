@@ -47,6 +47,7 @@ public class InteractScript : MonoBehaviour
 
     private void OnTriggerExit()
     {
+        Game.InteractUI.SetActive(false);
         InTrigger = false;
         curCount = 1;
 
@@ -60,6 +61,7 @@ public class InteractScript : MonoBehaviour
         if (ObjectName == "RatDungeonPortal")
         {
             Debug.Log("RatPortal");
+            Game.InteractUI.SetActive(false);
             CameraFade.fadeInstance.FadeOut();
             DungeonScript.isRatDungeon = true;
             DungeonScript.CurDungeonState = DungeonState.EnterDungeon;
