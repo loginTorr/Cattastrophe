@@ -27,18 +27,21 @@ public class RoomRewards : MonoBehaviour
         if (RewardName == "ScratchingPost")
         {
             PlayerMovementScript.AttackDamage += 5;
+            Debug.Log("dmg raised");
         }
         
 
         else if (RewardName == "Fish")
         {
-            PlayerMovementScript.CurHealth += 10;
             PlayerMovementScript.MaxHealth += 10;
+            PlayerMovementScript.CurHealth += 10;
+            Debug.Log("health raised");
         }
 
         else if (RewardName == "CatToy")
         {
             PlayerMovementScript.MaxSpeed += 1;
+            Debug.Log("speed raised");
         }
         Destroy(gameObject);
     }
