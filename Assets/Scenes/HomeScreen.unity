@@ -389,6 +389,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361601486}
   m_CullTransparentMesh: 1
+--- !u!1 &543131228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 543131231}
+  - component: {fileID: 543131230}
+  - component: {fileID: 543131229}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &543131229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543131228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a834303f18581154c8ba1044e33a734e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ambientMusic: {fileID: 8300000, guid: 06eda354cde8ba043a85c5fbc1af1e73, type: 3}
+  combatMusic: {fileID: 0}
+  bossMusic: {fileID: 8300000, guid: e702b4f632438154c8130e0f0c9033e4, type: 3}
+  victoryMusic: {fileID: 0}
+  crossFadeDuration: 2
+  musicVolume: 0.5
+--- !u!114 &543131230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543131228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9485be556d007d40bdb065fe1e96f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &543131231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543131228}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.6554224, y: 1.5402452, z: -0.8804657}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1052415893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,3 +1084,4 @@ SceneRoots:
   - {fileID: 1632848685}
   - {fileID: 1486646197}
   - {fileID: 436861170784072070}
+  - {fileID: 543131231}

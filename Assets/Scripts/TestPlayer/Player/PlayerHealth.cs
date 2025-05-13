@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [Header("SoundFX")]
+    [SerializeField] private AudioClip[] damageSounds;
+    [SerializeField] private AudioClip deathSound;
+
+    [Header("Sound Settings")]
+    [SerializeField] private float minDamageInterval = 0.2f;
+    [SerializeField] private float lowHealthThreshold = 0.3f;
+
     public HealthBar healthBar;
     public GameObject player;
     public GameObject gameOverScreen;
 
     private PlayerMovement PlayerMovmentScript;
     private float currentHealth;
+    private float lastLowHealthSoundTime;
+    private Coroutine lowHealthCoroutine;
+    private float lastDamageTime;
+    private SoundFXManager soundManager;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        soundManager = SoundFXManager.Instance;
         PlayerMovmentScript = GetComponent<PlayerMovement>();
 
         currentHealth = PlayerMovmentScript.MaxHealth;
@@ -28,10 +42,15 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if(currentHealth > 0)
+        {
+            PlayDamageSound();
+        }
         currentHealth -= damage;
         PlayerMovmentScript.CurHealth -= damage;
         healthBar.SetHealth(currentHealth);
         if (currentHealth < 0){
+            PlayDeathSound();
             print("lol you died");
             GameOver();
         }
@@ -50,5 +69,36 @@ public class PlayerHealth : MonoBehaviour
         print("game over");
         gameOverScreen.SetActive(true);
         Destroy(player);
+    }
+
+    public void PlayDamageSound()
+    {
+        if (Time.time - lastDamageTime < minDamageInterval)
+            return;
+
+        lastDamageTime = Time.time;
+
+        soundManager.PlayRandomSound(damageSounds, transform.position, SoundFXManager.SoundCategory.SFX, 1f, 1f);
+
+    }
+
+    public void PlayDeathSound()
+    {
+        if (lowHealthCoroutine != null)
+        {
+            StopCoroutine(lowHealthCoroutine);
+            lowHealthCoroutine = null;
+        }
+
+        if (deathSound != null && soundManager != null)
+        {
+            soundManager.PlaySound(
+                deathSound,
+                transform.position,
+                SoundFXManager.SoundCategory.SFX,
+                1.0f,
+                1.0f
+            );
+        }
     }
 }

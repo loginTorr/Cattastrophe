@@ -19,8 +19,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Audio")]
     public AudioClip[] footstepSounds;
     public AudioClip dashSound;
-    public AudioClip jumpSound;
-    public AudioClip landSound;
     public AudioClip[] attackSounds;
 
 

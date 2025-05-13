@@ -66,7 +66,7 @@ public class EnemyMovement : MonoBehaviour
 
         StartCoroutine("Spawned");
 
-        randomSounds = Resources.LoadAll<AudioClip>("");
+        randomSounds = Resources.LoadAll<AudioClip>("EnemyAudio");
         soundManager = SoundFXManager.Instance;
         SetNextSoundTime();
     }
