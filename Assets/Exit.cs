@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class Exit : MonoBehaviour
@@ -14,6 +13,5 @@ public class Exit : MonoBehaviour
     // Update is called once per frame
     public void ExitGame(){
         Application.Quit();
-        EditorApplication.isPlaying = false;
     }
 }

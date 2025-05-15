@@ -119,8 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Boons: {fileID: 0}
-  PlayerInRadius: 0
+  Door: {fileID: 0}
   ParentName: 
+  PlayerInRadius: 0
 --- !u!1 &701427906979928102
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,8 +275,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Boons: {fileID: 0}
-  PlayerInRadius: 0
+  Door: {fileID: 0}
   ParentName: 
+  PlayerInRadius: 0
 --- !u!1 &2523632022634827769
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +292,7 @@ GameObject:
   - component: {fileID: 8595918950707946504}
   - component: {fileID: 4824923793154898950}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Radius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,8 +397,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Boons: {fileID: 0}
-  PlayerInRadius: 0
+  Door: {fileID: 0}
   ParentName: 
+  PlayerInRadius: 0
 --- !u!1 &3831724924452888555
 GameObject:
   m_ObjectHideFlags: 0
