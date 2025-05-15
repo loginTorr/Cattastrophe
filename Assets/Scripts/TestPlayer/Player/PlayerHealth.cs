@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HighScore;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class PlayerHealth : MonoBehaviour
     private float lastDamageTime;
     private SoundFXManager soundManager;
 
+    private GameHighScore gameHighScoreScript;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +35,9 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth = PlayerMovmentScript.MaxHealth;
         healthBar.SetMaxHealth(PlayerMovmentScript.MaxHealth);
+        
+        gameHighScoreScript = GameObject.Find("Player").GetComponent<GameHighScore>();
+        print("High Score Script is " + gameHighScoreScript);
     }
 
     // Update is called once per frame
@@ -67,6 +73,7 @@ public class PlayerHealth : MonoBehaviour
     
     public void GameOver(){
         print("game over");
+        HS.SubmitHighScore(this, "testName", gameHighScoreScript.Score);
         gameOverScreen.SetActive(true);
         Destroy(player);
     }

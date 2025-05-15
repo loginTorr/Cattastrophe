@@ -13,7 +13,7 @@ public class MedCounter : MonoBehaviour
 
     [Header("Misc")]
     private bool CanEndRoom = true;
-    private HighScore ScoreScript;
+    private GameHighScore ScoreScript;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class MedCounter : MonoBehaviour
         Boons = transform.Find("Boons").gameObject;
         Boons.SetActive(false);
 
-        ScoreScript = GameObject.Find("Player").GetComponent<HighScore>();
+        ScoreScript = GameObject.Find("Player").GetComponent<GameHighScore>();
 
         // ScoreScript = GameObject.Find("Player").GetComponent<HighScore>();
 

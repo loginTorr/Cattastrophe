@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class HighScore : MonoBehaviour
+public class GameHighScore : MonoBehaviour
 {
     [Header("Misc")]
     public int Timer = 0;
