@@ -51,7 +51,7 @@ public class RoomSpawner : MonoBehaviour {
         GameObject prefabToSpawn;
 
         // Boss at #12
-        if (roomsSpawned >= 11)
+        if (roomsSpawned >= 1)
         {
             prefabToSpawn = BossRoom;
         }
