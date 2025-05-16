@@ -197,7 +197,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("First attack animation playing, now listening for second attack input");
 
         // Now start listening for input during a window to chain to second attack
-        float timer = 1.0f;
+        float timer = 0.8f;
         bool secondAttackRequested = false;
 
         while (timer > 0f)
@@ -247,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Second attack animation playing, now listening for finisher input");
 
         // Now start listening for input during a window to chain to finisher
-        float timer = 1.0f;
+        float timer = 0.8f;
         bool finisherRequested = false;
 
         while (timer > 0f)
