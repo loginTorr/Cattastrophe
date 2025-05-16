@@ -57,15 +57,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.49310806
-        functionName: EnableLeftFistDamage
+      - time: 0.37891048
+        functionName: EnableRightFistDamage
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.99887747
-        functionName: DisableLeftFistDamage
+      - time: 0.58878285
+        functionName: DisableRightFistDamage
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

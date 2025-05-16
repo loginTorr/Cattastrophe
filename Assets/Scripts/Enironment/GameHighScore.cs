@@ -22,7 +22,7 @@ public class GameHighScore : MonoBehaviour
             yield return new WaitForSeconds(1);
             Timer += 1;
             Score = MaxScore - Timer;
-            Debug.Log("score:" + Score);
+            //Debug.Log("score:" + Score);
         }
     }
 

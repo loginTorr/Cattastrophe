@@ -58,28 +58,28 @@ ModelImporter:
       curves: []
       events:
       - time: 0.07459467
-        functionName: EnableRightFistDamage
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.30899227
         functionName: EnableLeftFistDamage
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.948108
-        functionName: DisableRightFistDamage
+      - time: 0.18059577
+        functionName: DisableLeftFistDamage
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.9632434
-        functionName: DisableLeftFistDamage
+      - time: 0.2647981
+        functionName: EnableRightFistDamage
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.36217323
+        functionName: DisableRightFistDamage
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
