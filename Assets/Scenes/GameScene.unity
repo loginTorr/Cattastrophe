@@ -9489,7 +9489,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -33.67859, y: 25.000004, z: 29.681398}
+  m_LocalPosition: {x: -28.678589, y: 25.000004, z: -7.3186016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28475,7 +28475,7 @@ MonoBehaviour:
   - {fileID: 4994608353740842478, guid: 4c31628d3e12be14ba2b6d96c56cf45f, type: 3}
   - {fileID: 4994608353740842478, guid: 4c31628d3e12be14ba2b6d96c56cf45f, type: 3}
   lastRoom: {fileID: 0}
-  MiniBossRoom: {fileID: 4994608353740842478, guid: 4c31628d3e12be14ba2b6d96c56cf45f,
+  MiniBossRoom: {fileID: 4436065284331387641, guid: 6d15cb67ab247d849a3c8399adec75ce,
     type: 3}
   BossRoom: {fileID: 4436065284331387641, guid: 0211828a02cccb54fa4aa4738db965cd,
     type: 3}
@@ -42416,7 +42416,7 @@ Transform:
   m_GameObject: {fileID: 2009972019}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -33.67859, y: 25.000004, z: 29.681398}
+  m_LocalPosition: {x: -28.678589, y: 25.000004, z: -7.3186016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44165,8 +44165,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4026663, y: 3.2800064, z: 1.2307839}
-  m_Center: {x: -0.026003657, y: 0.72255903, z: -0.003774523}
+  m_Size: {x: 1.9578931, y: 3.0753152, z: 1.6354172}
+  m_Center: {x: -0.0043810764, y: 1.2229968, z: 0.01356442}
 --- !u!4 &1345002581859212576
 Transform:
   m_ObjectHideFlags: 0
@@ -45041,7 +45041,7 @@ Transform:
   m_GameObject: {fileID: 8936106781629423764}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.0000004917383, z: -0, w: 1}
-  m_LocalPosition: {x: -3.059967, y: 0, z: 60.30002}
+  m_LocalPosition: {x: 1.940033, y: 0, z: 23.300018}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45345,6 +45345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5812918381148373002}
   - component: {fileID: 4241989515156182247}
+  - component: {fileID: 6410104682774766478}
   m_Layer: 0
   m_Name: PJ
   m_TagString: Untagged
@@ -45352,6 +45353,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6410104682774766478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6410104682774766477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5153662ab706f3c45bd1031fb9807a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftFist: {fileID: 9066750084576874816}
+  rightFist: {fileID: 2536130426348799593}
+  attackDamage: 0
 --- !u!4 &6419828891280388255
 Transform:
   m_ObjectHideFlags: 0
@@ -45497,7 +45513,7 @@ GameObject:
   - component: {fileID: 1296270831352396906}
   - component: {fileID: 2536130426348799593}
   m_Layer: 0
-  m_Name: LeftHand
+  m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45639,8 +45655,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4807365, y: 3.3405454, z: 1.4120066}
-  m_Center: {x: 0.014943684, y: 0.7334747, z: 0.017488392}
+  m_Size: {x: 1.8885179, y: 3.3201916, z: 1.8952152}
+  m_Center: {x: 0.02892578, y: 1.3273163, z: 0.026502667}
 --- !u!1 &7825783919346504057
 GameObject:
   m_ObjectHideFlags: 0
@@ -46072,7 +46088,7 @@ GameObject:
   - component: {fileID: 7500381335029666921}
   - component: {fileID: 9066750084576874816}
   m_Layer: 0
-  m_Name: RightHand
+  m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

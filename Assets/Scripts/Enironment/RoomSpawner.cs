@@ -51,9 +51,16 @@ public class RoomSpawner : MonoBehaviour {
         GameObject prefabToSpawn;
 
         // Boss at #12
-        if (roomsSpawned >= 1)
+        if (roomsSpawned == 3)
+        {
+            prefabToSpawn = MiniBossRoom;
+
+        }
+
+        else if (roomsSpawned == 7)
         {
             prefabToSpawn = BossRoom;
+
         }
         else
         {
@@ -64,11 +71,6 @@ public class RoomSpawner : MonoBehaviour {
                 prefabToSpawn = MediumRooms[Random.Range(0, MediumRooms.Count)];
             }
 
-            else if (roll <= BigChance + SmallChance && roll >= MediumChance + SmallChance)
-            {
-                prefabToSpawn = BigRooms[Random.Range(0, BigRooms.Count)];
-            }
-
             else
             {
                 prefabToSpawn = SmallRooms[Random.Range(0, SmallRooms.Count)];
@@ -77,7 +79,7 @@ public class RoomSpawner : MonoBehaviour {
                 MediumChance += 1;
                 BigChance += 1;
             }
-            
+
         }
 
         Room roomScript = prefabToSpawn.GetComponent<Room>();
