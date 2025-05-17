@@ -12,9 +12,10 @@ public class RatMiniBoss : MonoBehaviour
     private Transform lastRotation;
     private float AttackRange = 15;
     private float WalkRange = 30;
-    public EnemyHealth enemyHealth;
+    private EnemyHealthBar healthBar;
 
-    public float RatBossHealth;
+
+    public int RatBossHealth;
     public float followSpeed;
     public bool isAttacking;
 
@@ -24,12 +25,14 @@ public class RatMiniBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RatBossHealth = enemyHealth.maxHealth;
+        RatBossHealth = 200;
         anim = GetComponent<Animator>();
         isAttacking = false;
         curState = RatMiniBossState.Idle;
         anim.applyRootMotion = true;
 
+        healthBar = GetComponentInChildren<EnemyHealthBar>();
+        healthBar.SetMaxHealth(RatBossHealth);
         StartCoroutine(Idle());
 
 
@@ -38,7 +41,7 @@ public class RatMiniBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RatBossHealth = enemyHealth.currentHealth;
+        healthBar.SetHealth(RatBossHealth);
         if (RatBossHealth <= 0)
         {
             Dead();

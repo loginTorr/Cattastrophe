@@ -52,7 +52,7 @@ using UnityEngine;
 
                 Debug.Log($"canDealDamage={canDealDamage} other.tag={other.tag} hitPlayersContains={hitEnemies.Contains(other)}");
 
-                if (canDealDamage && !hitEnemies.Contains(other) && (other.CompareTag("Raton") || other.CompareTag("Mini Raton") || other.CompareTag("RatMiniBoss")))
+                if (canDealDamage && !hitEnemies.Contains(other) && (other.CompareTag("Raton") || other.CompareTag("Mini Raton")))
                 {
                     // Try to get the Enemy Health Component
                     EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
@@ -66,7 +66,7 @@ using UnityEngine;
 
                 }
 
-                if (canDealDamage && !hitEnemies.Contains(other) && other.CompareTag("RatMiniBoss"))
+                else if (canDealDamage && !hitEnemies.Contains(other) && other.CompareTag("RatMiniBoss"))
                 {
                     RatMiniBoss MiniBossHP = other.GetComponent<RatMiniBoss>();
                     MiniBossHP.RatBossHealth -= damage;
