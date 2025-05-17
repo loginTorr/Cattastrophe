@@ -41,11 +41,12 @@ public class RatMiniBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.SetHealth(RatBossHealth);
         if (RatBossHealth <= 0)
         {
-            Dead();
+            Die();
         }
+
+        healthBar.SetHealth(RatBossHealth);
 
         PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
@@ -254,13 +255,15 @@ public class RatMiniBoss : MonoBehaviour
         followSpeed = 0f;
         ResetAllTriggers();
         anim.SetTrigger("IsDead");
-        yield return new WaitForSeconds(1f);
-        Destroy(gameObject);
+        Debug.Log("Dying!");
+        Destroy(gameObject, 8);
+        yield return null;
     }
 
     // Call this method when the boss should die:
     public void Die()
     {
+
         ChangeState(RatMiniBossState.Dead);
     }
 

@@ -19,7 +19,7 @@ public class RatMiniBossAttack : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"canDealDamage={canDealDamage} other.tag={other.tag} hitPlayersContains={hitPlayers.Contains(other)}");
+        //Debug.Log($"canDealDamage={canDealDamage} other.tag={other.tag} hitPlayersContains={hitPlayers.Contains(other)}");
 
         if (canDealDamage && other.CompareTag("Player") && !hitPlayers.Contains(other))
         {
@@ -27,7 +27,7 @@ public class RatMiniBossAttack : MonoBehaviour
             Debug.Log(player);
             if (player != null)
             {
-                Debug.Log("DamageDone");
+                //Debug.Log("DamageDone");
                 player.TakeDamage(10);
                 hitPlayers.Add(other);
             }

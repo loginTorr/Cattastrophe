@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class RatMiniBossAttackController : MonoBehaviour
 {
-    private RatMiniBossAttack leftFist;
-    private RatMiniBossAttack rightFist;
+    public RatMiniBossAttack leftFist;
+    public RatMiniBossAttack rightFist;
 
     // Animation event calls this at the correct moment for the left attack
     public void EnableLeftFistDamage() { leftFist.EnableDamage(); }
@@ -16,8 +16,7 @@ public class RatMiniBossAttackController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        leftFist = GameObject.Find("RightArm").GetComponent<RatMiniBossAttack>();
-        rightFist = GameObject.Find("LeftArm").GetComponent<RatMiniBossAttack>();
+        
     }
 
     // Update is called once per frame

@@ -50,7 +50,7 @@ using UnityEngine;
         void OnTriggerEnter(Collider other)
         {
 
-                Debug.Log($"canDealDamage={canDealDamage} other.tag={other.tag} hitPlayersContains={hitEnemies.Contains(other)}");
+                //Debug.Log($"canDealDamage={canDealDamage} other.tag={other.tag} hitPlayersContains={hitEnemies.Contains(other)}");
 
                 if (canDealDamage && !hitEnemies.Contains(other) && (other.CompareTag("Raton") || other.CompareTag("Mini Raton")))
                 {
