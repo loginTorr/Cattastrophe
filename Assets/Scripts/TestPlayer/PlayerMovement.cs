@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private Vector3 input;
     private Animator anim;
-    private SlashAttackTriggers SlashAttackTriggersScript;
+    private PlayerAttackController PlayerAttackControllerScript;
     private SoundFXManager soundManager;
     private float lastFootstepTime;
 
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
-        SlashAttackTriggersScript = GetComponentInChildren<SlashAttackTriggers>();
+        PlayerAttackControllerScript = GetComponentInChildren<PlayerAttackController>();
         anim = GetComponentInChildren<Animator>();
 
         paused = false;
@@ -68,12 +68,17 @@ public class PlayerMovement : MonoBehaviour
         GatherInput();
         Look();
 
-        SlashAttackTriggersScript.damage = AttackDamage;
+        PlayerAttackControllerScript.attackDamage = AttackDamage;
 
         if (!paused && !isGettingKockedBack)
         {
             Move();
         }
+
+        if (CurState == PlayerMovementState.FirstAttack || CurState == PlayerMovementState.SecondAttack || CurState == PlayerMovementState.Finisher)
+        {
+            isAttacking = true;
+        } else { isAttacking = false; }
     }
 
     void ChangeState(PlayerMovementState newState)
@@ -165,7 +170,6 @@ public class PlayerMovement : MonoBehaviour
     // IDLE STATE
     IEnumerator Idle()
     {
-        isAttacking = false;
         ResetTriggers();
 
         while (true)
@@ -183,7 +187,6 @@ public class PlayerMovement : MonoBehaviour
     // FIRST ATTACK
     IEnumerator FirstAttack()
     {
-        isAttacking = true;
         ResetTriggers();
         anim.SetTrigger("FirstHook");
         if (soundManager != null)
@@ -194,17 +197,17 @@ public class PlayerMovement : MonoBehaviour
         // Wait for animation to start playing properly (animation entry time)
         yield return new WaitForSecondsRealtime(0.2f);
 
-        Debug.Log("First attack animation playing, now listening for second attack input");
+        //Debug.Log("First attack animation playing, now listening for second attack input");
 
         // Now start listening for input during a window to chain to second attack
-        float timer = 1.0f;
+        float timer = 0.8f;
         bool secondAttackRequested = false;
 
         while (timer > 0f)
         {
             if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             {
-                Debug.Log("Second attack requested during chain window");
+                //Debug.Log("Second attack requested during chain window");
                 secondAttackRequested = true;
                 break;
             }
@@ -215,18 +218,16 @@ public class PlayerMovement : MonoBehaviour
 
         // Make sure we finish the current attack animation
         yield return new WaitForSeconds(0.10f);
-        isAttacking = false;
 
 
         if (secondAttackRequested)
         {
-            Debug.Log("Transitioning to second attack");
+            //Debug.Log("Transitioning to second attack");
             ChangeState(PlayerMovementState.SecondAttack);
         }
         else
         {
-            Debug.Log("No follow-up requested, returning to idle");
-            isAttacking = false;
+            //Debug.Log("No follow-up requested, returning to idle");
             ChangeState(PlayerMovementState.Idle);
         }
     }
@@ -234,7 +235,6 @@ public class PlayerMovement : MonoBehaviour
     // SECOND ATTACK
     IEnumerator SecondAttack()
     {
-        isAttacking = true;
         ResetTriggers();
         anim.SetTrigger("SecondHook");
         if (soundManager != null)
@@ -244,17 +244,17 @@ public class PlayerMovement : MonoBehaviour
 
         // Wait for animation to start playing properly
         yield return new WaitForSecondsRealtime(0.2f);
-        Debug.Log("Second attack animation playing, now listening for finisher input");
+        //Debug.Log("Second attack animation playing, now listening for finisher input");
 
         // Now start listening for input during a window to chain to finisher
-        float timer = 1.0f;
+        float timer = 0.8f;
         bool finisherRequested = false;
 
         while (timer > 0f)
         {
             if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             {
-                Debug.Log("Finisher requested during chain window");
+                //Debug.Log("Finisher requested during chain window");
                 finisherRequested = true;
                 break;
             }
@@ -265,18 +265,16 @@ public class PlayerMovement : MonoBehaviour
 
         // Make sure we finish the current attack animation
         yield return new WaitForSecondsRealtime(0.10f);
-        isAttacking = false;
 
 
         if (finisherRequested)
         {
-            Debug.Log("Transitioning to finisher");
+            //Debug.Log("Transitioning to finisher");
             ChangeState(PlayerMovementState.Finisher);
         }
         else
         {
-            Debug.Log("No follow-up requested, returning to idle");
-            isAttacking = false;
+            //Debug.Log("No follow-up requested, returning to idle");
             ChangeState(PlayerMovementState.Idle);
         }
     }
@@ -284,7 +282,6 @@ public class PlayerMovement : MonoBehaviour
     // FINISHER
     IEnumerator Finisher()
     {
-        isAttacking = true;
         ResetTriggers();
         anim.SetTrigger("Finisher");
         if (soundManager != null)
@@ -293,9 +290,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Wait for the animation to finish playing
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.9f);
 
-        Debug.Log("Finisher complete, returning to idle");
+        //Debug.Log("Finisher complete, returning to idle");
         isAttacking = false;
         anim.SetTrigger("IsIdle");
         ChangeState(PlayerMovementState.Idle);

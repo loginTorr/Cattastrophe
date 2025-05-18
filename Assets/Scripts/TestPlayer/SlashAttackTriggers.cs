@@ -1,5 +1,6 @@
-    using System.Collections;
-    using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
     public class SlashAttackTriggers : MonoBehaviour
     {
@@ -7,11 +8,12 @@
         public GameObject Barrel;
 
         public bool canDealDamage = false;
+        private HashSet<Collider> hitEnemies = new HashSet<Collider>();
+
 
         public int damage;
         private PlayerMovement PlayerMovementScipt;
-
-        
+        private PlayerAttackController PlayerAttackControllerScript;
 
 
         // Start is called before the first frame update
@@ -23,21 +25,34 @@
                 ExplosionRadius = GameObject.Find("ExplosionRadius");
                 ExplosionRadius.SetActive(false);
             }
+
+            PlayerAttackControllerScript = GetComponentInParent<PlayerAttackController>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            
+            damage = PlayerAttackControllerScript.attackDamage;
         }
+
+    
+        public void EnableDamage()
+        {
+            canDealDamage = true;
+            hitEnemies.Clear();
+        }
+        public void DisableDamage()
+        {
+            canDealDamage = false;
+        }
+
 
         void OnTriggerEnter(Collider other)
         {
 
-            // Check if the collided object is an enemy
-            if (PlayerMovementScipt.isAttacking)
-            {
-                if (other.CompareTag("Raton") || other.CompareTag("Mini Raton") || other.CompareTag("RatMiniBoss"))
+                //Debug.Log($"canDealDamage={canDealDamage} other.tag={other.tag} hitPlayersContains={hitEnemies.Contains(other)}");
+
+                if (canDealDamage && !hitEnemies.Contains(other) && (other.CompareTag("Raton") || other.CompareTag("Mini Raton")))
                 {
                     // Try to get the Enemy Health Component
                     EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
@@ -46,20 +61,23 @@
                     {
                         enemyHealth.TakeDamage(damage);
                     }
-
+                    hitEnemies.Add(other);
+    
 
                 }
 
-                if (other.CompareTag("RatMiniBoss"))
+                else if (canDealDamage && !hitEnemies.Contains(other) && other.CompareTag("RatMiniBoss"))
                 {
                     RatMiniBoss MiniBossHP = other.GetComponent<RatMiniBoss>();
                     MiniBossHP.RatBossHealth -= damage;
+                    hitEnemies.Add(other);
+
                 }
 
     
 
-                else if (other.CompareTag("Barrel")) { StartCoroutine(Explosion()); }
-            }   
+                else if (canDealDamage && !hitEnemies.Contains(other) && other.CompareTag("Barrel")) { StartCoroutine(Explosion()); }
+             
         }
 
         IEnumerator Explosion() {

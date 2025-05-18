@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HighScore;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -23,6 +25,8 @@ public class PlayerHealth : MonoBehaviour
     private float lastDamageTime;
     private SoundFXManager soundManager;
 
+    private GameHighScore gameHighScoreScript;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +36,9 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth = PlayerMovmentScript.MaxHealth;
         healthBar.SetMaxHealth(PlayerMovmentScript.MaxHealth);
+        
+        gameHighScoreScript = GameObject.Find("Player").GetComponent<GameHighScore>();
+        print("High Score Script is " + gameHighScoreScript);
     }
 
     // Update is called once per frame
@@ -67,6 +74,21 @@ public class PlayerHealth : MonoBehaviour
     
     public void GameOver(){
         print("game over");
+        gameHighScoreScript.Score -= 5000;
+        HS.SubmitHighScore(this, "testName2", gameHighScoreScript.Score);
+        SceneManager.LoadScene("BasicGameOver");
+        if (GameObject.Find("MeleRat") != null || GameObject.Find("ShootingRat") != null || GameObject.Find("Mini_Raton") != null)
+        {
+            print("gamer");
+        }
+        if (GameObject.Find("MiniBoss") != null)
+        {
+            print("Dededemoloshed");
+        }
+        if (GameObject.Find("BigBoss") != null)
+        {
+            print("Dededemoloshed 100%");
+        }
         gameOverScreen.SetActive(true);
         Destroy(player);
     }

@@ -12,9 +12,10 @@ public class RatMiniBoss : MonoBehaviour
     private Transform lastRotation;
     private float AttackRange = 15;
     private float WalkRange = 30;
-    public EnemyHealth enemyHealth;
+    private EnemyHealthBar healthBar;
 
-    public float RatBossHealth;
+
+    public int RatBossHealth;
     public float followSpeed;
     public bool isAttacking;
 
@@ -24,12 +25,14 @@ public class RatMiniBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RatBossHealth = enemyHealth.maxHealth;
+        RatBossHealth = 200;
         anim = GetComponent<Animator>();
         isAttacking = false;
         curState = RatMiniBossState.Idle;
         anim.applyRootMotion = true;
 
+        healthBar = GetComponentInChildren<EnemyHealthBar>();
+        healthBar.SetMaxHealth(RatBossHealth);
         StartCoroutine(Idle());
 
 
@@ -38,11 +41,12 @@ public class RatMiniBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RatBossHealth = enemyHealth.currentHealth;
         if (RatBossHealth <= 0)
         {
-            Dead();
+            Die();
         }
+
+        healthBar.SetHealth(RatBossHealth);
 
         PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
@@ -251,13 +255,15 @@ public class RatMiniBoss : MonoBehaviour
         followSpeed = 0f;
         ResetAllTriggers();
         anim.SetTrigger("IsDead");
-        yield return new WaitForSeconds(1f);
-        Destroy(gameObject);
+        Debug.Log("Dying!");
+        Destroy(gameObject, 8);
+        yield return null;
     }
 
     // Call this method when the boss should die:
     public void Die()
     {
+
         ChangeState(RatMiniBossState.Dead);
     }
 

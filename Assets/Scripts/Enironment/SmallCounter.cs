@@ -14,7 +14,7 @@ public class SmallCounter : MonoBehaviour
 
     [Header("Misc")]
     private bool CanEndRoom = true;
-    private HighScore ScoreScript;
+    private GameHighScore ScoreScript;
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class SmallCounter : MonoBehaviour
         Boons = transform.Find("Boons").gameObject;
         Boons.SetActive(false);
 
-        ScoreScript = GameObject.Find("Player").GetComponent<HighScore>();
+        ScoreScript = GameObject.Find("Player").GetComponent<GameHighScore>();
 
         StartCoroutine(RoomTimer());
     }

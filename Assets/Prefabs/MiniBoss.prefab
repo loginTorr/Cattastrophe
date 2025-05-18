@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 4324729159951080971}
   - component: {fileID: 2894335584722130995}
   m_Layer: 0
-  m_Name: RightArm
+  m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2249,7 +2249,7 @@ GameObject:
   - component: {fileID: 7943868040030937157}
   - component: {fileID: 8092794549056448009}
   m_Layer: 0
-  m_Name: LeftArm
+  m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3046,7 +3046,6 @@ GameObject:
   - component: {fileID: 6648876887068382087}
   - component: {fileID: 520433339102427410}
   - component: {fileID: 2467870299135546653}
-  - component: {fileID: 5428844769126220542}
   m_Layer: 0
   m_Name: MiniBoss
   m_TagString: RatMiniBoss
@@ -3153,7 +3152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ffb3fcba608f5d41bfbc1f2409d3195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: {fileID: 5428844769126220542}
   RatBossHealth: 200
   followSpeed: 0
   isAttacking: 0
@@ -3169,25 +3167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e79e252f856318445824a3dda00e3a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftFist: {fileID: 8092794549056448009}
-  rightFist: {fileID: 2894335584722130995}
---- !u!114 &5428844769126220542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3962990825849292891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 684a4e6797e9e72449288c9138b9579e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SmallCounterScript: {fileID: 0}
-  MediumCounterScript: {fileID: 0}
-  healthBar: {fileID: 3833199123948403553}
-  maxHealth: 200
-  currentHealth: 200
 --- !u!1 &3965613958150679479
 GameObject:
   m_ObjectHideFlags: 0
