@@ -20,8 +20,8 @@ using UnityEngine;
         void Start()
         {
             PlayerMovementScipt = GetComponentInParent<PlayerMovement>();
-            if (GameObject.Find("Barrel") != null) { 
-                Barrel = GameObject.Find("Barrel");
+            if (GameObject.Find("ExplodeBarrel") != null) { 
+                Barrel = GameObject.Find("ExplodeBarrel");
                 ExplosionRadius = GameObject.Find("ExplosionRadius");
                 ExplosionRadius.SetActive(false);
             }
