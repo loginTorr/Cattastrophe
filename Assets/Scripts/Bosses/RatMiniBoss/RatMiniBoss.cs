@@ -263,7 +263,8 @@ public class RatMiniBoss : MonoBehaviour
     // Call this method when the boss should die:
     public void Die()
     {
-
+        BossCount BossCountScript = FindObjectOfType<BossCount>();
+        BossCountScript.Counter += 1;
         ChangeState(RatMiniBossState.Dead);
     }
 

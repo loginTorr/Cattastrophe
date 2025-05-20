@@ -14246,7 +14246,7 @@ GameObject:
   - component: {fileID: 2014516337729514228}
   - component: {fileID: 167267947356197635}
   - component: {fileID: 7227719282768663315}
-  - component: {fileID: 5900465725689551588}
+  - component: {fileID: 556541089988694053}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -14319,8 +14319,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5900465725689551588
-SphereCollider:
+--- !u!136 &556541089988694053
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -14337,9 +14337,11 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.5669917
+  m_Height: 6.1238327
+  m_Direction: 1
+  m_Center: {x: 0.0000009657382, y: 1.3402706, z: 0.06699146}
 --- !u!1 &4775665807424452802
 GameObject:
   m_ObjectHideFlags: 0
@@ -15435,7 +15437,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4775665807424452802}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

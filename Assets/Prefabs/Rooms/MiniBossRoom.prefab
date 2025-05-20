@@ -1288,6 +1288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9166088494177768540}
   - component: {fileID: 7585041255455888753}
+  - component: {fileID: 5222944890816351542}
   m_Layer: 0
   m_Name: MiniBossRoom
   m_TagString: Untagged
@@ -1349,6 +1350,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntryPoint: {fileID: 4727828702229055517}
+--- !u!114 &5222944890816351542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4436065284331387641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44bd0aaf0ed8a7845a1632f4125cd36e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Counter: 0
+  Timer: 15
 --- !u!1 &4499563313441632052
 GameObject:
   m_ObjectHideFlags: 0
@@ -2444,7 +2459,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4499563313441632052}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
