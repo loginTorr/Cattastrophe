@@ -8,6 +8,7 @@ public class SmallCounter : MonoBehaviour
     public int Counter = 0;
     public int Timer = 15;
     public GameObject Wave2;
+    public SlashAttackTriggers AttackScript;
 
     [Header("PowerUps")]
     private GameObject Boons;
@@ -22,6 +23,9 @@ public class SmallCounter : MonoBehaviour
         Wave2.SetActive(false);
         Boons = transform.Find("Boons").gameObject;
         Boons.SetActive(false);
+
+        AttackScript = GameObject.Find("Player").GetComponentInChildren<SlashAttackTriggers>();
+        AttackScript.FindBarrel();
 
         ScoreScript = GameObject.Find("Player").GetComponent<GameHighScore>();
 

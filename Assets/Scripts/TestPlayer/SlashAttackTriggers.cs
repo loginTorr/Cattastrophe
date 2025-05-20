@@ -21,12 +21,12 @@ using UnityEngine;
         void Start()
         {
             PlayerMovementScipt = GetComponentInParent<PlayerMovement>();
-            if (GameObject.Find("ExplodeBarrel") != null) { 
-                Barrel = GameObject.Find("ExplodeBarrel");
-                ExplosionRadius = GameObject.Find("ExplosionRadius");
-                ExplosionAnim = ExplosionRadius.transform.Find("Particle System").gameObject.GetComponent<ParticleSystem>();
-                ExplosionRadius.SetActive(false);
-            }
+            // if (GameObject.Find("ExplodeBarrel") != null) { 
+            //     Barrel = GameObject.Find("ExplodeBarrel");
+            //     ExplosionRadius = GameObject.Find("ExplosionRadius");
+            //     ExplosionAnim = ExplosionRadius.transform.Find("Particle System").gameObject.GetComponent<ParticleSystem>();
+            //     ExplosionRadius.SetActive(false);
+            // }
 
             PlayerAttackControllerScript = GetComponentInParent<PlayerAttackController>();
         }
@@ -98,6 +98,15 @@ using UnityEngine;
             yield return new WaitForSeconds(0.5f);
             Barrel.SetActive(false);
 
+        }
+
+        public void FindBarrel() {
+            if (GameObject.Find("ExplodeBarrel") != null) { 
+                Barrel = GameObject.Find("ExplodeBarrel");
+                ExplosionRadius = GameObject.Find("ExplosionRadius");
+                ExplosionAnim = ExplosionRadius.transform.Find("Particle System").gameObject.GetComponent<ParticleSystem>();
+                ExplosionRadius.SetActive(false);
+            }
         }
 
     }
