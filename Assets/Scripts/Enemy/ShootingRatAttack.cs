@@ -55,7 +55,18 @@ public class ShootingRatAttack : MonoBehaviour{
         projectile.transform.position = ProjectileSpawnPt.position;
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
-        Vector3 AtPlayer = Player.transform.position - ProjectileSpawnPt.position;
+        float offBy = Random.Range(-0.2f, 0.2f);
+        float offIn = Random.Range(0, 4);
+        Vector3 AtPlayer;
+        if (offIn == 0) {
+            AtPlayer = new Vector3(Player.transform.position.x + offBy, Player.transform.position.y, Player.transform.position.z) - ProjectileSpawnPt.position;
+        }else if (offIn == 1) {
+            AtPlayer = new Vector3(Player.transform.position.x, Player.transform.position.y + offBy, Player.transform.position.z) - ProjectileSpawnPt.position;
+        }else if (offIn == 2) {
+            AtPlayer = new Vector3(Player.transform.position.x + (offBy/2), Player.transform.position.y + (offBy/2), Player.transform.position.z) - ProjectileSpawnPt.position;
+        } else{
+            AtPlayer = Player.transform.position - ProjectileSpawnPt.position;
+        }
 
         // speed = distance/time => speed * time = distance => time = distance/speed
         float t = (Vector3.Distance(ProjectileSpawnPt.position, Player.transform.position)) / speed;

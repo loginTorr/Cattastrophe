@@ -618,6 +618,13 @@ MonoBehaviour:
   MidShootingRetreatChance: 0.7
   CloseShootingAdvanceChance: 0.3
   CloseShootingRetreatChance: 0.8
+  randomSounds: []
+  minSoundInterval: 1
+  maxSoundInterval: 3
+  soundVolume: 0.7
+  minDistance: 1
+  maxDistance: 20
+  pitchVariation: 0.1
 --- !u!195 &7742809487869973535
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -707,11 +714,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf6c927996e5dde4bacd5523cb9638df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxAttackPause: 0.1
-  MinAttackPause: 4
+  MaxAttackPause: 2
+  MinAttackPause: 0.7
   projectilePrefab: {fileID: 1728404006340089504, guid: e29623f0423ecb34dba027557e3ca18f,
     type: 3}
-  speed: 15
+  speed: 13
 --- !u!4 &1938654192946546097 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1186981767122558369, guid: 9fb9444364064024789b4ebeb6fc6526,
