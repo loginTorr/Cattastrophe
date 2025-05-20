@@ -26,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
     private SoundFXManager soundManager;
 
     private GameHighScore gameHighScoreScript;
+    public ScoreSave saved;
 
 
     // Start is called before the first frame update
@@ -75,21 +76,25 @@ public class PlayerHealth : MonoBehaviour
     public void GameOver(){
         print("game over");
         gameHighScoreScript.Score -= 5000;
-        HS.SubmitHighScore(this, "testName2", gameHighScoreScript.Score);
-        SceneManager.LoadScene("BasicGameOver");
+
+        if (saved != null){
+            saved.SetScore(gameHighScoreScript.Score);
+        }
+
+        //HS.SubmitHighScore(this, "testName2", gameHighScoreScript.Score);
+        
         if (GameObject.Find("MeleRat") != null || GameObject.Find("ShootingRat") != null || GameObject.Find("Mini_Raton") != null)
         {
-            print("gamer");
+            SceneManager.LoadScene("BasicGameOver");
         }
         if (GameObject.Find("MiniBoss") != null)
         {
-            print("Dededemoloshed");
+            SceneManager.LoadScene("MiniBossGameOver");
         }
         if (GameObject.Find("BigBoss") != null)
         {
-            print("Dededemoloshed 100%");
+            SceneManager.LoadScene("BossGameOver");
         }
-        gameOverScreen.SetActive(true);
         Destroy(player);
     }
 
