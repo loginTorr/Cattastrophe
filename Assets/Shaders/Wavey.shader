@@ -2,14 +2,16 @@ Shader "Unlit/Wavey"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
-        _texture ("texture", 2D) = "black" {}
+        _MainTex ("Texture", 2D) = "Transparent" {}
         _Strength("Strength", Float) = 0.5
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags {"RenderType"="Transparent"}
         LOD 100
+
+        
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
@@ -37,15 +39,13 @@ Shader "Unlit/Wavey"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-            sampler2D _texture;
-            float4 _texture_ST;
             float _Strength;
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _texture);
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.vertex.x = o.vertex.x + sin(_Time.y * 5) * 0.005 + sin(_Time.y * o.vertex.y * 20) * 0.01;
                 return o;
             }
@@ -53,7 +53,7 @@ Shader "Unlit/Wavey"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                fixed4 col = tex2D(_texture, i.uv);
+                fixed4 col = tex2D(_MainTex, i.uv);
                 return col;
             }
             ENDCG

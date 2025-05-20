@@ -305,20 +305,6 @@
                 },
                 "m_SlotId": 1
             }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "ecf65bcec6d84fd3808d5dc2a30524ba"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "b985fbcb9dfc4653a98a45de0440fc64"
-                },
-                "m_SlotId": 3
-            }
         }
     ],
     "m_VertexContext": {
@@ -768,7 +754,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Z",
     "m_StageCapability": 3,
-    "m_Value": 0.0,
+    "m_Value": 0.20000000298023225,
     "m_DefaultValue": 0.0,
     "m_Labels": [
         "Z"
@@ -921,10 +907,10 @@
     "m_Guid": {
         "m_GuidSerialized": "86de2f9a-5570-4723-b1cb-56fcd932816f"
     },
-    "m_Name": "Alpha",
+    "m_Name": "alpha",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Alpha",
-    "m_DefaultReferenceName": "_Alpha",
+    "m_RefNameGeneratedByDisplayName": "alpha",
+    "m_DefaultReferenceName": "_alpha",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1567,7 +1553,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "a93d5d4349f4421c82cb34aec4d8b30d",
     "m_Id": 0,
-    "m_DisplayName": "Alpha",
+    "m_DisplayName": "alpha",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1588,7 +1574,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "texture",
     "m_DefaultReferenceName": "_texture",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_MainTex",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
