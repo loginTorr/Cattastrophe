@@ -1,76 +1,58 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.Rendering.InspectorCurveEditor;
 
 
 public enum RatBossState { Idle, Walking, Running, GoopBall, RPunch, LPunch, SpinAttack, SpinKick, Dead}
 
 public class RatBoss : MonoBehaviour
 {
-    private float Health = 300;
-    private float AttackRange = 10;
-    private float WalkRange = 30;
+    private RatBossState curState;
     private Animator anim;
     private Transform PlayerPos;
+    private EnemyHealthBar healthBar;
     private Coroutine stateCoroutine;
-    private Transform lastRotation;
-    private RatBossState curState;
+    private int count;
 
-
-    public float followSpeed;
-    public bool isAttacking;
-
-
+    public int RatBossHealth;
+    public float followSpeed = 1;
 
     // Start is called before the first frame update
     void Start()
     {
+        RatBossHealth = 500;
+        count = 0;
+
         anim = GetComponent<Animator>();
-
-        curState = RatBossState.Idle;
         anim.applyRootMotion = true;
-
-        GameObject rotationHolder = new GameObject("RotationHolder");
-        lastRotation = rotationHolder.transform;
-        lastRotation.rotation = transform.rotation;
 
         StartCoroutine(Idle());
 
+        //healthBar = GetComponentInChildren<EnemyHealthBar>();
+        //healthBar.SetMaxHealth(RatBossHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Health <= 0)
-        {
-            Dead();
-        }
+
+        //healthBar.SetHealth(RatBossHealth);
 
         PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
-        if (curState == RatBossState.Idle)
+        if (PlayerPos)
         {
-
-            transform.rotation = lastRotation.rotation;
-        }
-
-        else if (curState == RatBossState.Walking || curState == RatBossState.Running
-                    || curState == RatBossState.SpinKick || curState == RatBossState.GoopBall
-                    || curState == RatBossState.SpinAttack) 
-        {
-            if (PlayerPos)
+            Vector3 dir = PlayerPos.position - transform.position;
+            dir.y = 0;
+            if (dir != Vector3.zero)
             {
-                Vector3 dir = PlayerPos.position - transform.position;
-                dir.y = 0;
-                if (dir != Vector3.zero)
-                {
-                    Quaternion lookRot = Quaternion.LookRotation(dir);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, followSpeed * Time.deltaTime);
-                    lastRotation.rotation = transform.rotation;
+                Quaternion lookRot = Quaternion.LookRotation(dir);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, followSpeed * Time.deltaTime);
 
-                }
             }
         }
     }
+    
 
     private void ChangeState(RatBossState newState)
     {
@@ -101,61 +83,87 @@ public class RatBoss : MonoBehaviour
 
     IEnumerator Idle()
     {
-        Debug.Log("Idle");
-
-        followSpeed = 0;
+        Debug.Log("enteredIdle");
         ResetAllTriggers();
+        anim.SetTrigger("IsIdle");
+        yield return new WaitForSeconds(1f);
+        if (count == 1)
+        {
+            ChangeState(RatBossState.GoopBall);
+        }
 
-        anim.SetTrigger("IsWalking");
-        yield return new WaitForSeconds(2f);
-        anim.SetTrigger("RPunch");
+        else if (RatBossHealth > 150)
+        {
+            ChangeState(RatBossState.Walking);
+        }
 
-        float dist = Vector3.Distance(transform.position, PlayerPos.position);
+        else
+        {
+            if (count == 3)
+            {
 
-        if (dist >= AttackRange) { ChangeState(RatBossState.Walking); }
-            
+            }
+            ChangeState(RatBossState.Running);
+        }
     }
 
     IEnumerator Walk()
     {
+        ResetAllTriggers();
+
         anim.SetTrigger("IsWalking");
-        yield return new WaitForSeconds(2f);
-        anim.SetTrigger("RPunch");
+        Debug.Log("Change State Succesful");
+
         yield return null;
+
     }
 
     IEnumerator Run()
     {
+        ResetAllTriggers();
+
         yield return null;
     }
 
-    IEnumerator GoopBall()  
+    IEnumerator GoopBall()
     {
+        ResetAllTriggers();
+
         yield return null;
     }
 
     IEnumerator RPunch()
     {
+        ResetAllTriggers();
+
         yield return null;
     }
 
     IEnumerator LPunch()
     {
+        ResetAllTriggers();
+
         yield return null;
     }
 
     IEnumerator SpinAttack()
     {
+        ResetAllTriggers();
+
         yield return null;
     }
 
     IEnumerator SpinKick()
     {
+        ResetAllTriggers();
+
         yield return null;
     }
 
     IEnumerator Dead()
     {
+        ResetAllTriggers();
+
         yield return null;
     }
 
