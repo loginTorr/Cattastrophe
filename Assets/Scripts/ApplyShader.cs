@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static Unity.VisualScripting.Metadata;
 
 public class ApplyShader : MonoBehaviour{
     // for most shaders this list will only have one object,
@@ -52,20 +53,36 @@ public class ApplyShader : MonoBehaviour{
                     GameObject child = this.gameObject.transform.GetChild(i).gameObject;
                     
                     if ((created.Contains<GameObject>(child)) == false){
+                        GameObject dummy = Instantiate(child, child.transform.position, child.transform.rotation, transform);
                         for (int j = 0; j < shaders.Count; j++){
-                            GameObject copy = Instantiate(child, child.transform.position, child.transform.rotation, transform);
+                            GameObject copy = Instantiate(dummy, child.transform.position, child.transform.rotation, transform);
                             created.Add(copy);
 
                             Renderer childRend = child.GetComponent<Renderer>();
                             Material childMat = childRend.material;
-                            Texture texture = childMat.mainTexture;
+                            Texture texture;
+                            if (childRend is SpriteRenderer){
+                                SpriteRenderer reCast = (SpriteRenderer)childRend;
+                                texture = reCast.sprite.texture;
+                            }else{
+                                texture = childMat.mainTexture;
+                            }
                         
                             Renderer copyRend = copy.GetComponent<Renderer>();
                             copyRend.material = new Material(shaders[j]);
                             copyRend.material.SetFloat("_strength", strength);
-                            copyRend.material.SetFloat("_Alpha", alpha);
-                            copyRend.material.SetTexture("_texture", texture);
+                            copyRend.material.SetFloat("_alpha", alpha);
+                            copyRend.material.SetTexture("_MainTex", texture);
+                            copy.transform.localScale = new Vector3(1f, 1f, 1f);
                         }
+                        GameObject lastcopy = Instantiate(dummy, child.transform.position, child.transform.rotation, transform);
+                        created.Add(lastcopy);
+                        lastcopy.transform.position = new Vector3(lastcopy.transform.position.x, lastcopy.transform.position.y, lastcopy.transform.position.z - 0.1f);
+                        lastcopy.transform.localScale = new Vector3(1f, 1f, 1f);
+                        if (lastcopy.GetComponent<SpriteRenderer>() != null){
+                            lastcopy.GetComponent<SpriteRenderer>().color = new Color(lastcopy.GetComponent<SpriteRenderer>().color.r, lastcopy.GetComponent<SpriteRenderer>().color.g, lastcopy.GetComponent<SpriteRenderer>().color.b, 1f - alpha + 0.3f);
+                        }
+                        Destroy(dummy);
                     }
                 }
             }else if (transform.parent.gameObject.GetComponent<ApplyShader>() == null) { 
@@ -73,20 +90,37 @@ public class ApplyShader : MonoBehaviour{
                     GameObject child = this.gameObject.transform.GetChild(i).gameObject;
                     
                     if ((created.Contains<GameObject>(child)) == false){
+                        GameObject dummy = Instantiate(child, child.transform.position, child.transform.rotation, transform);
                         for (int j = 0; j < shaders.Count; j++){
                             GameObject copy = Instantiate(child, child.transform.position, child.transform.rotation, transform);
                             created.Add(copy);
 
                             Renderer childRend = child.GetComponent<Renderer>();
                             Material childMat = childRend.material;
-                            Texture texture = childMat.mainTexture;
+                            Texture texture;
+                            if (childRend is SpriteRenderer){
+                                SpriteRenderer reCast = (SpriteRenderer)childRend;
+                                texture = reCast.sprite.texture;
+                            }
+                            else{
+                                texture = childMat.mainTexture;
+                            }
                         
                             Renderer copyRend = copy.GetComponent<Renderer>();
                             copyRend.material = new Material(shaders[j]);
                             copyRend.material.SetFloat("_strength", strength);
-                            copyRend.material.SetFloat("_Alpha", alpha);
-                            copyRend.material.SetTexture("_texture", texture);
+                            copyRend.material.SetFloat("_alpha", alpha);
+                            copyRend.material.SetTexture("_MainTex", texture);
+                            copy.transform.localScale = new Vector3(1f, 1f, 1f);
                         }
+                        GameObject lastcopy = Instantiate(dummy, child.transform.position, child.transform.rotation, transform);
+                        created.Add(lastcopy);
+                        lastcopy.transform.position = new Vector3(lastcopy.transform.position.x, lastcopy.transform.position.y, lastcopy.transform.position.z - 0.1f);
+                        lastcopy.transform.localScale = new Vector3(1f, 1f, 1f);
+                        if (lastcopy.GetComponent<SpriteRenderer>() != null){
+                            lastcopy.GetComponent<SpriteRenderer>().color = new Color(lastcopy.GetComponent<SpriteRenderer>().color.r, lastcopy.GetComponent<SpriteRenderer>().color.g, lastcopy.GetComponent<SpriteRenderer>().color.b, 1f - alpha + 0.3f);
+                        }
+                        Destroy(dummy);
                     }
                 }
             }
@@ -99,30 +133,60 @@ public class ApplyShader : MonoBehaviour{
 
                     Renderer rend = GetComponent<Renderer>();
                     Material mat = rend.material;
-                    Texture texture = mat.mainTexture;
+                    Texture texture;
+                    if (rend is SpriteRenderer){
+                        SpriteRenderer reCast = (SpriteRenderer)rend;
+                        texture = reCast.sprite.texture;
+                    }
+                    else{
+                        texture = mat.mainTexture;
+                    }
 
                     Renderer copyRend = copy.GetComponent<Renderer>();
                     copyRend.material = new Material(shaders[j]);
                     copyRend.material.SetFloat("_strength", strength);
-                    copyRend.material.SetFloat("_Alpha", alpha);
-                    copyRend.material.SetTexture("_texture", texture);
+                    copyRend.material.SetFloat("_alpha", alpha);
+                    copyRend.material.SetTexture("_MainTex", texture);
+                    copy.transform.localScale = new Vector3(1f, 1f, 1f);
+                }
+                GameObject lastcopy = Instantiate(dummy, transform.position, transform.rotation, transform);
+                created.Add(lastcopy);
+                lastcopy.transform.position = new Vector3(lastcopy.transform.position.x, lastcopy.transform.position.y, lastcopy.transform.position.z - 0.1f);
+                lastcopy.transform.localScale = new Vector3(1f, 1f, 1f);
+                if (lastcopy.GetComponent<SpriteRenderer>() != null){
+                    lastcopy.GetComponent<SpriteRenderer>().color = new Color(lastcopy.GetComponent<SpriteRenderer>().color.r, lastcopy.GetComponent<SpriteRenderer>().color.g, lastcopy.GetComponent<SpriteRenderer>().color.b, 1f - alpha + 0.3f);
                 }
                 Destroy(dummy);
             }else if (transform.parent.gameObject.GetComponent<ApplyShader>() == null){
                 GameObject dummy = Instantiate(transform.gameObject, transform.position, transform.rotation, transform);
                 for (int j = 0; j < shaders.Count; j++){
-                    GameObject copy = Instantiate(transform.gameObject, transform.position, transform.rotation, transform);
+                    GameObject copy = Instantiate(dummy, transform.position, transform.rotation, transform);
                     created.Add(copy);
 
                     Renderer rend = GetComponent<Renderer>();
                     Material mat = rend.material;
-                    Texture texture = mat.mainTexture;
+                    Texture texture;
+                    if (rend is SpriteRenderer){
+                        SpriteRenderer reCast = (SpriteRenderer)rend;
+                        texture = reCast.sprite.texture;
+                    }
+                    else{
+                        texture = mat.mainTexture;
+                    }
 
                     Renderer copyRend = copy.GetComponent<Renderer>();
                     copyRend.material = new Material(shaders[j]);
                     copyRend.material.SetFloat("_strength", strength);
-                    copyRend.material.SetFloat("_Alpha", alpha);
-                    copyRend.material.SetTexture("_texture", texture);
+                    copyRend.material.SetFloat("_alpha", alpha);
+                    copyRend.material.SetTexture("_MainTex", texture);
+                    copy.transform.localScale = new Vector3(1f, 1f, 1f);
+                }
+                GameObject lastcopy = Instantiate(dummy, transform.position, transform.rotation, transform);
+                created.Add(lastcopy);
+                lastcopy.transform.position = new Vector3(lastcopy.transform.position.x, lastcopy.transform.position.y, lastcopy.transform.position.z - 0.1f);
+                lastcopy.transform.localScale = new Vector3(1f, 1f, 1f);
+                if (lastcopy.GetComponent<SpriteRenderer>() != null){
+                    lastcopy.GetComponent<SpriteRenderer>().color = new Color(lastcopy.GetComponent<SpriteRenderer>().color.r, lastcopy.GetComponent<SpriteRenderer>().color.g, lastcopy.GetComponent<SpriteRenderer>().color.b, 1f - alpha + 0.3f);
                 }
                 Destroy(dummy);
             }
@@ -131,11 +195,18 @@ public class ApplyShader : MonoBehaviour{
 
     void ApplyNoDupe(){
         Renderer rend = GetComponent<Renderer>();
-        Texture texture = rend.material.mainTexture;
+        Texture texture;
+        if (rend is SpriteRenderer){
+            SpriteRenderer reCast = (SpriteRenderer)rend;
+            texture = reCast.sprite.texture;
+        }
+        else{
+            texture = rend.material.mainTexture;
+        }
 
         rend.material = new Material(shaders[0]);
         rend.material.SetFloat("_strength", strength);
-        rend.material.SetFloat("_Alpha", alpha);
-        rend.material.SetTexture("_texture", texture);
+        rend.material.SetFloat("_alpha", alpha);
+        rend.material.SetTexture("_MainTex", texture);
     }
 }

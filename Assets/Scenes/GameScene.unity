@@ -7691,6 +7691,7 @@ GameObject:
   m_Component:
   - component: {fileID: 168385434}
   - component: {fileID: 168385435}
+  - component: {fileID: 168385436}
   m_Layer: 0
   m_Name: Tree (4)
   m_TagString: Untagged
@@ -7765,6 +7766,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &168385436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168385433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28740798b9fd6f341b86145b697240cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaders:
+  - {fileID: 4800000, guid: 967a7bd4540807941a24cf2334138829, type: 3}
+  strength: 0
+  alpha: 0
+  dupe: 0
 --- !u!1 &183360914
 GameObject:
   m_ObjectHideFlags: 0
@@ -11038,6 +11056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 461905619}
   - component: {fileID: 461905620}
+  - component: {fileID: 461905621}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -11054,7 +11073,7 @@ Transform:
   m_GameObject: {fileID: 461905618}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: 1.17, y: 0.39, z: -1.7}
+  m_LocalPosition: {x: 1.12, y: 0.39, z: -1.73}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -11112,6 +11131,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &461905621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461905618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28740798b9fd6f341b86145b697240cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaders:
+  - {fileID: -6465566751694194690, guid: 7ec7821041a36f349856a82be77d6e13, type: 3}
+  - {fileID: -6465566751694194690, guid: 254e2ddae7fd33b46b5ad3df63f1a3da, type: 3}
+  strength: 1
+  alpha: 0.8
+  dupe: 1
 --- !u!1 &467320728
 GameObject:
   m_ObjectHideFlags: 0
@@ -28424,6 +28461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 935974482}
   - component: {fileID: 935974483}
+  - component: {fileID: 935974485}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -28498,6 +28536,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &935974485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935974481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28740798b9fd6f341b86145b697240cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaders:
+  - {fileID: 4800000, guid: 967a7bd4540807941a24cf2334138829, type: 3}
+  strength: 0
+  alpha: 0
+  dupe: 0
 --- !u!1 &939029684
 GameObject:
   m_ObjectHideFlags: 0
@@ -30512,6 +30567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1058139027}
   - component: {fileID: 1058139028}
+  - component: {fileID: 1058139029}
   m_Layer: 0
   m_Name: Tree (8)
   m_TagString: Untagged
@@ -30586,6 +30642,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1058139029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058139026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28740798b9fd6f341b86145b697240cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaders:
+  - {fileID: -6465566751694194690, guid: 7ec7821041a36f349856a82be77d6e13, type: 3}
+  - {fileID: -6465566751694194690, guid: 254e2ddae7fd33b46b5ad3df63f1a3da, type: 3}
+  strength: 1
+  alpha: 0.8
+  dupe: 1
 --- !u!1 &1059027783
 GameObject:
   m_ObjectHideFlags: 0
@@ -36381,6 +36455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1511675957}
   - component: {fileID: 1511675958}
+  - component: {fileID: 1511675959}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -36455,6 +36530,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1511675959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511675956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28740798b9fd6f341b86145b697240cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaders:
+  - {fileID: 4800000, guid: 967a7bd4540807941a24cf2334138829, type: 3}
+  strength: 0
+  alpha: 0
+  dupe: 0
 --- !u!1 &1517370783
 GameObject:
   m_ObjectHideFlags: 0
@@ -37004,6 +37096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1594155116}
   - component: {fileID: 1594155117}
+  - component: {fileID: 1594155118}
   m_Layer: 0
   m_Name: Tree (1)
   m_TagString: Untagged
@@ -37078,6 +37171,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1594155118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594155115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28740798b9fd6f341b86145b697240cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaders:
+  - {fileID: -6465566751694194690, guid: 7ec7821041a36f349856a82be77d6e13, type: 3}
+  - {fileID: -6465566751694194690, guid: 254e2ddae7fd33b46b5ad3df63f1a3da, type: 3}
+  strength: 1
+  alpha: 0.8
+  dupe: 1
 --- !u!1 &1596261501
 GameObject:
   m_ObjectHideFlags: 0
@@ -37172,6 +37283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1596783473}
   - component: {fileID: 1596783474}
+  - component: {fileID: 1596783475}
   m_Layer: 0
   m_Name: Tree (21)
   m_TagString: Untagged
@@ -37246,6 +37358,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1596783475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596783472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28740798b9fd6f341b86145b697240cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaders:
+  - {fileID: 4800000, guid: 967a7bd4540807941a24cf2334138829, type: 3}
+  strength: 0
+  alpha: 0
+  dupe: 0
 --- !u!1 &1599581611
 GameObject:
   m_ObjectHideFlags: 0
@@ -39042,6 +39171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732203107}
   - component: {fileID: 1732203108}
+  - component: {fileID: 1732203109}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -39116,6 +39246,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1732203109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732203106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28740798b9fd6f341b86145b697240cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaders:
+  - {fileID: -6465566751694194690, guid: 7ec7821041a36f349856a82be77d6e13, type: 3}
+  - {fileID: -6465566751694194690, guid: 254e2ddae7fd33b46b5ad3df63f1a3da, type: 3}
+  strength: 1
+  alpha: 0.8
+  dupe: 1
 --- !u!1 &1743422603
 GameObject:
   m_ObjectHideFlags: 0
@@ -40664,6 +40812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1861935102}
   - component: {fileID: 1861935103}
+  - component: {fileID: 1861935104}
   m_Layer: 0
   m_Name: Tree (22)
   m_TagString: Untagged
@@ -40738,6 +40887,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1861935104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861935101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28740798b9fd6f341b86145b697240cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaders:
+  - {fileID: -6465566751694194690, guid: 7ec7821041a36f349856a82be77d6e13, type: 3}
+  - {fileID: -6465566751694194690, guid: 254e2ddae7fd33b46b5ad3df63f1a3da, type: 3}
+  strength: 1
+  alpha: 0.8
+  dupe: 1
 --- !u!1 &1875228859
 GameObject:
   m_ObjectHideFlags: 0
@@ -43433,6 +43600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2084993023}
   - component: {fileID: 2084993024}
+  - component: {fileID: 2084993025}
   m_Layer: 0
   m_Name: Cheese Factory
   m_TagString: Untagged
@@ -43507,6 +43675,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2084993025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084993022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28740798b9fd6f341b86145b697240cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaders:
+  - {fileID: -6465566751694194690, guid: 7ec7821041a36f349856a82be77d6e13, type: 3}
+  - {fileID: -6465566751694194690, guid: 254e2ddae7fd33b46b5ad3df63f1a3da, type: 3}
+  strength: 1
+  alpha: 0.8
+  dupe: 1
 --- !u!1 &2087142065
 GameObject:
   m_ObjectHideFlags: 0
