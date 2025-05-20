@@ -6,6 +6,7 @@ public class Boon : MonoBehaviour
 {
     [Header("References")]
     private PlayerMovement PlayerMovementScript;
+    public PlayerHealth playerHealth;
     public GameObject Boons, Door;
     public string ParentName;
     [Header("Misc")]
@@ -13,6 +14,7 @@ public class Boon : MonoBehaviour
 
     void Awake() {
         PlayerMovementScript = FindObjectOfType<PlayerMovement>();
+        playerHealth = FindObjectOfType<PlayerHealth>();
         Boons = GameObject.Find("Boons");  
         ParentName = transform.parent.name;
 
@@ -21,6 +23,7 @@ public class Boon : MonoBehaviour
     
     private void OnTriggerEnter(Collider Obj) {
         if (Obj.CompareTag("Player")) { PlayerInRadius = true; }
+        Debug.Log("Entered");
     }
 
     private void OnTriggerExit(Collider Obj) {
@@ -31,7 +34,7 @@ public class Boon : MonoBehaviour
         if (PlayerInRadius && Input.GetKeyDown(KeyCode.E)) {
             if (ParentName == "ScratchingPost") { DmgStatIncrease(); }
             if (ParentName == "CatToy") { SpeedStatIncrease(); }
-            if (ParentName == "Fish") { HealthStatIncrease(); }
+            if (ParentName == "Fish") { HealthStatIncrease();}
 
         }
     }
@@ -49,8 +52,7 @@ public class Boon : MonoBehaviour
     }
 
     void HealthStatIncrease() {
-        PlayerMovementScript.MaxHealth += 10;
-        PlayerMovementScript.CurHealth += 10;
+        playerHealth.AddHealth(10);
         Door.SetActive(true);
         Boons.SetActive(false);
     }

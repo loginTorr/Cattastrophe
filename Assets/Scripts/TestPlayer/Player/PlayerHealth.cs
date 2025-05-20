@@ -16,7 +16,6 @@ public class PlayerHealth : MonoBehaviour
 
     public HealthBar healthBar;
     public GameObject player;
-    public GameObject gameOverScreen;
 
     private PlayerMovement PlayerMovmentScript;
     private float currentHealth;
@@ -74,7 +73,6 @@ public class PlayerHealth : MonoBehaviour
     }
     
     public void GameOver(){
-        print("game over");
         gameHighScoreScript.Score -= 5000;
 
         if (saved != null){
@@ -127,5 +125,13 @@ public class PlayerHealth : MonoBehaviour
                 1.0f
             );
         }
+    }
+
+    public void AddHealth(int added){
+        PlayerMovmentScript.MaxHealth += added;
+        PlayerMovmentScript.CurHealth += added;
+        currentHealth = PlayerMovmentScript.CurHealth;
+        healthBar.SetMaxHealth(PlayerMovmentScript.MaxHealth);
+        healthBar.SetHealth(PlayerMovmentScript.CurHealth);
     }
 }
