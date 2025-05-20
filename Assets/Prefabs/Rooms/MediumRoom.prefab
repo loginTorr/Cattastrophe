@@ -48313,6 +48313,8 @@ GameObject:
   - component: {fileID: 262317222435903220}
   - component: {fileID: 1744305690201263975}
   - component: {fileID: 7580289479724256201}
+  - component: {fileID: 2756696846407737874}
+  - component: {fileID: 7719237858778669629}
   m_Layer: 0
   m_Name: MediumRoom
   m_TagString: Untagged
@@ -48379,6 +48381,48 @@ MonoBehaviour:
   Timer: 20
   Wave2: {fileID: 0}
   AttackScript: {fileID: 0}
+--- !u!65 &2756696846407737874
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8152329401269280328}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.9335957, y: 18.796593, z: 41.019115}
+  m_Center: {x: -18.824429, y: 7.7575436, z: 1.0222799}
+--- !u!65 &7719237858778669629
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8152329401269280328}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 80.33308, y: 9.91723, z: 4.448284}
+  m_Center: {x: 20.341076, y: 4.2013745, z: -22.058079}
 --- !u!1 &8154763455151504847
 GameObject:
   m_ObjectHideFlags: 0
