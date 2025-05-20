@@ -5,7 +5,7 @@ public class GameHighScore : MonoBehaviour
 {
     [Header("Misc")]
     public int Timer = 0;
-    public int MaxScore = 10000;
+    public int MaxScore = 10000000;
     public int Score = 0;
     public int TimerScore = 0;
 

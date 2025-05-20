@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameWin : MonoBehaviour
 {
     public int Counter = 0;
-    public int Timer = 15;
+    public int Timer = 120;
     private bool CanEndRoom = true;
     private GameHighScore ScoreScript;
 

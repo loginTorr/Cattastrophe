@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossCount : MonoBehaviour
 {
     public int Counter = 0;
-    public int Timer = 15;
+    public int Timer = 90;
     private bool CanEndRoom = true;
     private GameHighScore ScoreScript;
 

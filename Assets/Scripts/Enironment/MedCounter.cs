@@ -5,7 +5,7 @@ public class MedCounter : MonoBehaviour
 {
     [Header("Enemies")]
     public int Counter = 0;
-    public int Timer = 20;
+    public int Timer = 60;
     public GameObject Wave2;
     public SlashAttackTriggers AttackScript;
 

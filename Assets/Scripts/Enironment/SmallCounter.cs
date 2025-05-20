@@ -6,7 +6,7 @@ public class SmallCounter : MonoBehaviour
 
     [Header("Enemies")]
     public int Counter = 0;
-    public int Timer = 15;
+    public int Timer = 30;
     public GameObject Wave2;
     public SlashAttackTriggers AttackScript;
 
