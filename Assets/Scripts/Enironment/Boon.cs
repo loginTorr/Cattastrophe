@@ -37,7 +37,7 @@ public class Boon : MonoBehaviour
     }
 
     void DmgStatIncrease() {
-        PlayerMovementScript.AttackDamage += 5;
+        PlayerMovementScript.AttackDamage += 2;
         Door.SetActive(true);
         Boons.SetActive(false);
     }
