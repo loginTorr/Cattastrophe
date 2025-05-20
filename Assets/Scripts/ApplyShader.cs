@@ -137,5 +137,6 @@ public class ApplyShader : MonoBehaviour{
         rend.material.SetFloat("_strength", strength);
         rend.material.SetFloat("_Alpha", alpha);
         rend.material.SetTexture("_texture", texture);
+        rend.material.SetTexture("_MainTex", texture);
     }
 }
