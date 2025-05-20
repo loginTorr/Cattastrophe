@@ -30,8 +30,8 @@ public class RatBoss : MonoBehaviour
 
         StartCoroutine(Idle());
 
-        //healthBar = GetComponentInChildren<EnemyHealthBar>();
-        //healthBar.SetMaxHealth(RatBossHealth);
+        healthBar = GetComponentInChildren<EnemyHealthBar>();
+        healthBar.SetMaxHealth(RatBossHealth);
     }
 
     // Update is called once per frame
@@ -46,7 +46,7 @@ public class RatBoss : MonoBehaviour
             Die();
         }
 
-        //healthBar.SetHealth(RatBossHealth);
+        healthBar.SetHealth(RatBossHealth);
 
         PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
 

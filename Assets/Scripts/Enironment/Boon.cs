@@ -40,19 +40,19 @@ public class Boon : MonoBehaviour
     }
 
     void DmgStatIncrease() {
-        PlayerMovementScript.AttackDamage += 2;
+        PlayerMovementScript.AttackDamage += 3;
         Door.SetActive(true);
         Boons.SetActive(false);
     }
 
     void SpeedStatIncrease() {
-        PlayerMovementScript.MaxSpeed += 1;
+        PlayerMovementScript.MaxSpeed += 4;
         Door.SetActive(true);
         Boons.SetActive(false);
     }
 
     void HealthStatIncrease() {
-        playerHealth.AddHealth(10);
+        playerHealth.AddHealth(30);
         Door.SetActive(true);
         Boons.SetActive(false);
     }
