@@ -259,7 +259,7 @@ public class RatBoss : MonoBehaviour
         ResetAllTriggers();
         anim.SetTrigger("IsDead");
 
-        Destroy(gameObject, 8);
+        Destroy(gameObject, 6);
         yield return null;
     }
 
