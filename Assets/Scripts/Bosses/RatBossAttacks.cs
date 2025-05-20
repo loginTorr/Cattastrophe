@@ -27,7 +27,7 @@ public class RatBossAttacks : MonoBehaviour
             if (player != null)
             {
                 //Debug.Log("DamageDone");
-                player.TakeDamage(30);
+                player.TakeDamage(25);
                 hitPlayers.Add(other);
             }
         }

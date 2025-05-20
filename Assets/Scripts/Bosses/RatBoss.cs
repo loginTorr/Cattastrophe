@@ -20,7 +20,7 @@ public class RatBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RatBossHealth = 500;
+        RatBossHealth = 400;
         count = 0;
         followSpeed = 2;
         healthy = true;
@@ -126,11 +126,22 @@ public class RatBoss : MonoBehaviour
 
         else
         {
+            float dist = Vector3.Distance(transform.position, PlayerPos.position);
+
             if (count == 3)
             {
                 ChangeState(RatBossState.Roaring);
             }
-            ChangeState(RatBossState.Running);
+            else if (dist > 5)
+            {
+                ChangeState(RatBossState.Running);
+
+            }
+
+            else
+            {
+                ChangeState(RatBossState.RPunch);
+            }
         }
     }
 
