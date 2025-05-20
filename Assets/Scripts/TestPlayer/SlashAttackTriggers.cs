@@ -6,6 +6,7 @@ using UnityEngine;
     {
         public GameObject ExplosionRadius;
         public GameObject Barrel;
+        private ParticleSystem ExplosionAnim;
 
         public bool canDealDamage = false;
         private HashSet<Collider> hitEnemies = new HashSet<Collider>();
@@ -23,6 +24,7 @@ using UnityEngine;
             if (GameObject.Find("ExplodeBarrel") != null) { 
                 Barrel = GameObject.Find("ExplodeBarrel");
                 ExplosionRadius = GameObject.Find("ExplosionRadius");
+                ExplosionAnim = ExplosionRadius.transform.Find("Particle System").gameObject.GetComponent<ParticleSystem>();
                 ExplosionRadius.SetActive(false);
             }
 
@@ -84,6 +86,7 @@ using UnityEngine;
             // wait however long the timer is
             yield return new WaitForSeconds(2);
             ExplosionRadius.SetActive(true);
+            ExplosionAnim.Play();
             yield return new WaitForSeconds(0.5f);
             Barrel.SetActive(false);
 
