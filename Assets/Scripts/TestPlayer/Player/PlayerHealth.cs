@@ -73,7 +73,7 @@ public class PlayerHealth : MonoBehaviour
     }
     
     public void GameOver(){
-        gameHighScoreScript.Score -= 5000;
+        gameHighScoreScript.Score -= 1000;
 
         if (saved != null){
             saved.SetScore(gameHighScoreScript.Score);
