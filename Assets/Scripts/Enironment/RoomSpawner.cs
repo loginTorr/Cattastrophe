@@ -28,10 +28,12 @@ public class RoomSpawner : MonoBehaviour {
     private GameObject Player;
     private PlayerMovement PlayerMovementScript;
     private GameObject PlayerSpawn;
+    private MusicManager musicManager;
 
 
 
     void Start() {
+        musicManager = MusicManager.Instance;
         Player = GameObject.FindGameObjectWithTag("Player");
         PlayerMovementScript = FindObjectOfType<PlayerMovement>();
 
@@ -56,12 +58,20 @@ public class RoomSpawner : MonoBehaviour {
         {
             prefabToSpawn = MiniBossRoom;
 
+            if (musicManager != null)
+            {
+                musicManager.PlayBossMusic();
+            }
         }
 
         else if (roomsSpawned == 7)
         {
             prefabToSpawn = BossRoom;
 
+            if (musicManager != null)
+            {
+                musicManager.PlayBossMusic();
+            }
         }
 
         else if (roomsSpawned == 8)
@@ -77,7 +87,6 @@ public class RoomSpawner : MonoBehaviour {
             {
                 prefabToSpawn = MediumRooms[Random.Range(0, MediumRooms.Count)];
             }
-
             else
             {
                 prefabToSpawn = SmallRooms[Random.Range(0, SmallRooms.Count)];
@@ -87,6 +96,10 @@ public class RoomSpawner : MonoBehaviour {
                 BigChance += 1;
             }
 
+            if (musicManager != null)
+            {
+                musicManager.PlayAmbientMusic();
+            }
         }
 
         Room roomScript = prefabToSpawn.GetComponent<Room>();

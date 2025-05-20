@@ -42140,8 +42140,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7504501406110599942, guid: b90dd8122d32f3341ac640a1d51728e4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1879969065}
   m_SourcePrefab: {fileID: 100100000, guid: b90dd8122d32f3341ac640a1d51728e4, type: 3}
+--- !u!1 &1879969064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7504501406110599942, guid: b90dd8122d32f3341ac640a1d51728e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1879969063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1879969065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879969064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a834303f18581154c8ba1044e33a734e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ambientMusic: {fileID: 0}
+  combatMusic: {fileID: 0}
+  bossMusic: {fileID: 8300000, guid: e702b4f632438154c8130e0f0c9033e4, type: 3}
+  victoryMusic: {fileID: 0}
+  crossFadeDuration: 2
+  musicVolume: 0.5
 --- !u!1 &1886478040
 GameObject:
   m_ObjectHideFlags: 0
@@ -46884,6 +46912,7 @@ GameObject:
   - component: {fileID: 5812918381148373002}
   - component: {fileID: 4241989515156182247}
   - component: {fileID: 6410104682774766478}
+  - component: {fileID: 6410104682774766479}
   m_Layer: 0
   m_Name: PJ
   m_TagString: Untagged
@@ -46906,6 +46935,18 @@ MonoBehaviour:
   leftFist: {fileID: 9066750084576874816}
   rightFist: {fileID: 2536130426348799593}
   attackDamage: 0
+--- !u!114 &6410104682774766479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6410104682774766477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8427e8a58bb623d45bf096887e7152fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6419828891280388255
 Transform:
   m_ObjectHideFlags: 0
