@@ -91,10 +91,10 @@ public class PlayerHealth : MonoBehaviour
         {
             SceneManager.LoadScene("MiniBossGameOver");
         }
-        //if (GameObject.Find("BigBoss") != null)
-        //{
-        //    SceneManager.LoadScene("BossGameOver");
-        //}
+        if (GameObject.Find("BigBoss") != null)
+        {
+            SceneManager.LoadScene("BossGameOver");
+        }
         Destroy(player);
     }
 
