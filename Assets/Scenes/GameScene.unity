@@ -9712,7 +9712,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -29.918621, y: 25.000004, z: -7.01862}
+  m_LocalPosition: {x: -28.918627, y: 25.000004, z: -8.0186205}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43899,7 +43899,7 @@ Transform:
   m_GameObject: {fileID: 2009972019}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -29.918621, y: 25.000004, z: -7.01862}
+  m_LocalPosition: {x: -28.918627, y: 25.000004, z: -8.0186205}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45573,7 +45573,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1c1ce89b7dd84a44dbaaa6228c516988, type: 3}
   - {fileID: 8300000, guid: 2c051bef202192643bcc99d698310a67, type: 3}
   CurSpeed: 10
-  MaxSpeed: 8
+  MaxSpeed: 10
   AttackDamage: 5
   CurHealth: 100
   MaxHealth: 100
@@ -46579,7 +46579,7 @@ Transform:
   m_GameObject: {fileID: 8936106781629423764}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.0000004917383, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7, y: 0, z: 23.6}
+  m_LocalPosition: {x: 1.6999947, y: 0, z: 22.599998}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
