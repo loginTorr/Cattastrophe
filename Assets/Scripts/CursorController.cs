@@ -7,7 +7,7 @@ public class CursorController : MonoBehaviour {
     public Texture2D CursorDefault, CursorClick;
     [Header("Other")]
     public Vector2 ClickPosition = Vector2.zero;
-    public float Duration = 4f;
+    public float Duration = 0.5f;
     public bool IsClicking = false;
 
     void Start() {
@@ -15,7 +15,7 @@ public class CursorController : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetMouseButtonDown(1) && !IsClicking) {
+        if (Input.GetMouseButtonDown(0) && !IsClicking) {
             StartCoroutine(ChangeCursor());
         }
     }
