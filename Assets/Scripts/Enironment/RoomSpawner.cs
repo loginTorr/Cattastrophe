@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoomSpawner : MonoBehaviour {
     [Header("Rooms To Spawn")]
@@ -61,6 +62,12 @@ public class RoomSpawner : MonoBehaviour {
         {
             prefabToSpawn = BossRoom;
 
+        }
+
+        else if (roomsSpawned > 7)
+        {
+            prefabToSpawn = null;
+            SceneManager.LoadScene("Victory");
         }
         else
         {

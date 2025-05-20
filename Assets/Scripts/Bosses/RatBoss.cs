@@ -265,7 +265,8 @@ public class RatBoss : MonoBehaviour
 
     void Die()
     {
-        ResetAllTriggers();
+        GameWin GameWinCount = FindObjectOfType<GameWin>();
+        GameWinCount.Counter += 1;
         ChangeState(RatBossState.Dead);
     }
 
