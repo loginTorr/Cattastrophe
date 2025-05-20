@@ -30,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4564699076541523573}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14559041, y: 0.24949454, z: 0.31232473, w: 0.9049913}
-  m_LocalPosition: {x: -0.464, y: 0.844, z: 0.069}
-  m_LocalScale: {x: 0.21171655, y: 1.8678118, z: 0.21171655}
+  m_LocalRotation: {x: -0.115057245, y: 0.27366522, z: 0.3191, w: 0.9000247}
+  m_LocalPosition: {x: -0.573, y: 1.024, z: 0.09}
+  m_LocalScale: {x: 0.21171655, y: 2.5217328, z: 0.21171655}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3365281360554945106}
-  m_LocalEulerAnglesHint: {x: -24.794, y: 23.407, z: 32.866}
+  m_LocalEulerAnglesHint: {x: -22.443, y: 26.97, z: 33.596}
 --- !u!33 &5838499719861791956
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -358,6 +358,13 @@ MonoBehaviour:
   MidShootingRetreatChance: 0
   CloseShootingAdvanceChance: 0
   CloseShootingRetreatChance: 0
+  randomSounds: []
+  minSoundInterval: 1
+  maxSoundInterval: 3
+  soundVolume: 0.7
+  minDistance: 1
+  maxDistance: 20
+  pitchVariation: 0.1
 --- !u!195 &8545346087838620654
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -447,8 +454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1037dd8497ea5b4f9b106ed2af28b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxAttackPause: 2
-  MinAttackPause: 2.5
+  MaxAttackPause: 0.1
+  MinAttackPause: 0.4
 --- !u!1001 &6966839589678289078
 PrefabInstance:
   m_ObjectHideFlags: 0
