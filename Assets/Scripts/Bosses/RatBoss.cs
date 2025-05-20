@@ -41,6 +41,11 @@ public class RatBoss : MonoBehaviour
         newPosition.y = 0;
         transform.position = newPosition;
 
+        if (RatBossHealth <= 0)
+        {
+            Die();
+        }
+
         //healthBar.SetHealth(RatBossHealth);
 
         PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
@@ -250,9 +255,18 @@ public class RatBoss : MonoBehaviour
 
     IEnumerator Dead()
     {
+        followSpeed = 0;
         ResetAllTriggers();
+        anim.SetTrigger("IsDead");
 
+        Destroy(gameObject, 8);
         yield return null;
+    }
+
+    void Die()
+    {
+        ResetAllTriggers();
+        ChangeState(RatBossState.Dead);
     }
 
 }
