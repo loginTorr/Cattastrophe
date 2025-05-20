@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEditor.Rendering.InspectorCurveEditor;
 
 
 public enum RatBossState { Idle, Walking, Running, Roaring, GoopBall, RPunch, LPunch, Stab, Melee, SpinKick, Dead}
@@ -46,7 +45,7 @@ public class RatBoss : MonoBehaviour
 
         PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
-        if (curState == RatBossState.Walking || curState == RatBossState.Running || curState == RatBossState.RPunch || curState == RatBossState.SpinKick || curState == RatBossState.Stab)
+        if (curState == RatBossState.Walking || curState == RatBossState.Running || curState == RatBossState.LPunch || curState == RatBossState.SpinKick || curState == RatBossState.Stab)
         {
 
             if (PlayerPos)
@@ -96,7 +95,7 @@ public class RatBoss : MonoBehaviour
     IEnumerator Idle()
     {
         ResetAllTriggers();
-        followSpeed = 2f;
+        followSpeed = 2.5f;
         anim.SetTrigger("IsIdle");
         yield return new WaitForSeconds(0.8f);
         if (healthy == true && RatBossHealth <= 200)
@@ -230,7 +229,7 @@ public class RatBoss : MonoBehaviour
     IEnumerator SpinKick()
     {
         ResetAllTriggers();
-        followSpeed = 1f;
+        followSpeed = 2f;
         anim.SetTrigger("IsHurricaneKick");
         yield return new WaitForSeconds(3f);
 

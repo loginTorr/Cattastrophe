@@ -9712,7 +9712,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -41.76862, y: 25.000002, z: -37.93862}
+  m_LocalPosition: {x: -50.768574, y: 25.000004, z: 10.06139}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43896,7 +43896,7 @@ Transform:
   m_GameObject: {fileID: 2009972019}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -41.76862, y: 25.000002, z: -37.93862}
+  m_LocalPosition: {x: -50.768574, y: 25.000004, z: 10.06139}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -48731,10 +48731,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4856429332554270698}
-  - component: {fileID: 4686851879369367014}
   - component: {fileID: 2731202041399770395}
   - component: {fileID: 2663674024590720623}
   - component: {fileID: 4856429332554270699}
+  - component: {fileID: 4856429332554270700}
   m_Layer: 0
   m_Name: BigBoss
   m_TagString: Untagged
@@ -48838,33 +48838,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &4686851879369367014
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4437362696970426638}
-  serializedVersion: 4
-  m_Mass: 300
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 84
-  m_CollisionDetection: 0
 --- !u!4 &4734351700205932280
 Transform:
   m_ObjectHideFlags: 0
@@ -48874,7 +48847,7 @@ Transform:
   m_GameObject: {fileID: 8936106781629423764}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.0000004917383, z: -0, w: 1}
-  m_LocalPosition: {x: -11.15, y: 0, z: -7.32}
+  m_LocalPosition: {x: -20.149952, y: 0, z: 40.680008}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -49100,8 +49073,8 @@ Transform:
   m_GameObject: {fileID: 4437362696970426638}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.25882435, z: -0, w: -0.96592444}
-  m_LocalPosition: {x: -25.316292, y: 0.0000009536743, z: 37.308662}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: -25.428, y: 0.18, z: 37.166}
+  m_LocalScale: {x: 1.0715201, y: 1.0715201, z: 1.0715201}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4262062869824972853}
@@ -49122,6 +49095,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RatBossHealth: 0
   followSpeed: 1
+--- !u!114 &4856429332554270700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4437362696970426638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc858223761321489357d51b68f344b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftFist: {fileID: 8259632029857224305}
+  rightFist: {fileID: 8253385156655740264}
 --- !u!137 &4955376381768782206
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -51007,13 +50994,49 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4140645090094178432}
+  - component: {fileID: 8253385156655740263}
+  - component: {fileID: 8253385156655740264}
   m_Layer: 0
-  m_Name: mixamorig:LeftHand
+  m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &8253385156655740263
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8253385156655740262}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.4592739, y: 1.8247302, z: 1.6378168}
+  m_Center: {x: 0.06324834, y: 0.41236562, z: 0.3189094}
+--- !u!114 &8253385156655740264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8253385156655740262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ebcdc71e17c7c4780b23b92688b7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canDealDamage: 0
 --- !u!137 &8254096014033391324
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -51081,13 +51104,49 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5546996326437880566}
+  - component: {fileID: 8259632029857224304}
+  - component: {fileID: 8259632029857224305}
   m_Layer: 0
-  m_Name: mixamorig:RightHand
+  m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &8259632029857224304
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8259632029857224303}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5924417, y: 1.7796412, z: 1.5162752}
+  m_Center: {x: -0.036025792, y: 0.38981906, z: 0.25813776}
+--- !u!114 &8259632029857224305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8259632029857224303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ebcdc71e17c7c4780b23b92688b7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canDealDamage: 0
 --- !u!137 &8289974632684388720
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

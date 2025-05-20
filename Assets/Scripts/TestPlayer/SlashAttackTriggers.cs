@@ -47,38 +47,46 @@ using UnityEngine;
         }
 
 
-        void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
+    {
+
+        //Debug.Log($"canDealDamage={canDealDamage} other.tag={other.tag} hitPlayersContains={hitEnemies.Contains(other)}");
+
+        if (canDealDamage && !hitEnemies.Contains(other) && (other.CompareTag("Raton") || other.CompareTag("Mini Raton")))
         {
+            // Try to get the Enemy Health Component
+            EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
 
-                //Debug.Log($"canDealDamage={canDealDamage} other.tag={other.tag} hitPlayersContains={hitEnemies.Contains(other)}");
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(damage);
+            }
+            hitEnemies.Add(other);
 
-                if (canDealDamage && !hitEnemies.Contains(other) && (other.CompareTag("Raton") || other.CompareTag("Mini Raton")))
-                {
-                    // Try to get the Enemy Health Component
-                    EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
 
-                    if (enemyHealth != null)
-                    {
-                        enemyHealth.TakeDamage(damage);
-                    }
-                    hitEnemies.Add(other);
-    
-
-                }
-
-                else if (canDealDamage && !hitEnemies.Contains(other) && other.CompareTag("RatMiniBoss"))
-                {
-                    RatMiniBoss MiniBossHP = other.GetComponent<RatMiniBoss>();
-                    MiniBossHP.RatBossHealth -= damage;
-                    hitEnemies.Add(other);
-
-                }
-
-    
-
-                else if (canDealDamage && !hitEnemies.Contains(other) && other.CompareTag("Barrel")) { StartCoroutine(Explosion()); }
-             
         }
+
+        else if (canDealDamage && !hitEnemies.Contains(other) && other.CompareTag("RatMiniBoss"))
+        {
+            RatMiniBoss MiniBossHP = other.GetComponent<RatMiniBoss>();
+            MiniBossHP.RatBossHealth -= damage;
+            hitEnemies.Add(other);
+
+        }
+
+        else if (canDealDamage && !hitEnemies.Contains(other) && other.CompareTag("RatBoss"))
+        {
+            RatBoss ratBossHP = other.GetComponent<RatBoss>();
+            ratBossHP.RatBossHealth -= damage;
+            hitEnemies.Add(other);
+        }
+
+
+
+
+        else if (canDealDamage && !hitEnemies.Contains(other) && other.CompareTag("Barrel")) { StartCoroutine(Explosion()); }
+
+    }
 
         IEnumerator Explosion() {
             // wait however long the timer is
