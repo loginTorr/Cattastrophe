@@ -27,13 +27,16 @@ public class RightHouse : MonoBehaviour
     void Update() {
         if (PlayerInRadius && Input.GetKeyDown(KeyCode.E)) {
             Puzzle.RightHouseFunc();
-            StartCoroutine(RightHouseTextFunc());
         }
+    }
+
+    public void ShowText() {
+        StartCoroutine(RightHouseTextFunc());
     }
 
     IEnumerator RightHouseTextFunc() {
         RightHouseText.SetActive(true);
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
         RightHouseText.SetActive(false);
     }
 }

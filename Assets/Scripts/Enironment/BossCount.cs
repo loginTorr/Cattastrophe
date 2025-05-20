@@ -34,7 +34,7 @@ public class BossCount : MonoBehaviour
     void EndRoom()
     {
         Game.RoomCleared = true;
-        ScoreScript.AddScore(100);
+        ScoreScript.AddScore(2000);
         // spawns powerups and unlocks doors
     }
 

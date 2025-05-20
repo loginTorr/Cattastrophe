@@ -27,13 +27,16 @@ public class LeftHouse : MonoBehaviour
     void Update() {
         if (PlayerInRadius && Input.GetKeyDown(KeyCode.E)) {
             Puzzle.LeftHouseFunc();
-            StartCoroutine(LeftHouseTextFunc());
         }
+    }
+
+    public void ShowText() {
+        StartCoroutine(LeftHouseTextFunc());
     }
 
     IEnumerator LeftHouseTextFunc() {
         LeftHouseText.SetActive(true);
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
         LeftHouseText.SetActive(false);
     }
 }

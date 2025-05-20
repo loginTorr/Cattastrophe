@@ -27,13 +27,16 @@ public class MidHouse : MonoBehaviour
     void Update() {
         if (PlayerInRadius && Input.GetKeyDown(KeyCode.E)) {
             Puzzle.MidHouseFunc();
-            StartCoroutine(MidHouseTextFunc());
         }
+    }
+    
+    public void ShowText() {
+        StartCoroutine(MidHouseTextFunc());
     }
 
     IEnumerator MidHouseTextFunc() {
         MidHouseText.SetActive(true);
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
         MidHouseText.SetActive(false);
     }
 }

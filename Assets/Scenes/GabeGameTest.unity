@@ -18491,7 +18491,7 @@ GameObject:
   - component: {fileID: 613959972}
   - component: {fileID: 613959975}
   m_Layer: 0
-  m_Name: RIghtHouse
+  m_Name: RightHouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29512,6 +29512,9 @@ MonoBehaviour:
   PuzzleCount: 0
   CursorController: {fileID: 0}
   EECursor: {fileID: 0}
+  MidHouseScript: {fileID: 0}
+  LeftHouseScript: {fileID: 0}
+  RightHouseScript: {fileID: 0}
 --- !u!1 &942900730
 GameObject:
   m_ObjectHideFlags: 0
