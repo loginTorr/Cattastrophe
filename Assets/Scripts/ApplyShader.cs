@@ -47,26 +47,47 @@ public class ApplyShader : MonoBehaviour{
 
     void ApplyWithDupe() {
         if (transform.childCount > 0) {
-            for (int i = 0; i < transform.childCount; i++){
-                GameObject child = this.gameObject.transform.GetChild(i).gameObject;
+            if (transform.parent == null) {
+                for (int i = 0; i < transform.childCount; i++){
+                    GameObject child = this.gameObject.transform.GetChild(i).gameObject;
+                    
+                    if ((created.Contains<GameObject>(child)) == false){
+                        for (int j = 0; j < shaders.Count; j++){
+                            GameObject copy = Instantiate(child, child.transform.position, child.transform.rotation, transform);
+                            created.Add(copy);
 
-                if ((created.Contains<GameObject>(child)) == false){
-                    GameObject dummy = Instantiate(child, child.transform.position, child.transform.rotation, transform);
-                    for (int j = 0; j < shaders.Count; j++){
-                        GameObject copy = Instantiate(dummy, child.transform.position, child.transform.rotation, transform);
-                        created.Add(copy);
-
-                        Renderer childRend = child.GetComponent<Renderer>();
-                        Material childMat = childRend.material;
-                        Texture texture = childMat.mainTexture;
+                            Renderer childRend = child.GetComponent<Renderer>();
+                            Material childMat = childRend.material;
+                            Texture texture = childMat.mainTexture;
                         
-                        Renderer copyRend = copy.GetComponent<Renderer>();
-                        copyRend.material = new Material(shaders[j]);
-                        copyRend.material.SetFloat("_strength", strength);
-                        copyRend.material.SetFloat("_Alpha", alpha);
-                        copyRend.material.SetTexture("_texture", texture);
+                            Renderer copyRend = copy.GetComponent<Renderer>();
+                            copyRend.material = new Material(shaders[j]);
+                            copyRend.material.SetFloat("_strength", strength);
+                            copyRend.material.SetFloat("_Alpha", alpha);
+                            copyRend.material.SetTexture("_texture", texture);
+                        }
                     }
-                    Destroy(dummy);
+                }
+            }else if (transform.parent.gameObject.GetComponent<ApplyShader>() == null) { 
+                for (int i = 0; i < transform.childCount; i++){
+                    GameObject child = this.gameObject.transform.GetChild(i).gameObject;
+                    
+                    if ((created.Contains<GameObject>(child)) == false){
+                        for (int j = 0; j < shaders.Count; j++){
+                            GameObject copy = Instantiate(child, child.transform.position, child.transform.rotation, transform);
+                            created.Add(copy);
+
+                            Renderer childRend = child.GetComponent<Renderer>();
+                            Material childMat = childRend.material;
+                            Texture texture = childMat.mainTexture;
+                        
+                            Renderer copyRend = copy.GetComponent<Renderer>();
+                            copyRend.material = new Material(shaders[j]);
+                            copyRend.material.SetFloat("_strength", strength);
+                            copyRend.material.SetFloat("_Alpha", alpha);
+                            copyRend.material.SetTexture("_texture", texture);
+                        }
+                    }
                 }
             }
         } else{
