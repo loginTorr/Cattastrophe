@@ -64,7 +64,7 @@ public class RoomSpawner : MonoBehaviour {
 
         }
 
-        else if (roomsSpawned > 7)
+        else if (roomsSpawned == 8)
         {
             prefabToSpawn = null;
             SceneManager.LoadScene("Victory");
