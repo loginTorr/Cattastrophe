@@ -44,7 +44,7 @@ public class SmallCounter : MonoBehaviour
     void EndRoom()
     {
         Game.RoomCleared = true;
-        ScoreScript.AddScore(50);
+        ScoreScript.AddScore(500);
         // spawns powerups and unlocks doors
         Boons.SetActive(true);
     }

@@ -47,7 +47,7 @@ public class MedCounter : MonoBehaviour
     void EndRoom()
     {
         Game.RoomCleared = true;
-        ScoreScript.AddScore(100);
+        ScoreScript.AddScore(1000);
         // spawns powerups and unlocks doors
         Boons.SetActive(true);
 
