@@ -184,7 +184,9 @@ public class RatBoss : MonoBehaviour
     {
         ResetAllTriggers();
         anim.SetTrigger("IsGoopBall");
-        yield return null;
+        yield return new WaitForSeconds(3f);
+
+        ChangeState(RatBossState.Idle);
     }
 
     IEnumerator RPunch()
